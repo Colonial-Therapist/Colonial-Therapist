@@ -5,28 +5,18 @@
 // selectively enable features needed in the rendering
 // process.
 
-// // send to console
-// console.log(123)
-//
-// // send text
-// const el = document.querySelector('h1')
-// if (el) el.innerText = 'test'
+const NBT = require('mcnbt')
 
-// var path = require('path')
-// var p = path.join(__dirname, '.', 'README.md')
-// const el = document.getElementById('text')
-// if (el) el.innerText = p
+let datFile = __dirname + '/' + 'minecolonies/minecraft/overworld/colony1.dat'
+let nbt = new NBT()
 
-const fs = require('fs')
-
-let filepath = __dirname + '/' + 'README.md'
-
-fs.readFile(filepath, 'utf-8', (err, data) => {
-    if (err) {
-        alert("An error ocurred reading the file :" + err.message);
-        return;
-    }
-
-    const el = document.getElementById('text')
-    if (el) el.innerText = data
+nbt.loadFromFile(datFile, function(err) {
+    if(err) return console.error(err)
+    console.log(nbt)
+    let buildings = nbt.select('').select('buildingManager').select('buildings')
+    // buildingManager
+    console.log(buildings)
+    // console.log(buildingManage.getType())
+    // var gameRules = nbt.select('').select('Data').select('GameRules');
+    //"buildingManager"
 });

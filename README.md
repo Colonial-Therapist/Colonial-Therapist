@@ -10,10 +10,14 @@ The inspiration was the [Dwarf-Therapist](https://github.com/Dwarf-Therapist/Dwa
 - [x] ~~print text in main window~~
 - [x] ~~read txt file~~
 - [x] ~~view text from file in main window~~
+- [x] read local nbt file
+- [x] parsing data
 - [ ] read nbt file .minecraft\saves\WORLD\minecolonies\minecraft\overworld\colony1.dat
-- [ ] parsing data
 - [x] ~~life reloading app~~
 - [ ] get citizens, skills and jobs (houses)
+  - [ ] get citizens
+  - [ ] get skills
+  - [ ] get jobs (houses)
 - [ ] convert data to table
 - [ ] reading while game is running
 - [ ] configure builder
