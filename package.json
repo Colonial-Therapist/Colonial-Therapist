@@ -15,8 +15,13 @@
     "nbt"
   ],
   "author": "LEXX",
-  "license": "CC0-1.0",
+  "license": "",
   "devDependencies": {
-    "electron": "^20.0.1"
+    "electron": "^20.0.1",
+    "electron-builder": "^23.3.3",
+    "electron-reloader": "^1.2.3"
+  },
+  "dependencies": {
+    "prismarine-nbt": "^2.2.1"
   }
 }

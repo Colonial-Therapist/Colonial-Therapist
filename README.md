@@ -12,7 +12,7 @@ The inspiration was the [Dwarf-Therapist](https://github.com/Dwarf-Therapist/Dwa
 - [ ] view text from file in main window
 - [ ] read nbt file .minecraft\saves\WORLD\minecolonies\minecraft\overworld\colony1.dat
 - [ ] parsing data
-- [ ] life reloading app
+- [x] ~~life reloading app~~
 - [ ] get citizens, skills and jobs (houses)
 - [ ] convert data to table
 - [ ] reading while game is running
