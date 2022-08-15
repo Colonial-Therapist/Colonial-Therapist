@@ -1,0 +1,22 @@
+{
+  "name": "colonial-therapist",
+  "version": "0.0.1",
+  "description": "Colonist management tool",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": "",
+  "keywords": [
+    "Electron",
+    "colonial-therapist",
+    "minecraft",
+    "minecolonies",
+    "nbt"
+  ],
+  "author": "LEXX",
+  "license": "CC0-1.0",
+  "devDependencies": {
+    "electron": "^20.0.1"
+  }
+}
