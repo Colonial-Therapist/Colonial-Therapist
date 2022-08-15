@@ -8,8 +8,8 @@ The inspiration was the [Dwarf-Therapist](https://github.com/Dwarf-Therapist/Dwa
 
 - [x] ~~send message in console~~
 - [x] ~~print text in main window~~
-- [ ] read txt file
-- [ ] view text from file in main window
+- [x] ~~read txt file~~
+- [x] ~~view text from file in main window~~
 - [ ] read nbt file .minecraft\saves\WORLD\minecolonies\minecraft\overworld\colony1.dat
 - [ ] parsing data
 - [x] ~~life reloading app~~
