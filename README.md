@@ -12,12 +12,22 @@ The inspiration was the [Dwarf-Therapist](https://github.com/Dwarf-Therapist/Dwa
 - [x] ~~view text from file in main window~~
 - [x] read local nbt file
 - [x] parsing data
-- [ ] read nbt file .minecraft\saves\WORLD\minecolonies\minecraft\overworld\colony1.dat
+- [x] read nbt file .minecraft\saves\WORLD\minecolonies\minecraft\overworld\colony1.dat
 - [x] ~~life reloading app~~
 - [ ] get citizens, skills and jobs (houses)
   - [ ] get citizens
+    - [ ] happiness
+    - [ ] skills
+    - [ ] level
+    - [ ] home
+    - [x] ~~job~~
   - [ ] get skills
+    - [ ] skill registry
   - [ ] get jobs (houses)
+    - [x] ~~list of house names~~
+    - [x] ~~building levels~~
+    - [ ] skills assessment system
 - [ ] convert data to table
+- [ ] save config in home dir
 - [ ] reading while game is running
 - [ ] configure builder
