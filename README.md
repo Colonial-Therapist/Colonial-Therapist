@@ -10,24 +10,36 @@ The inspiration was the [Dwarf-Therapist](https://github.com/Dwarf-Therapist/Dwa
 - [x] ~~print text in main window~~
 - [x] ~~read txt file~~
 - [x] ~~view text from file in main window~~
-- [x] read local nbt file
-- [x] parsing data
-- [x] read nbt file .minecraft\saves\WORLD\minecolonies\minecraft\overworld\colony1.dat
+- [x] ~~read local nbt file~~
+- [x] ~~parsing data~~
+- [x] ~~read nbt file .minecraft\saves\WORLD\minecolonies\minecraft\overworld\colony1.dat~~
 - [x] ~~life reloading app~~
+- [ ] read nbt file capabilities.dat
 - [ ] get citizens, skills and jobs (houses)
   - [ ] get citizens
     - [ ] happiness
-    - [ ] skills
+    - [x] ~~skills~~
     - [ ] level
     - [ ] home
     - [x] ~~job~~
-  - [ ] get skills
-    - [ ] skill registry
+    - [ ] sex
+  - [x] ~~get skills~~
+    - [x] ~~skill registry~~
   - [ ] get jobs (houses)
     - [x] ~~list of house names~~
     - [x] ~~building levels~~
-    - [ ] skills assessment system
-- [ ] convert data to table
+    - [x] ~~skills assessment system~~
+    - [x] ~~custom name~~
+    - [ ] fill table
+  - [ ] get visitors
+    - [ ] costs
+    - [ ] skills
+    - [ ] happiness
+    - [ ] sex
+- [x] ~~convert data to table~~
+- [ ] refactoring create table 
 - [ ] save config in home dir
 - [ ] reading while game is running
+- [ ] grave
 - [ ] configure builder
+- [ ] debug mode

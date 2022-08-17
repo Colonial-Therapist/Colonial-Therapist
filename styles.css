@@ -1,3 +1,70 @@
 /* styles.css */
 
 /* Add styles here to customize the appearance of your app */
+:root {
+    --square: 0px;
+}
+
+td.active {
+    /*font-weight: bold;*/
+    background-color: #7b8dc7;
+}
+td.active span.square {
+    background-color: white;
+}
+
+th {
+    writing-mode: vertical-lr;
+    font-size: 13px;
+}
+
+span.square {
+    background-color: black;
+    content: '';
+    display: block;
+    width: var(--square);
+    height: var(--square);
+    /*position: relative;*/
+    /*left: 18px/2 + 6px/2;*/
+    margin: auto;
+}
+
+td {
+    padding: 0;
+}
+
+td.s_cell {
+    text-align: center;
+    vertical-align: middle;
+    position: relative;
+}
+
+.tip {
+    position: absolute;
+    left: 20px;
+    top: -70px;
+    /*min-width: 170px;*/
+    /*height: 100px;*/
+    border: 1px solid #808080;
+    border-radius: 3px;
+    background-color: rgba(255, 255, 255, 0.95);
+    display: none;
+    z-index: 1;
+    text-align: right;
+    padding: 6px;
+    white-space: nowrap;
+}
+
+td.s_cell:hover > span.tip {
+    display: block;
+}
+
+span.first {
+    color: green;
+    font-weight: bold;
+}
+span.second {
+    color: #aba023;
+    font-weight: bold;
+    font-style: italic;
+}

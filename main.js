@@ -2,6 +2,8 @@
 const {app, BrowserWindow} = require('electron')
 const path = require('path')
 
+app.disableHardwareAcceleration()
+
 try {
   require('electron-reloader')(module);
 } catch {}
