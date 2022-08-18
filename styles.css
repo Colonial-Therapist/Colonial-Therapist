@@ -7,8 +7,10 @@
 
 td.active {
     /*font-weight: bold;*/
-    background-color: #7b8dc7;
+    /*background-color: #7b8dc7;*/
+    background-color: #7a77b2;
 }
+
 td.active span.square {
     background-color: white;
 }

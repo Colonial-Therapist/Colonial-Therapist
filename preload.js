@@ -130,6 +130,7 @@ nbt.loadFromFile(datFile, function (err) {
         const mourning = citizen.mourning.value
         const id = citizen.id.value
         const newSkills = citizens.select(key).select('newSkills').select('levelMap');
+        const sex = citizen.female.value ? 0 : 1
         const skills = {}
         const happiness = {}
 
@@ -141,7 +142,7 @@ nbt.loadFromFile(datFile, function (err) {
             skills[skill] = {skill, level, experience}
         }
 
-        CT.colonists[key] = {name, job, isWarrior, mourning, id, skills, happiness,}
+        CT.colonists[key] = {name, job, isWarrior, mourning, id, sex, skills, happiness,}
     }
 
     console.log(CT)
@@ -159,8 +160,8 @@ window.addEventListener('DOMContentLoaded', () => {
 
     const el = document.getElementById('content')
     let table = `
-<table class="sortable">
-    <thead><tr><th></th>`
+<table class="sortable" border="0">
+    <thead><tr><th></th><th></th>`
 
     for (const [k, job] of Object.entries(headJobs)) {
         table += `<th>${job}</th>`
@@ -172,7 +173,8 @@ window.addEventListener('DOMContentLoaded', () => {
     <tbody>`
     for (const [key] of Object.entries(CT.colonists)) {
         let col = CT.colonists[key]
-        table += `<tr><td>${col.name}</td>`
+        let sex = col.sex ? '♂' : '♀'
+        table += `<td>${sex}</td><td>${col.name}</td>`
 
         for (const [k, job] of Object.entries(headJobs)) {
             let work = job === col.job ? 'active' : ''

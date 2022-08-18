@@ -22,7 +22,7 @@ The inspiration was the [Dwarf-Therapist](https://github.com/Dwarf-Therapist/Dwa
     - [ ] level
     - [ ] home
     - [x] ~~job~~
-    - [ ] sex
+    - [x] ~~sex~~
   - [x] ~~get skills~~
     - [x] ~~skill registry~~
   - [ ] get jobs (houses)
@@ -36,7 +36,11 @@ The inspiration was the [Dwarf-Therapist](https://github.com/Dwarf-Therapist/Dwa
     - [ ] skills
     - [ ] happiness
     - [ ] sex
-- [x] ~~convert data to table~~
+- [ ] convert data to table
+  - [x] ~~base table~~
+  - [ ] icons for skills
+  - [ ] happiness
+  - [x] ~~sex~~
 - [ ] refactoring create table 
 - [ ] save config in home dir
 - [ ] reading while game is running
