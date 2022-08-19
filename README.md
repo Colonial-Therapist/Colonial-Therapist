@@ -17,7 +17,11 @@ The inspiration was the [Dwarf-Therapist](https://github.com/Dwarf-Therapist/Dwa
 - [ ] read nbt file capabilities.dat
 - [ ] get citizens, skills and jobs (houses)
   - [ ] get citizens
-    - [ ] happiness
+    - [x] ~~happiness~~
+    - [ ] happiness refactoring
+    - [ ] needs
+    - [ ] current task (job)
+    - [ ] weapons (military)
     - [x] ~~skills~~
     - [ ] level
     - [ ] home
@@ -30,7 +34,6 @@ The inspiration was the [Dwarf-Therapist](https://github.com/Dwarf-Therapist/Dwa
     - [x] ~~building levels~~
     - [x] ~~skills assessment system~~
     - [x] ~~custom name~~
-    - [ ] fill table
   - [ ] get visitors
     - [ ] costs
     - [ ] skills
@@ -38,12 +41,16 @@ The inspiration was the [Dwarf-Therapist](https://github.com/Dwarf-Therapist/Dwa
     - [ ] sex
 - [ ] convert data to table
   - [x] ~~base table~~
-  - [ ] icons for skills
-  - [ ] happiness
-  - [x] ~~sex~~
+  - [x] ~~icons for skills~~
+  - [x] ~~happiness~~
+  - [x] ~~color columns~~
+  - [x] ~~fill table~~
+  - [x] ~~genders~~
+  - [ ] filter by military
 - [ ] refactoring create table 
 - [ ] save config in home dir
 - [ ] reading while game is running
 - [ ] grave
 - [ ] configure builder
 - [ ] debug mode
+- [ ] multilingualism

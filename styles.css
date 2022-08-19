@@ -1,8 +1,171 @@
 /* styles.css */
 
 /* Add styles here to customize the appearance of your app */
+/* Убираем внешние отступы */
+body {
+    margin: 0;
+}
+
 :root {
     --square: 0px;
+    --cell: 18px;
+
+    --hap: #c4c4c4;
+    --hapa: #c4c4c400;
+    --mnr: #81827f;
+    --mnra: #81827f00;
+    /*--mnra: rgba(var(--mnr), 0.0);*/
+    --crp: #9b846e;
+    --crpa: #9b846e00;
+    --stn: #c1c2bf;
+    --stna: #c1c2bf00;
+    --thr: #b0c088;
+    --thra: #b0c08800;
+    --hlr: #8d4a4c;
+    --hlra: #8d4a4c00;
+    --frm: #e0b385;
+    --frma: #e0b38500;
+    --fhr: #c2e5fb;
+    --fhra: #c2e5fb00;
+    --smt: #a1a0a3;
+    --smta: #a1a0a300;
+    --sts: #b5d7ce;
+    --stsa: #b5d7ce00;
+    --bld: #b36b86;
+    --blda: #b36b8600;
+    --alh: #a16bb3;
+    --alha: #a16bb300;
+    --dlv: #c1c0aa;
+    --dlva: #c1c0aa00;
+    --var: #98a983;
+    --vara: #98a98300;
+}
+
+table.CT_table, th, td {
+    border: 1px inset rgba(231, 231, 231, 0.4);
+}
+
+th {
+    color: black;
+    font-family: Arial, Georgia, serif;
+}
+
+.separator {
+    font-size: 2px;
+    border-bottom: 0;
+    border-top: 0;
+}
+
+.sortable th.hap:not(.separator) {
+    background: linear-gradient(180deg, var(--hapa) 10%, var(--hap) 90%);
+}
+
+.sortable th.separator.hap, td.hap {
+    background-color: var(--hap);
+}
+
+.sortable th.mnr:not(.separator) {
+    background: linear-gradient(180deg, var(--mnra) 10%, var(--mnr) 90%);
+}
+
+.sortable th.separator.mnr, td.mnr {
+    background-color: var(--mnr);
+}
+
+.sortable th.crp:not(.separator) {
+    background: linear-gradient(180deg, var(--crpa) 10%, var(--crp) 90%);
+}
+
+.sortable th.separator.crp, td.crp {
+    background-color: var(--crp);
+}
+
+.sortable th.stn:not(.separator) {
+    background: linear-gradient(180deg, var(--stna) 10%, var(--stn) 90%);
+}
+
+.sortable th.separator.stn, td.stn {
+    background-color: var(--stn);
+}
+
+.sortable th.thr:not(.separator) {
+    background: linear-gradient(180deg, var(--thra) 10%, var(--thr) 90%);
+}
+
+.sortable th.separator.thr, td.thr {
+    background-color: var(--thr);
+}
+
+.sortable th.hlr:not(.separator) {
+    background: linear-gradient(180deg, var(--hlra) 10%, var(--hlr) 90%);
+}
+
+.sortable th.separator.hlr, td.hlr {
+    background-color: var(--hlr);
+}
+
+.sortable th.frm:not(.separator) {
+    background: linear-gradient(180deg, var(--frma) 10%, var(--frm) 90%);
+}
+
+.sortable th.separator.frm, td.frm {
+    background-color: var(--frm);
+}
+
+.sortable th.fhr:not(.separator) {
+    background: linear-gradient(180deg, var(--fhra) 10%, var(--fhr) 90%);
+}
+
+.sortable th.separator.fhr, td.fhr {
+    background-color: var(--fhr);
+}
+
+.sortable th.smt:not(.separator) {
+    background: linear-gradient(180deg, var(--smta) 10%, var(--smt) 90%);
+}
+
+.sortable th.separator.smt, td.smt {
+    background-color: var(--smt);
+}
+
+.sortable th.sts:not(.separator) {
+    background: linear-gradient(180deg, var(--stsa) 10%, var(--sts) 90%);
+}
+
+.sortable th.separator.sts, td.sts {
+    background-color: var(--sts);
+}
+
+.sortable th.bld:not(.separator) {
+    background: linear-gradient(180deg, var(--blda) 10%, var(--bld) 90%);
+}
+
+.sortable th.separator.bld, td.bld {
+    background-color: var(--bld);
+}
+
+.sortable th.alh:not(.separator) {
+    background: linear-gradient(180deg, var(--alha) 10%, var(--alh) 90%);
+}
+
+.sortable th.separator.alh, td.alh {
+    background-color: var(--alh);
+}
+
+.sortable th.dlv:not(.separator) {
+    background: linear-gradient(180deg, var(--dlva) 10%, var(--dlv) 90%);
+}
+
+.sortable th.separator.dlv, td.dlv {
+    background-color: var(--dlv);
+}
+
+.sortable th.var:not(.separator) {
+    background: linear-gradient(180deg, var(--vara) 10%, var(--var) 90%);
+}
+
+.sortable th.separator.var, td.var {
+    background-color: var(--var);
 }
 
 td.active {
@@ -16,6 +179,7 @@ td.active span.square {
 }
 
 th {
+    padding: 10px 0 0 0;
     writing-mode: vertical-lr;
     font-size: 13px;
 }
@@ -39,14 +203,14 @@ td.s_cell {
     text-align: center;
     vertical-align: middle;
     position: relative;
+    width: var(--cell);
+    height: var(--cell);
 }
 
 .tip {
     position: absolute;
     left: 20px;
     top: -70px;
-    /*min-width: 170px;*/
-    /*height: 100px;*/
     border: 1px solid #808080;
     border-radius: 3px;
     background-color: rgba(255, 255, 255, 0.95);
@@ -65,8 +229,38 @@ span.first {
     color: green;
     font-weight: bold;
 }
+
 span.second {
     color: #aba023;
     font-weight: bold;
     font-style: italic;
+}
+
+img.skillIcon {
+    width: 16px;
+    height: 16px;
+    margin-top: -2px;
+    position: relative;
+    top: 2px;
+}
+
+.green_icon {background-color: green}
+.blue_icon {background-color: darkblue}
+.yellow_icon {background-color: #e1dc21}
+.red_icon {background-color: darkred}
+
+#range::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    background: #04AA6D;
+    cursor: pointer;
+    opacity: 0.0;
+}
+
+.demo {
+    background: linear-gradient(45deg, #00f 12.5%, #fff 12.5%, #fff 37.5%, #00f 37.5%, #00f 62.5%, #fff 62.5%, #fff 87.5%, #00f 87.5%);
+    background-size: 10px 10px;
+    background-position: 5px 5px;
 }

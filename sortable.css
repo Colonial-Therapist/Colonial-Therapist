@@ -2,17 +2,17 @@
     border-spacing: 0;
 }
 
-.sortable tbody tr:nth-child(odd) {
-    background: #f1f1f1;
-}
+/*.sortable tbody tr:nth-child(odd) {*/
+/*    background: #f1f1f1;*/
+/*}*/
 
 /*.sortable td {*/
 /*    padding: 2px 1px;*/
 /*}*/
 
-.sortable th {
-    padding: 5px 0;
-}
+/*.sortable th {*/
+/*    padding: 5px 0;*/
+/*}*/
 
 .sortable td:first-child,
 .sortable th:first-child {
@@ -26,7 +26,7 @@
 
 .sortable th {
     background: #a2a2a2;
-    color: #fff;
+    /*color: #fff;*/
     cursor: pointer;
     font-weight: normal;
     text-align: left;
