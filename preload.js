@@ -142,10 +142,29 @@ const builds = [
     "alchemist"
 ]
 
+const emotions = {
+    'homelessness': 4,
+    'unemployment': 2,
+    'health'      : 2,
+    'idleatjob'   : 1,
+
+    'school'      : 1,
+    'security'    : 2,
+    'social'      : 2,
+    'saturation'  : 1,
+    'mysticalsite': 1,
+
+    'damage'          : 1,
+    'death'           : 2,
+    'raidwithoutdeath': 1,
+    'slepttonight'    : 2,
+}
+
 const CT = {
     factories: {},
     homes    : {},
     colonists: [],
+    visitors : [],
     skills   : []
 }
 
@@ -172,91 +191,72 @@ nbt.loadFromFile(datFile, function (err) {
         }
     }
 
+    function getCitizens(citizens, emotions) {
+        // console.log(citizens)
+        // console.log(citizens.select('5').value)
+        for (const [key] of Object.entries(citizens.value)) {
+            const citizen = citizens.select(key).value
+            const isVisitor = citizens.select(key).select('rcost') ? 1 : 0
+            const name = citizen.name.value
+            const warriors = ['ranger', 'knight', 'druid']
+            const job = citizen.job ? citizen.job.value.type.value.replace("minecolonies:", "") : null
+            const isWarrior = warriors.indexOf(job) > -1
+            const mourning = citizen.mourning.value
+            const id = citizen.id.value
+            const newSkills = citizens.select(key).select('newSkills').select('levelMap')
+            const happinessHandler = citizens.select(key).select('happinessHandler')
+            const gender = citizen.female.value ? 0 : 1
+            const skills = {}
+            const happiness = {}
+
+            for (const [k] of Object.entries(newSkills.value)) {
+                let experience = newSkills.select(k).value.experience.value
+                let level = newSkills.select(k).value.level.value
+                let skill = newSkills.select(k).value.skill.value
+
+                skills[skill] = {skill, level, experience}
+            }
+
+            let totalHappiness = 0
+            let totalEmotionWeight = 0
+
+            for (const [emotion] of Object.entries(happinessHandler.value)) {
+                let value = happinessHandler.select(emotion).value.Value.value
+                let day = happinessHandler.select(emotion).value.day ? happinessHandler.select(emotion).value.day.value : 0
+                totalHappiness += emotions[emotion] * value
+                totalEmotionWeight += emotions[emotion]
+                happiness[emotion] = {value, emotion, day}
+                // console.log(name + ' ' + emotion + ' ' + value + ' ' + day)
+            }
+
+            const happinessTotal = (totalHappiness / totalEmotionWeight) * 10
+
+            CT.colonists[id] = {
+                name,
+                job,
+                isWarrior,
+                mourning,
+                id,
+                gender,
+                skills,
+                happinessTotal,
+                happiness,
+                isVisitor
+            }
+        }
+    }
+
     // Colonists
     let citizens = nbt.select('').select('citizenManager').select('citizens')
-    // console.log(citizens)
-    // console.log(citizens.select('5').value)
-    for (const [key] of Object.entries(citizens.value)) {
-        const citizen = citizens.select(key).value
-        const name = citizen.name.value
-        const warriors = ['ranger', 'knight', 'druid']
-        const job = citizen.job ? citizen.job.value.type.value.replace("minecolonies:", "") : null
-        const isWarrior = warriors.indexOf(job) > -1
-        const mourning = citizen.mourning.value
-        const id = citizen.id.value
-        const newSkills = citizens.select(key).select('newSkills').select('levelMap')
-        const happinessHandler = citizens.select(key).select('happinessHandler')
-        const gender = citizen.female.value ? 0 : 1
-        const skills = {}
-        const happiness = {}
+    getCitizens(citizens, emotions);
 
-        for (const [k] of Object.entries(newSkills.value)) {
-            let experience = newSkills.select(k).value.experience.value
-            let level = newSkills.select(k).value.level.value
-            let skill = newSkills.select(k).value.skill.value
-
-            skills[skill] = {skill, level, experience}
-        }
-
-        // let emotions = [
-        //     ['homelessness', 4],
-        //     ['unemployment', 2],
-        //     ['health'      , 2],
-        //     ['idleatjob'   , 1],
-        //
-        //     ['school'      , 1],
-        //     ['security'    , 2],
-        //     ['social'      , 2],
-        //     ['saturation'  , 1],
-        //     ['mysticalsite', 1],
-        //
-        //     ['damage'          , 1],
-        //     ['death'           , 2],
-        //     ['raidwithoutdeath', 1],
-        //     ['slepttonight'    , 2],
-        // ]
-
-        let emotions = {
-            'homelessness': 4,
-            'unemployment': 2,
-            'health'      : 2,
-            'idleatjob'   : 1,
-
-            'school'      : 1,
-            'security'    : 2,
-            'social'      : 2,
-            'saturation'  : 1,
-            'mysticalsite': 1,
-
-            'damage'          : 1,
-            'death'           : 2,
-            'raidwithoutdeath': 1,
-            'slepttonight'    : 2,
-        }
-
-        let totalHappiness = 0
-        let totalEmotionWeight = 0
-
-        for (const [emotion] of Object.entries(happinessHandler.value)) {
-            let value = happinessHandler.select(emotion).value.Value.value
-            let day = happinessHandler.select(emotion).value.day ? happinessHandler.select(emotion).value.day.value : 0
-            totalHappiness += emotions[emotion] * value
-            totalEmotionWeight += emotions[emotion]
-            happiness[emotion] = {value, emotion, day}
-            // console.log(name + ' ' + emotion + ' ' + value + ' ' + day)
-        }
-
-        const happinessTotal = (totalHappiness / totalEmotionWeight) * 10
-
-        CT.colonists[key] = {name, job, isWarrior, mourning, id, gender, skills, happinessTotal, happiness,}
-    }
+    // Visitors
+    let visitors = nbt.select('').select('visitManager').select('visitors')
+    getCitizens(visitors, emotions);
 
     console.log(CT)
     // console.log(CT.colonists[7].skills)
     // console.log(CT.colonists[15].skills)
-    // console.log(buildingManage.getType())
-    // var gameRules = nbt.select('').select('Data').select('GameRules');
-    //"buildingManager"
 })
 
 window.addEventListener('DOMContentLoaded', () => {
@@ -333,9 +333,10 @@ window.addEventListener('DOMContentLoaded', () => {
     <tbody>`
     for (const [key] of Object.entries(CT.colonists)) {
         let col = CT.colonists[key]
+        let vis = CT.colonists[key].isVisitor ? 'vis' : ''
         let gender = col.gender ? '♂' : '♀'
         let emotionTotalColor = ''
-        table += `<td class="s_cell">${gender}</td><td>${col.name}</td>`
+        table += `<td class="gender">${gender}</td><td class="name ${vis}_name">${col.name}</td>`
 
         switch (true) {
             case col.happinessTotal > 9:  emotionTotalColor = 'green_icon'; break
@@ -403,7 +404,7 @@ window.addEventListener('DOMContentLoaded', () => {
                     skillList += `<span class="${skillFirst} ${skillSecond}">` + skillsLabelsRus[skill.skill] + ': ' + skill.level + icon +"</span><br>"
                 }
 
-                table += `<td class="${work} s_cell ${sepSlot}" data-sort="${ball}">
+                table += `<td class="${work} s_cell ${sepSlot} ${vis}" data-sort="${ball}">
                         <span class="square" style="--square: ${square}px;"></span>
                         <span class="tip">${skillList}</span>
                      </td>`

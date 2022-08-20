@@ -10,35 +10,20 @@ body {
     --square: 0px;
     --cell: 18px;
 
-    --hap: #c4c4c4;
-    --hapa: #c4c4c400;
-    --mnr: #81827f;
-    --mnra: #81827f00;
-    /*--mnra: rgba(var(--mnr), 0.0);*/
-    --crp: #9b846e;
-    --crpa: #9b846e00;
-    --stn: #c1c2bf;
-    --stna: #c1c2bf00;
-    --thr: #b0c088;
-    --thra: #b0c08800;
-    --hlr: #8d4a4c;
-    --hlra: #8d4a4c00;
-    --frm: #e0b385;
-    --frma: #e0b38500;
-    --fhr: #c2e5fb;
-    --fhra: #c2e5fb00;
-    --smt: #a1a0a3;
-    --smta: #a1a0a300;
-    --sts: #b5d7ce;
-    --stsa: #b5d7ce00;
-    --bld: #b36b86;
-    --blda: #b36b8600;
-    --alh: #a16bb3;
-    --alha: #a16bb300;
-    --dlv: #c1c0aa;
-    --dlva: #c1c0aa00;
-    --var: #98a983;
-    --vara: #98a98300;
+    --hap-rgb: 196, 196, 196;
+    --mnr-rgb: 129, 130, 127;
+    --crp-rgb: 155, 132, 110;
+    --stn-rgb: 193, 194, 191;
+    --thr-rgb: 176, 192, 136;
+    --hlr-rgb: 141, 74, 76;
+    --frm-rgb: 224, 179, 133;
+    --fhr-rgb: 194, 229, 251;
+    --smt-rgb: 161, 160, 163;
+    --sts-rgb: 181, 215, 206;
+    --bld-rgb: 179, 107, 134;
+    --alh-rgb: 161, 107, 179;
+    --dlv-rgb: 193, 192, 170;
+    --var-rgb: 152, 169, 131;
 }
 
 table.CT_table, th, td {
@@ -57,115 +42,131 @@ th {
 }
 
 .sortable th.hap:not(.separator) {
-    background: linear-gradient(180deg, var(--hapa) 10%, var(--hap) 90%);
+    background: linear-gradient(180deg, rgba(var(--hap-rgb), 0.0) 10%, rgb(var(--hap-rgb)) 90%);
 }
 
 .sortable th.separator.hap, td.hap {
-    background-color: var(--hap);
+    background-color: rgb(var(--hap-rgb));
 }
 
 .sortable th.mnr:not(.separator) {
-    background: linear-gradient(180deg, var(--mnra) 10%, var(--mnr) 90%);
+    background: linear-gradient(180deg, rgba(var(--mnr-rgb), 0.0) 10%, rgb(var(--mnr-rgb)) 90%);
 }
 
 .sortable th.separator.mnr, td.mnr {
-    background-color: var(--mnr);
+    background-color: rgb(var(--mnr-rgb));
 }
 
 .sortable th.crp:not(.separator) {
-    background: linear-gradient(180deg, var(--crpa) 10%, var(--crp) 90%);
+    background: linear-gradient(180deg, rgba(var(--crp-rgb), 0.0) 10%, rgb(var(--crp-rgb)) 90%);
 }
 
 .sortable th.separator.crp, td.crp {
-    background-color: var(--crp);
+    background-color: rgb(var(--crp-rgb));
 }
 
 .sortable th.stn:not(.separator) {
-    background: linear-gradient(180deg, var(--stna) 10%, var(--stn) 90%);
+    background: linear-gradient(180deg, rgba(var(--stn-rgb), 0.0) 10%, rgb(var(--stn-rgb)) 90%);
 }
 
 .sortable th.separator.stn, td.stn {
-    background-color: var(--stn);
+    background-color: rgb(var(--stn-rgb));
 }
 
 .sortable th.thr:not(.separator) {
-    background: linear-gradient(180deg, var(--thra) 10%, var(--thr) 90%);
+    background: linear-gradient(180deg, rgba(var(--thr-rgb), 0.0) 10%, rgb(var(--thr-rgb)) 90%);
 }
 
 .sortable th.separator.thr, td.thr {
-    background-color: var(--thr);
+    background-color: rgb(var(--thr-rgb));
 }
 
 .sortable th.hlr:not(.separator) {
-    background: linear-gradient(180deg, var(--hlra) 10%, var(--hlr) 90%);
+    background: linear-gradient(180deg, rgba(var(--hlr-rgb), 0.0) 10%, rgb(var(--hlr-rgb)) 90%);
 }
 
 .sortable th.separator.hlr, td.hlr {
-    background-color: var(--hlr);
+    background-color: rgb(var(--hlr-rgb));
 }
 
 .sortable th.frm:not(.separator) {
-    background: linear-gradient(180deg, var(--frma) 10%, var(--frm) 90%);
+    background: linear-gradient(180deg, rgba(var(--frm-rgb), 0.0) 10%, rgb(var(--frm-rgb)) 90%);
 }
 
 .sortable th.separator.frm, td.frm {
-    background-color: var(--frm);
+    background-color: rgb(var(--frm-rgb));
 }
 
 .sortable th.fhr:not(.separator) {
-    background: linear-gradient(180deg, var(--fhra) 10%, var(--fhr) 90%);
+    background: linear-gradient(180deg, rgba(var(--fhr-rgb), 0.0) 10%, rgb(var(--fhr-rgb)) 90%);
 }
 
 .sortable th.separator.fhr, td.fhr {
-    background-color: var(--fhr);
+    background-color: rgb(var(--fhr-rgb));
 }
 
 .sortable th.smt:not(.separator) {
-    background: linear-gradient(180deg, var(--smta) 10%, var(--smt) 90%);
+    background: linear-gradient(180deg, rgba(var(--smt-rgb), 0.0) 10%, rgb(var(--smt-rgb)) 90%);
 }
 
 .sortable th.separator.smt, td.smt {
-    background-color: var(--smt);
+    background-color: rgb(var(--smt-rgb));
 }
 
 .sortable th.sts:not(.separator) {
-    background: linear-gradient(180deg, var(--stsa) 10%, var(--sts) 90%);
+    background: linear-gradient(180deg, rgba(var(--sts-rgb), 0.0) 10%, rgb(var(--sts-rgb)) 90%);
 }
 
 .sortable th.separator.sts, td.sts {
-    background-color: var(--sts);
+    background-color: rgb(var(--sts-rgb));
 }
 
 .sortable th.bld:not(.separator) {
-    background: linear-gradient(180deg, var(--blda) 10%, var(--bld) 90%);
+    background: linear-gradient(180deg, rgba(var(--bld-rgb), 0.0) 10%, rgb(var(--bld-rgb)) 90%);
 }
 
 .sortable th.separator.bld, td.bld {
-    background-color: var(--bld);
+    background-color: rgb(var(--bld-rgb));
 }
 
 .sortable th.alh:not(.separator) {
-    background: linear-gradient(180deg, var(--alha) 10%, var(--alh) 90%);
+    background: linear-gradient(180deg, rgba(var(--alh-rgb), 0.0) 10%, rgb(var(--alh-rgb)) 90%);
 }
 
 .sortable th.separator.alh, td.alh {
-    background-color: var(--alh);
+    background-color: rgb(var(--alh-rgb));
 }
 
 .sortable th.dlv:not(.separator) {
-    background: linear-gradient(180deg, var(--dlva) 10%, var(--dlv) 90%);
+    background: linear-gradient(180deg, rgba(var(--dlv-rgb), 0.0) 10%, rgb(var(--dlv-rgb)) 90%);
 }
 
 .sortable th.separator.dlv, td.dlv {
-    background-color: var(--dlv);
+    background-color: rgb(var(--dlv-rgb));
 }
 
 .sortable th.var:not(.separator) {
-    background: linear-gradient(180deg, var(--vara) 10%, var(--var) 90%);
+    background: linear-gradient(180deg, rgba(var(--var-rgb), 0.0) 10%, rgb(var(--var-rgb)) 90%);
 }
 
 .sortable th.separator.var, td.var {
-    background-color: var(--var);
+    background-color: rgb(var(--var-rgb));
+}
+
+td.vis{
+    position: relative;
+}
+
+td.vis:before {
+    display: block;
+    content: " ";
+    position: absolute;
+    width: calc(var(--cell) + 2px);
+    height: calc(var(--cell) + 2px);
+    background-color: white;
+    top: -1px;
+    left: -1px;
+    opacity: 0.35;
 }
 
 td.active {
@@ -199,7 +200,7 @@ td {
     padding: 0;
 }
 
-td.s_cell {
+td.s_cell, td.gender {
     text-align: center;
     vertical-align: middle;
     position: relative;
@@ -207,9 +208,26 @@ td.s_cell {
     height: var(--cell);
 }
 
+td.gender {
+    border: 0;
+}
+
+td.name {
+    font-size: 14px;
+    font-family: system-ui;
+    border: 0;
+    white-space: nowrap;
+    padding: 0 5px 0 0;
+}
+
+td.vis_name {
+    font-style: italic;
+    color: #747474;
+}
+
 .tip {
     position: absolute;
-    left: 20px;
+    left: 25px;
     top: -70px;
     border: 1px solid #808080;
     border-radius: 3px;

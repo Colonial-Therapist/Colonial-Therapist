@@ -20,6 +20,7 @@ The inspiration was the [Dwarf-Therapist](https://github.com/Dwarf-Therapist/Dwa
     - [x] ~~happiness~~
     - [ ] happiness refactoring
     - [ ] needs
+    - [ ] babies
     - [ ] current task (job)
     - [ ] weapons (military)
     - [x] ~~skills~~
@@ -36,9 +37,9 @@ The inspiration was the [Dwarf-Therapist](https://github.com/Dwarf-Therapist/Dwa
     - [x] ~~custom name~~
   - [ ] get visitors
     - [ ] costs
-    - [ ] skills
-    - [ ] happiness
-    - [ ] sex
+    - [x] ~~skills~~
+    - [x] ~~happiness~~
+    - [x] ~~sex~~
 - [ ] convert data to table
   - [x] ~~base table~~
   - [x] ~~icons for skills~~
@@ -47,6 +48,8 @@ The inspiration was the [Dwarf-Therapist](https://github.com/Dwarf-Therapist/Dwa
   - [x] ~~fill table~~
   - [x] ~~genders~~
   - [ ] filter by military
+  - [ ] work capacity 
+- [ ] counter of citizens and workers 
 - [ ] refactoring create table 
 - [ ] save config in home dir
 - [ ] reading while game is running
