@@ -167,8 +167,8 @@ const needsList = [
     'noguardnearwork',
     'waitingforcure',
     'recruitstory',
+    'sleeping',
 ]
-
 
 const CT = {
     factories: {},
@@ -233,7 +233,7 @@ nbt.loadFromFile(datFile, function (err) {
                 let priority = chatoption.select('priority').value
                 let inquiry = JSON.parse(chatoption.select('inquiry').value)
                 let translate = inquiry.translate
-                let translate_reg = /.*\.(\D*)\d?$/
+                let translate_reg = /.*\.(\D*)\d*$/
                 let need = translate_reg.exec(translate)[1]
                 needMaxPriority = needMaxPriority > priority ? needMaxPriority : priority
                 needs[k] = { priority, need, inquiry }
@@ -256,7 +256,6 @@ nbt.loadFromFile(datFile, function (err) {
                 totalHappiness += emotions[emotion] * value
                 totalEmotionWeight += emotions[emotion]
                 happiness[emotion] = {value, emotion, day}
-                // console.log(name + ' ' + emotion + ' ' + value + ' ' + day)
             }
 
             const happinessTotal = (totalHappiness / totalEmotionWeight) * 10
@@ -380,13 +379,12 @@ window.addEventListener('DOMContentLoaded', () => {
           <td class="name ${vis}_name">${col.name}</td>`
 
         let trouble = ''
-        switch (true) {
-            case col.needMaxPriority === 4: trouble = 'blocking'; break
-            case col.needMaxPriority === 3: trouble = 'recruiticon'; break
-            case col.needMaxPriority === 2: trouble = 'warning'; break
-            case col.needMaxPriority === 1: trouble = 'warning'; break
-        }
-        let icon = col.needMaxPriority ? `<img alt="${trouble}" src="./img/${trouble}.png">` : ''
+        // switch (true) {
+        //     case col.needMaxPriority === 4: trouble = 'blocking'; break
+        //     case col.needMaxPriority === 3: trouble = 'recruiticon'; break
+        //     case col.needMaxPriority === 2: trouble = 'warning'; break
+        //     case col.needMaxPriority === 1: trouble = 'warning'; break
+        // }
 
         if (vis) {
             let tip = `<span class="tip">${col.cost[0]} ${col.cost[1]}</span>`
@@ -395,22 +393,19 @@ window.addEventListener('DOMContentLoaded', () => {
             table += `<td class="need" data-sort="${col.needMaxPriority}">${cost_img}<span class="cost_count">${col.cost[1]}</span>${tip}</td>`
         } else {
             let need_tip = ''
-            let trouble = ''
+            let troubles = ''
             for (const [k, need] of Object.entries(col.needs)) {
-                console.log(need.inquiry)
 
-                switch (true) {
-                    case need.priority === 4: trouble = 'blocking'; break
-                    case need.priority === 3: trouble = 'recruiticon'; break
-                    case need.priority === 2: trouble = 'warning'; break
-                    case need.priority === 1: trouble = 'warning'; break
+                if (col.needMaxPriority === need.priority) {
+                    trouble = need.need
                 }
 
-                need_tip += need.need ? `<span>${need.need} ${need.priority} <img alt="${trouble}" src="./img/${trouble}.png"></span><br>` : ''
+                need_tip += need.need ? `<span>${need.need} ${need.priority} <img alt="${troubles}" src="./img/needs/${need.need}.png"></span><br>` : ''
             }
-
+            let icon = col.needMaxPriority ? `<img alt="${trouble}" src="./img/needs/${trouble}.png">` : ''
             let tip = col.needMaxPriority ? `<span class="tip">${need_tip}</span>` : ''
-            table += `<td class="need" data-sort="${col.needMaxPriority}">${icon}${tip}</td>`
+            let countNeeds = Object.keys(col.needs).length > 1 ? Object.keys(col.needs).length : ''
+            table += `<td class="need" data-sort="${col.needMaxPriority}">${icon}<span class="cost_count">${countNeeds}</span>${tip}</td>`
         }
 
         switch (true) {
