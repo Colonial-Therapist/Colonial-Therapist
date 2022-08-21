@@ -200,7 +200,7 @@ td {
     padding: 0;
 }
 
-td.s_cell, td.gender {
+td.s_cell, td.gender, td.need {
     text-align: center;
     vertical-align: middle;
     position: relative;
@@ -208,8 +208,18 @@ td.s_cell, td.gender {
     height: var(--cell);
 }
 
-td.gender {
+td.s_cell:hover > span.tip,
+td.gender:hover > span.tip,
+td.need:hover > span.tip {
+    display: block;
+}
+
+td.gender, td.need {
     border: 0;
+}
+
+.need > img {
+    margin-bottom: -2px;
 }
 
 td.name {
@@ -239,8 +249,19 @@ td.vis_name {
     white-space: nowrap;
 }
 
-td.s_cell:hover > span.tip {
-    display: block;
+img.cost_icon {
+    width: 16px;
+    height: 16px;
+}
+
+span.cost_count {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    color: white;
+    text-shadow: 1px 1px 1px black;
+    font-family: system-ui;;
+    font-size: 11px;
 }
 
 span.first {

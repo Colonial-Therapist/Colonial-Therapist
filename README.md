@@ -19,7 +19,7 @@ The inspiration was the [Dwarf-Therapist](https://github.com/Dwarf-Therapist/Dwa
   - [ ] get citizens
     - [x] ~~happiness~~
     - [ ] happiness refactoring
-    - [ ] needs
+    - [x] ~~needs~~
     - [ ] babies
     - [ ] current task (job)
     - [ ] weapons (military)
@@ -35,8 +35,8 @@ The inspiration was the [Dwarf-Therapist](https://github.com/Dwarf-Therapist/Dwa
     - [x] ~~building levels~~
     - [x] ~~skills assessment system~~
     - [x] ~~custom name~~
-  - [ ] get visitors
-    - [ ] costs
+  - [x] ~~get visitors~~
+    - [x] ~~costs~~
     - [x] ~~skills~~
     - [x] ~~happiness~~
     - [x] ~~sex~~
@@ -47,6 +47,7 @@ The inspiration was the [Dwarf-Therapist](https://github.com/Dwarf-Therapist/Dwa
   - [x] ~~color columns~~
   - [x] ~~fill table~~
   - [x] ~~genders~~
+  - [ ] specification of needs
   - [ ] filter by military
   - [ ] work capacity 
 - [ ] counter of citizens and workers 

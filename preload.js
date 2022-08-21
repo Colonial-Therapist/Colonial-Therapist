@@ -160,11 +160,20 @@ const emotions = {
     'slepttonight'    : 2,
 }
 
+const needsList = [
+    'sync',
+    'homelessness',
+    'noguardnearhome',
+    'noguardnearwork',
+    'waitingforcure',
+    'recruitstory',
+]
+
+
 const CT = {
     factories: {},
     homes    : {},
     colonists: [],
-    visitors : [],
     skills   : []
 }
 
@@ -196,7 +205,10 @@ nbt.loadFromFile(datFile, function (err) {
         // console.log(citizens.select('5').value)
         for (const [key] of Object.entries(citizens.value)) {
             const citizen = citizens.select(key).value
-            const isVisitor = citizens.select(key).select('rcost') ? 1 : 0
+            const rcost = citizens.select(key).select('rcost')
+            const chatoptions = citizens.select(key).select('chatoptions')
+            let isVisitor = 0
+            let cost = []
             const name = citizen.name.value
             const warriors = ['ranger', 'knight', 'druid']
             const job = citizen.job ? citizen.job.value.type.value.replace("minecolonies:", "") : null
@@ -208,6 +220,24 @@ nbt.loadFromFile(datFile, function (err) {
             const gender = citizen.female.value ? 0 : 1
             const skills = {}
             const happiness = {}
+            let needMaxPriority = 0
+            const needs = {}
+
+            if (rcost) {
+                isVisitor = 1;
+                cost = [rcost.select('id').value, rcost.select('Count').value]
+            }
+
+            for (const [k] of Object.entries(chatoptions.value)) {
+                let chatoption = chatoptions.select(k).select('chatoption')
+                let priority = chatoption.select('priority').value
+                let inquiry = JSON.parse(chatoption.select('inquiry').value)
+                let translate = inquiry.translate
+                let translate_reg = /.*\.(\D*)\d?$/
+                let need = translate_reg.exec(translate)[1]
+                needMaxPriority = needMaxPriority > priority ? needMaxPriority : priority
+                needs[k] = { priority, need, inquiry }
+            }
 
             for (const [k] of Object.entries(newSkills.value)) {
                 let experience = newSkills.select(k).value.experience.value
@@ -241,8 +271,12 @@ nbt.loadFromFile(datFile, function (err) {
                 skills,
                 happinessTotal,
                 happiness,
-                isVisitor
+                isVisitor,
+                cost,
+                needMaxPriority,
+                needs
             }
+
         }
     }
 
@@ -311,7 +345,12 @@ window.addEventListener('DOMContentLoaded', () => {
     const el = document.getElementById('content')
     let table = `
 <table class="sortable CT_table">
-    <thead><tr><th class="hap">gender</th><th class="hap"></th><th class="hap">happiness</th>`
+    <thead>
+      <tr>
+        <th class="hap">gender</th>
+        <th class="hap"></th>
+        <th class="hap">needs</th>
+        <th class="hap">happiness</th>`
 
     let sepSlot = ''
     for (const [k, job] of Object.entries(headJobs)) {
@@ -336,12 +375,48 @@ window.addEventListener('DOMContentLoaded', () => {
         let vis = CT.colonists[key].isVisitor ? 'vis' : ''
         let gender = col.gender ? '♂' : '♀'
         let emotionTotalColor = ''
-        table += `<td class="gender">${gender}</td><td class="name ${vis}_name">${col.name}</td>`
+        table += `
+          <td class="gender">${gender}</td>
+          <td class="name ${vis}_name">${col.name}</td>`
+
+        let trouble = ''
+        switch (true) {
+            case col.needMaxPriority === 4: trouble = 'blocking'; break
+            case col.needMaxPriority === 3: trouble = 'recruiticon'; break
+            case col.needMaxPriority === 2: trouble = 'warning'; break
+            case col.needMaxPriority === 1: trouble = 'warning'; break
+        }
+        let icon = col.needMaxPriority ? `<img alt="${trouble}" src="./img/${trouble}.png">` : ''
+
+        if (vis) {
+            let tip = `<span class="tip">${col.cost[0]} ${col.cost[1]}</span>`
+            let cost_arr = col.cost[0].split(':')
+            let cost_img = `<img class="cost_icon" alt="${col.cost[0]}" src="./img/cost/${cost_arr[0]}/${cost_arr[1]}.png">`
+            table += `<td class="need" data-sort="${col.needMaxPriority}">${cost_img}<span class="cost_count">${col.cost[1]}</span>${tip}</td>`
+        } else {
+            let need_tip = ''
+            let trouble = ''
+            for (const [k, need] of Object.entries(col.needs)) {
+                console.log(need.inquiry)
+
+                switch (true) {
+                    case need.priority === 4: trouble = 'blocking'; break
+                    case need.priority === 3: trouble = 'recruiticon'; break
+                    case need.priority === 2: trouble = 'warning'; break
+                    case need.priority === 1: trouble = 'warning'; break
+                }
+
+                need_tip += need.need ? `<span>${need.need} ${need.priority} <img alt="${trouble}" src="./img/${trouble}.png"></span><br>` : ''
+            }
+
+            let tip = col.needMaxPriority ? `<span class="tip">${need_tip}</span>` : ''
+            table += `<td class="need" data-sort="${col.needMaxPriority}">${icon}${tip}</td>`
+        }
 
         switch (true) {
-            case col.happinessTotal > 9:  emotionTotalColor = 'green_icon'; break
-            case col.happinessTotal === 9:  emotionTotalColor = 'blue_icon'; break
-            case col.happinessTotal > 5: emotionTotalColor = 'yellow_icon'; break
+            case col.happinessTotal > 8:  emotionTotalColor = 'green_icon'; break
+            case col.happinessTotal === 5:  emotionTotalColor = 'blue_icon'; break
+            case col.happinessTotal > 4: emotionTotalColor = 'yellow_icon'; break
             default: emotionTotalColor = 'red_icon'; break
         }
         let range = `<input type="range" id="range" disabled value="${col.happinessTotal}" min="1" max="10">`
