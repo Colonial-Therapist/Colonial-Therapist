@@ -174,7 +174,7 @@ const CT = {
     factories: {},
     homes    : {},
     colonists: [],
-    skills   : []
+    jobs     : []
 }
 
 nbt.loadFromFile(datFile, function (err) {
@@ -189,7 +189,7 @@ nbt.loadFromFile(datFile, function (err) {
     for (const [key] of Object.entries(buildings.value)) {
         const build = buildings.select(key).value
         const type = build.type.value.replace("minecolonies:", "")
-        const name = build.customName.value ? build.customName.value : type
+        let name = build.customName.value ? build.customName.value : type
         const level = build.level.value
         const homes = ['home', 'tavern']
 
@@ -197,8 +197,34 @@ nbt.loadFromFile(datFile, function (err) {
             CT.homes[key] = {type, name, level, key}
         } else {
             CT.factories[key] = {type, name, level, key}
+
+            let vacancies = 1
+
+            name  = name === 'quarrier' ? 'miner' : name
+            name  = name === 'university' ? 'researcher' : name
+            name  = name === 'hospital' ? 'healer' : name
+
+            if (name === 'guardtower') {
+                name  = 'knight'
+                vacancies = 1 * level
+            }
+
+            if (name === 'barracks') {
+                name  = 'knight'
+                vacancies = 1 * level
+            }
+
+            if (skillsProfessions.hasOwnProperty(name) && level > 0) {
+                CT.jobs[name] = CT.jobs[name] ? ++CT.jobs[name] : 1
+            }
+
+
         }
     }
+    CT.jobs['quarrier'] = CT.jobs['miner']
+
+    CT.jobs['ranger'] = CT.jobs['knight']
+    CT.jobs['druid'] = CT.jobs['knight']
 
     function getCitizens(citizens, emotions) {
         // console.log(citizens)
@@ -259,6 +285,18 @@ nbt.loadFromFile(datFile, function (err) {
             }
 
             const happinessTotal = (totalHappiness / totalEmotionWeight) * 10
+
+            function delJod(job) {
+                if (job) {
+                    CT.jobs[job] = CT.jobs[job] ? --CT.jobs[job] : 1
+                }
+            }
+
+            switch (true) {
+                case (['miner', 'quarrier'].indexOf(job) > -1): delJod('miner'); delJod('quarrier'); break
+                case (['knight', 'ranger', 'druid'].indexOf(job) > -1): delJod('knight'); delJod('ranger'); delJod('druid'); break
+                default: delJod(job)
+            }
 
             CT.colonists[id] = {
                 name,
@@ -362,7 +400,15 @@ window.addEventListener('DOMContentLoaded', () => {
         }
 
         let thName = sep ? '' : job
-        table += `<th class="${sepClass} ${sepSlot}">${thName}</th>`
+
+        let isVacancies = ''
+        let countVacancies = ''
+        if (CT.jobs[thName]) {
+            isVacancies = 'isVacancies'
+            countVacancies = CT.jobs[thName]
+        }
+
+        table += `<th class="${sepClass} ${sepSlot} ${isVacancies}">${thName}<span class="countVac">${countVacancies}</span></th>`
     }
 
     table += `
@@ -474,7 +520,9 @@ window.addEventListener('DOMContentLoaded', () => {
                     skillList += `<span class="${skillFirst} ${skillSecond}">` + skillsLabelsRus[skill.skill] + ': ' + skill.level + icon +"</span><br>"
                 }
 
-                table += `<td class="${work} s_cell ${sepSlot} ${vis}" data-sort="${ball}">
+                const  isVacancies = CT.jobs[job] ? 'isVacancies' : ''
+
+                table += `<td class="${work} s_cell ${sepSlot} ${vis} ${isVacancies}" data-sort="${ball}">
                         <span class="square" style="--square: ${square}px;"></span>
                         <span class="tip">${skillList}</span>
                      </td>`

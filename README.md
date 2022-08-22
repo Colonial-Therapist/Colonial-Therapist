@@ -4,6 +4,10 @@ Colonist management tool.
 
 The inspiration was the [Dwarf-Therapist](https://github.com/Dwarf-Therapist/Dwarf-Therapist) project for the game [Dwarf Fortress](http://www.bay12games.com/dwarves/) ([steam](https://store.steampowered.com/app/975370/Dwarf_Fortress/)).
 
+Tool on mod [MineColonies](https://minecolonies.com/) for [Minecraft](https://www.minecraft.net/).
+
+This program allows you to analyze the state of your colony. Who works where, the needs and happiness of citizens.
+
 ##ROAD MAP
 
 - [x] ~~send message in console~~
@@ -49,7 +53,7 @@ The inspiration was the [Dwarf-Therapist](https://github.com/Dwarf-Therapist/Dwa
   - [x] ~~genders~~
   - [ ] specification of needs
   - [ ] filter by military
-  - [ ] work capacity 
+  - [x] ~~work capacity~~ 
 - [ ] counter of citizens and workers 
 - [ ] refactoring create table 
 - [ ] save config in home dir
