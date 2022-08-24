@@ -22,6 +22,6 @@
     "electron-reloader": "^1.2.3"
   },
   "dependencies": {
-    "mcnbt": "^2.0.2"
+    "prismarine-nbt": "^2.2.1"
   }
 }

@@ -18,7 +18,7 @@ This program allows you to analyze the state of your colony. Who works where, th
 - [x] ~~parsing data~~
 - [x] ~~read nbt file .minecraft\saves\WORLD\minecolonies\minecraft\overworld\colony1.dat~~
 - [x] ~~life reloading app~~
-- [ ] read nbt file capabilities.dat
+- [x] ~~read nbt file capabilities.dat~~
 - [ ] get citizens, skills and jobs (houses)
   - [ ] get citizens
     - [x] ~~happiness~~
@@ -54,10 +54,13 @@ This program allows you to analyze the state of your colony. Who works where, th
   - [ ] specification of needs
   - [ ] filter by military
   - [x] ~~work capacity~~ 
-- [ ] counter of citizens and workers 
-- [ ] refactoring create table 
+  - [ ] save sort order before refreshing
+  - [ ] bug: data is not updated the first time
+- [ ] counter of citizens and workers
+- [ ] select colonies
+- [ ] refactoring create table
 - [ ] save config in home dir
-- [ ] reading while game is running
+- [x] ~~reading while game is running~~
 - [ ] grave
 - [ ] configure builder
 - [ ] debug mode

@@ -2,16 +2,13 @@
 //
 // })
 
+const fs = require('fs')
+const NBT = require('./NBT.js')
+const nbt_data = require('prismarine-nbt')
+const path = require("path");
 
-const NBT = require('mcnbt')
-
-const datFile = __dirname + '/' + 'minecolonies/minecraft/overworld/colony1.dat'
-// let datFile = __dirname + '/' + 'minecolonies/colonies.dat'
-// let datFile = 'C:/Users/s_kus/AppData/Roaming/.curseforge/Instances/MineColonies Official/saves/-_-/minecolonies/minecraft/overworld/colony1.dat'
-// let datFile = 'C:/Users/s_kus/AppData/Roaming/.curseforge/Instances/MineColonies Official/saves/-_-/minecolonies/colonies.dat'
-// let datFile = __dirname + '/' + 'data/capabilities.dat'
-// let datFile = 'C:/Users/s_kus/AppData/Roaming/.curseforge/Instances/MineColonies Official/saves/-_-/data/capabilities.dat'
-const nbt = new NBT()
+// const datFile = path.join(__dirname, 'data/capabilities.dat')
+const datFile = path.join('C:/Users/s_kus/AppData/Roaming/.curseforge/Instances/MineColonies Official/saves/-_-/data/capabilities.dat')
 
 const skillsLabelsRus = {
     0 : 'Атлетика',
@@ -177,157 +174,172 @@ const CT = {
     jobs     : []
 }
 
-nbt.loadFromFile(datFile, function (err) {
+fs.readFile(datFile, function (err, data) {
     if (err) return console.error(err)
-    console.log(nbt)
+    nbt_data.parse(data, function (error, data) {
+        const nbt = new NBT(data)
+        console.log(nbt)
+        const colonies = nbt.get('').get('data').get('minecolonies:colonymanager').get('colonies').value[0]
 
-    // Builds
-    const buildings = nbt.select('').select('buildingManager').select('buildings')
-    // buildingManager
-    // console.log(buildings.value)
-    // console.log(buildings.select('0').value)
-    for (const [key] of Object.entries(buildings.value)) {
-        const build = buildings.select(key).value
-        const type = build.type.value.replace("minecolonies:", "")
-        let name = build.customName.value ? build.customName.value : type
-        const level = build.level.value
-        const homes = ['home', 'tavern']
+        // Builds
+        const buildings = new NBT(colonies).get('buildingManager').get('buildings')
+        // buildingManager
+        // console.log(buildings.value)
+        // console.log(buildings.get('0').value)
+        for (const [key, build] of Object.entries(buildings.value)) {
+            const type = build.type.value.replace("minecolonies:", "")
+            let name = build.customName.value ? build.customName.value : type
+            const level = build.level.value
+            const homes = ['home', 'tavern']
 
-        if (homes.indexOf(type) > -1) {
-            CT.homes[key] = {type, name, level, key}
-        } else {
-            CT.factories[key] = {type, name, level, key}
+            if (homes.indexOf(type) > -1) {
+                CT.homes[key] = {type, name, level, key}
+            } else {
+                CT.factories[key] = {type, name, level, key}
 
-            let vacancies = 1
+                let vacancies = 1
 
-            name  = name === 'quarrier' ? 'miner' : name
-            name  = name === 'university' ? 'researcher' : name
-            name  = name === 'hospital' ? 'healer' : name
+                name = name === 'quarrier' ? 'miner' : name
+                name = name === 'university' ? 'researcher' : name
+                name = name === 'hospital' ? 'healer' : name
 
-            if (name === 'guardtower') {
-                name  = 'knight'
-                vacancies = 1 * level
-            }
-
-            if (name === 'barracks') {
-                name  = 'knight'
-                vacancies = 1 * level
-            }
-
-            if (skillsProfessions.hasOwnProperty(name) && level > 0) {
-                CT.jobs[name] = CT.jobs[name] ? ++CT.jobs[name] : 1
-            }
-
-
-        }
-    }
-    CT.jobs['quarrier'] = CT.jobs['miner']
-
-    CT.jobs['ranger'] = CT.jobs['knight']
-    CT.jobs['druid'] = CT.jobs['knight']
-
-    function getCitizens(citizens, emotions) {
-        // console.log(citizens)
-        // console.log(citizens.select('5').value)
-        for (const [key] of Object.entries(citizens.value)) {
-            const citizen = citizens.select(key).value
-            const rcost = citizens.select(key).select('rcost')
-            const chatoptions = citizens.select(key).select('chatoptions')
-            let isVisitor = 0
-            let cost = []
-            const name = citizen.name.value
-            const warriors = ['ranger', 'knight', 'druid']
-            const job = citizen.job ? citizen.job.value.type.value.replace("minecolonies:", "") : null
-            const isWarrior = warriors.indexOf(job) > -1
-            const mourning = citizen.mourning.value
-            const id = citizen.id.value
-            const newSkills = citizens.select(key).select('newSkills').select('levelMap')
-            const happinessHandler = citizens.select(key).select('happinessHandler')
-            const gender = citizen.female.value ? 0 : 1
-            const skills = {}
-            const happiness = {}
-            let needMaxPriority = 0
-            const needs = {}
-
-            if (rcost) {
-                isVisitor = 1;
-                cost = [rcost.select('id').value, rcost.select('Count').value]
-            }
-
-            for (const [k] of Object.entries(chatoptions.value)) {
-                let chatoption = chatoptions.select(k).select('chatoption')
-                let priority = chatoption.select('priority').value
-                let inquiry = JSON.parse(chatoption.select('inquiry').value)
-                let translate = inquiry.translate
-                let translate_reg = /.*\.(\D*)\d*$/
-                let need = translate_reg.exec(translate)[1]
-                needMaxPriority = needMaxPriority > priority ? needMaxPriority : priority
-                needs[k] = { priority, need, inquiry }
-            }
-
-            for (const [k] of Object.entries(newSkills.value)) {
-                let experience = newSkills.select(k).value.experience.value
-                let level = newSkills.select(k).value.level.value
-                let skill = newSkills.select(k).value.skill.value
-
-                skills[skill] = {skill, level, experience}
-            }
-
-            let totalHappiness = 0
-            let totalEmotionWeight = 0
-
-            for (const [emotion] of Object.entries(happinessHandler.value)) {
-                let value = happinessHandler.select(emotion).value.Value.value
-                let day = happinessHandler.select(emotion).value.day ? happinessHandler.select(emotion).value.day.value : 0
-                totalHappiness += emotions[emotion] * value
-                totalEmotionWeight += emotions[emotion]
-                happiness[emotion] = {value, emotion, day}
-            }
-
-            const happinessTotal = (totalHappiness / totalEmotionWeight) * 10
-
-            function delJod(job) {
-                if (job) {
-                    CT.jobs[job] = CT.jobs[job] ? --CT.jobs[job] : 1
+                if (name === 'guardtower') {
+                    name = 'knight'
+                    vacancies = 1 * level
                 }
-            }
 
-            switch (true) {
-                case (['miner', 'quarrier'].indexOf(job) > -1): delJod('miner'); delJod('quarrier'); break
-                case (['knight', 'ranger', 'druid'].indexOf(job) > -1): delJod('knight'); delJod('ranger'); delJod('druid'); break
-                default: delJod(job)
-            }
+                if (name === 'barracks') {
+                    name = 'knight'
+                    vacancies = 1 * level
+                }
 
-            CT.colonists[id] = {
-                name,
-                job,
-                isWarrior,
-                mourning,
-                id,
-                gender,
-                skills,
-                happinessTotal,
-                happiness,
-                isVisitor,
-                cost,
-                needMaxPriority,
-                needs
-            }
+                if (skillsProfessions.hasOwnProperty(name) && level > 0) {
+                    CT.jobs[name] = CT.jobs[name] ? ++CT.jobs[name] : 1
+                }
 
+
+            }
         }
-    }
+        CT.jobs['quarrier'] = CT.jobs['miner']
 
-    // Colonists
-    let citizens = nbt.select('').select('citizenManager').select('citizens')
-    getCitizens(citizens, emotions);
+        CT.jobs['ranger'] = CT.jobs['knight']
+        CT.jobs['druid'] = CT.jobs['knight']
 
-    // Visitors
-    let visitors = nbt.select('').select('visitManager').select('visitors')
-    getCitizens(visitors, emotions);
+        function getCitizens(citizens, emotions) {
+            // console.log(citizens)
+            // console.log(citizens.get('5').value)
+            for (let [key, citizen] of Object.entries(citizens.value)) {
+                citizen = new NBT(citizen)
+                const rcost = citizen.root.rcost ? citizen.get('rcost') : ''
+                const chatoptions = citizen.get('chatoptions')
+                let isVisitor = 0
+                let cost = []
+                const name = citizen.get('name')
+                const warriors = ['ranger', 'knight', 'druid']
+                const job = citizen.root.job ? citizen.get('job').get('type').replace("minecolonies:", "") : null
+                const isWarrior = warriors.indexOf(job) > -1
+                const mourning = citizen.get('mourning')
+                const id = citizen.get('id')
+                const newSkills = citizen.get('newSkills') ? citizen.get('newSkills').get('levelMap') : ''
+                const happinessHandler = citizen.get('happinessHandler')
+                const gender = citizen.get('female') ? 0 : 1
+                const skills = {}
+                const happiness = {}
+                let needMaxPriority = 0
+                const needs = {}
 
-    console.log(CT)
-    // console.log(CT.colonists[7].skills)
-    // console.log(CT.colonists[15].skills)
+                if (rcost) {
+                    isVisitor = 1;
+                    cost = [rcost.get('id'), rcost.get('Count')]
+                }
+
+                for (let [k] of Object.entries(chatoptions.value)) {
+                    let chatoption = new NBT(chatoptions.value[k]).get('chatoption')
+                    let priority = chatoption.get('priority')
+                    let inquiry = JSON.parse(chatoption.get('inquiry'))
+                    let translate = inquiry.translate
+                    let translate_reg = /.*\.(\D*)\d*$/
+                    let need = translate_reg.exec(translate)[1]
+                    needMaxPriority = needMaxPriority > priority ? needMaxPriority : priority
+                    needs[k] = {priority, need, inquiry}
+                }
+
+                for (const [k] of Object.entries(newSkills.value)) {
+                    let newSkill = new NBT(newSkills.value[k])
+                    let experience = newSkill.get('experience')
+                    let level = newSkill.get('level')
+                    let skill = newSkill.get('skill')
+
+                    skills[skill] = {skill, level, experience}
+                }
+
+                let totalHappiness = 0
+                let totalEmotionWeight = 0
+
+                for (const [emotion] of Object.entries(happinessHandler)) {
+                    if (emotion !== 'root') {
+                        let value = happinessHandler.get(emotion).get('Value')
+                        let day = happinessHandler.get(emotion).day ? happinessHandler.get(emotion).get('day') : 0
+                        totalHappiness += emotions[emotion] * value
+                        totalEmotionWeight += emotions[emotion]
+                        happiness[emotion] = {value, emotion, day}
+                    }
+                }
+
+                const happinessTotal = (totalHappiness / totalEmotionWeight) * 10
+
+                function delJod(job) {
+                    if (job) {
+                        CT.jobs[job] = CT.jobs[job] ? --CT.jobs[job] : 1
+                    }
+                }
+
+                switch (true) {
+                    case (['miner', 'quarrier'].indexOf(job) > -1):
+                        delJod('miner');
+                        delJod('quarrier');
+                        break
+                    case (['knight', 'ranger', 'druid'].indexOf(job) > -1):
+                        delJod('knight');
+                        delJod('ranger');
+                        delJod('druid');
+                        break
+                    default:
+                        delJod(job)
+                }
+                
+                CT.colonists[id] = {
+                    name,
+                    job,
+                    isWarrior,
+                    mourning,
+                    id,
+                    gender,
+                    skills,
+                    happinessTotal,
+                    happiness,
+                    isVisitor,
+                    cost,
+                    needMaxPriority,
+                    needs
+                }
+
+            }
+        }
+
+
+
+        // Colonists
+        const citizens = new NBT(colonies).get('citizenManager').get('citizens')
+        getCitizens(citizens, emotions);
+
+        // Visitors
+        const visitors = new NBT(colonies).get('visitManager').get('visitors')
+        getCitizens(visitors, emotions);
+        // console.log(CT)
+        // console.log(CT.colonists[7].skills)
+        // console.log(CT.colonists[15].skills)
+    })
 })
 
 window.addEventListener('DOMContentLoaded', () => {
