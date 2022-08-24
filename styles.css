@@ -286,9 +286,11 @@ td.vis_name {
     white-space: nowrap;
 }
 
-img.cost_icon {
+img.cost_icon, img.need_icon {
     width: 16px;
     height: 16px;
+    display: block;
+    overflow: hidden;
 }
 
 span.cost_count {

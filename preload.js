@@ -448,7 +448,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
                 need_tip += need.need ? `<span>${need.need} ${need.priority} <img alt="${troubles}" src="./img/needs/${need.need}.png"></span><br>` : ''
             }
-            let icon = col.needMaxPriority ? `<img alt="${trouble}" src="./img/needs/${trouble}.png">` : ''
+            let icon = col.needMaxPriority ? `<img class="need_icon" alt="${trouble}" src="./img/needs/${trouble}.png">` : ''
             let tip = col.needMaxPriority ? `<span class="tip">${need_tip}</span>` : ''
             let countNeeds = Object.keys(col.needs).length > 1 ? Object.keys(col.needs).length : ''
             table += `<td class="need" data-sort="${col.needMaxPriority}">${icon}<span class="cost_count">${countNeeds}</span>${tip}</td>`
