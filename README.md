@@ -64,6 +64,6 @@ This program allows you to analyze the state of your colony. Who works where, th
 - [x] ~~reading while game is running~~
 - [ ] grave
 - [ ] configure builder
-- [ ] add icon app
+- [x] ~~add icon app~~
 - [ ] debug mode
 - [ ] multilingualism
