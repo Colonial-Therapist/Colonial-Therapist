@@ -39,6 +39,7 @@ This program allows you to analyze the state of your colony. Who works where, th
     - [x] ~~building levels~~
     - [x] ~~skills assessment system~~
     - [x] ~~custom name~~
+    - [ ] library student and pupil
   - [x] ~~get visitors~~
     - [x] ~~costs~~
     - [x] ~~skills~~
@@ -63,5 +64,6 @@ This program allows you to analyze the state of your colony. Who works where, th
 - [x] ~~reading while game is running~~
 - [ ] grave
 - [ ] configure builder
+- [ ] add icon app
 - [ ] debug mode
 - [ ] multilingualism
