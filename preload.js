@@ -170,8 +170,9 @@ const needsList = [
 const CT = {
     factories: {},
     homes    : {},
-    colonists: [],
-    jobs     : []
+    colonists: {},
+    jobs     : [],
+    needs    : [0, 0, 0, 0]
 }
 
 fs.readFile(datFile, function (err, data) {
@@ -262,6 +263,9 @@ fs.readFile(datFile, function (err, data) {
                     let need = translate_reg.exec(translate)[1]
                     needMaxPriority = needMaxPriority > priority ? needMaxPriority : priority
                     needs[k] = {priority, need, inquiry}
+                    if (!isVisitor) {
+                        CT.needs[priority] = CT.needs[priority] ? ++CT.needs[priority] : 1
+                    }
                 }
 
                 for (const [k] of Object.entries(newSkills.value)) {
@@ -323,11 +327,8 @@ fs.readFile(datFile, function (err, data) {
                     needMaxPriority,
                     needs
                 }
-
             }
         }
-
-
 
         // Colonists
         const citizens = new NBT(colonies).get('citizenManager').get('citizens')
@@ -546,5 +547,37 @@ window.addEventListener('DOMContentLoaded', () => {
     </tbody>
 </table>
 `
-    if (el) el.innerHTML = table
+    let cols = 0
+    let wars = 0
+    let unWork = 0
+    let vis = 0
+
+    for (let [k, col] of Object.entries(CT.colonists)) {
+        switch (true) {
+            case (col.isWarrior): ++wars; break;
+            case (col.isVisitor === 1): ++vis; break;
+            case (!col.job): ++unWork; ++cols; break;
+            default: ++cols
+        }
+    }
+
+    let needs = `
+<div class="c_needs">
+  Needs: 
+  <span class="need4">${CT.needs[4]}</span> / 
+  <span class="need3">${CT.needs[3]}</span> / 
+  <span class="need2">${CT.needs[2]}</span> / 
+  <span class="need1">${CT.needs[1]}</span> /
+  <span class="need0">${CT.needs[0]}</span>
+</div>`
+    let citizens = `
+<div class="c_citizens">
+  Colonists: <span class="t_col">${cols}</span>
+  Militia: <span class="t_mil">${wars}</span>
+  Unemployed: <span class="t_unw">${unWork}</span>
+  Visitors: <span class="t_vis">${vis}</span>
+</div>`
+
+    let counters = `<div class="counters">${needs} ${citizens}</div>`
+    if (el) el.innerHTML = counters + table
 })

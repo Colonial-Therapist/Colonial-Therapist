@@ -26,6 +26,46 @@ body {
     --var-rgb: 152, 169, 131;
 }
 
+#content {
+    width: min-content;
+}
+
+div.counters {
+    text-align: right;
+    font-family: system-ui;
+}
+
+div.c_citizens, div.c_needs {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.need4 {
+    color: darkred;
+    font-weight: bold;
+}
+.need3 {
+    color: darkblue;
+}
+.need2 {
+    color: darkgoldenrod;
+    font-weight: bold;
+}
+.need1 {
+    color: black;
+}
+.need0 {
+    color: dimgrey;
+}
+
+.t_col {
+    font-size: 25px;
+}
+
+.t_unw {
+    font-size: 20px;
+}
+
 table.CT_table, th, td {
     border: 1px inset rgba(231, 231, 231, 0.4);
 }

@@ -56,7 +56,7 @@ This program allows you to analyze the state of your colony. Who works where, th
   - [x] ~~work capacity~~ 
   - [ ] save sort order before refreshing
   - [ ] bug: data is not updated the first time
-- [ ] counter of citizens and workers
+- [x] ~~counter of citizens and workers~~
 - [ ] select colonies
 - [ ] refactoring create table
 - [ ] save config in home dir
