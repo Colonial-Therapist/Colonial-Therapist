@@ -12,10 +12,10 @@ class Parser {
      * @return CT
      * @param {string | Buffer | URL | number} datFile
      */
-    static getCT(datFile, CT) {
+    static async getCT(datFile, CT) {
         const data = fs.readFileSync(datFile)
 
-        nbt_data.parse(data, function (error, data) {
+        await nbt_data.parse(data, function (error, data) {
             const nbt = new NBT(data)
             console.log(nbt)
             const colonies = nbt.get('').get('data').get('minecolonies:colonymanager').get('colonies').value[0]
@@ -179,7 +179,7 @@ class Parser {
             // console.log(CT.colonists[15].skills)
 
         })
-        return CT
+        return Promise.resolve(CT)
     }
 }
 

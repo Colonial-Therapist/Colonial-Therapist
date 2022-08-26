@@ -56,7 +56,7 @@ This program allows you to analyze the state of your colony. Who works where, th
   - [ ] filter by military
   - [x] ~~work capacity~~ 
   - [ ] save sort order before refreshing
-  - [ ] bug: data is not updated the first time
+  - [x] ~~bug: data is not updated the first time~~
 - [x] ~~counter of citizens and workers~~
 - [ ] select colonies
 - [ ] refactoring create table

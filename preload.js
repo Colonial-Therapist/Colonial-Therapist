@@ -89,9 +89,9 @@ const needsList = [
     'sleeping',
 ]
 
-let CT_obj = Parser.getCT(datFile, CT)
-
 window.addEventListener('DOMContentLoaded', () => {
+    Parser.getCT(datFile, CT).then(CT_obj => {
         const el = document.getElementById('content')
         if (el) el.innerHTML = CreateGUI.getGUI(CT_obj)
+    })
 })
