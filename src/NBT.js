@@ -1,4 +1,4 @@
-"use strict";
+"use strict"
 
 class NBT {
     constructor(nbt) {
@@ -55,4 +55,4 @@ class NBT {
     }
 }
 
-module.exports = NBT;
+module.exports = NBT

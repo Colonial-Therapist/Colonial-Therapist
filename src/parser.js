@@ -1,0 +1,186 @@
+"use strict"
+
+const fs                = require("fs");
+const nbt_data          = require("prismarine-nbt");
+const NBT               = require("./NBT.js");
+const SkillsProfessions = require("./skillsProfessions.js");
+const Emotions          = require("./emotions.js");
+
+class Parser {
+    /**
+     * @param {{needs: number[], jobs: *[], homes: {}, factories: {}, colonists: {}}} CT
+     * @return CT
+     * @param {string | Buffer | URL | number} datFile
+     */
+    static getCT(datFile, CT) {
+        const data = fs.readFileSync(datFile)
+
+        nbt_data.parse(data, function (error, data) {
+            const nbt = new NBT(data)
+            console.log(nbt)
+            const colonies = nbt.get('').get('data').get('minecolonies:colonymanager').get('colonies').value[0]
+
+            // Builds
+            const buildings = new NBT(colonies).get('buildingManager').get('buildings')
+            // buildingManager
+            // console.log(buildings.value)
+            // console.log(buildings.get('0').value)
+            for (const [key, build] of Object.entries(buildings.value)) {
+                const type  = build.type.value.replace("minecolonies:", "")
+                let name    = build.customName.value ? build.customName.value : type
+                const level = build.level.value
+                const homes = ['home', 'tavern']
+
+                if (homes.indexOf(type) > -1) {
+                    CT.homes[key] = {type, name, level, key}
+                } else {
+                    CT.factories[key] = {type, name, level, key}
+
+                    let vacancies = 1
+
+                    name = name === 'quarrier' ? 'miner' : name
+                    name = name === 'university' ? 'researcher' : name
+                    name = name === 'hospital' ? 'healer' : name
+
+                    if (name === 'guardtower') {
+                        name      = 'knight'
+                        vacancies = 1 * level
+                    }
+
+                    if (name === 'barracks') {
+                        name      = 'knight'
+                        vacancies = 1 * level
+                    }
+
+                    if (SkillsProfessions.hasOwnProperty(name) && level > 0) {
+                        CT.jobs[name] = CT.jobs[name] ? ++CT.jobs[name] : 1
+                    }
+                }
+            }
+            CT.jobs['quarrier'] = CT.jobs['miner']
+
+            CT.jobs['ranger'] = CT.jobs['knight']
+            CT.jobs['druid']  = CT.jobs['knight']
+
+            function getCitizens(citizens, Emotions) {
+                // console.log(citizens)
+                // console.log(citizens.get('5').value)
+                for (let [key, citizen] of Object.entries(citizens.value)) {
+                    citizen                = new NBT(citizen)
+                    const rcost            = citizen.root.rcost ? citizen.get('rcost') : ''
+                    const chatoptions      = citizen.get('chatoptions')
+                    let isVisitor          = 0
+                    let cost               = []
+                    const name             = citizen.get('name')
+                    const warriors         = ['ranger', 'knight', 'druid']
+                    const job              = citizen.root.job ? citizen.get('job').get('type').replace("minecolonies:", "") : null
+                    const isWarrior        = warriors.indexOf(job) > -1
+                    const mourning         = citizen.get('mourning')
+                    const id               = citizen.get('id')
+                    const newSkills        = citizen.get('newSkills') ? citizen.get('newSkills').get('levelMap') : ''
+                    const happinessHandler = citizen.get('happinessHandler')
+                    const gender           = citizen.get('female') ? 0 : 1
+                    const skills           = {}
+                    const happiness        = {}
+                    let needMaxPriority    = 0
+                    const needs            = {}
+
+                    if (rcost) {
+                        isVisitor = 1;
+                        cost      = [rcost.get('id'), rcost.get('Count')]
+                    }
+
+                    for (let [k] of Object.entries(chatoptions.value)) {
+                        let chatoption    = new NBT(chatoptions.value[k]).get('chatoption')
+                        let priority      = chatoption.get('priority')
+                        let inquiry       = JSON.parse(chatoption.get('inquiry'))
+                        let translate     = inquiry.translate
+                        let translate_reg = /.*\.(\D*)\d*$/
+                        let need          = translate_reg.exec(translate)[1]
+                        needMaxPriority   = needMaxPriority > priority ? needMaxPriority : priority
+                        needs[k]          = {priority, need, inquiry}
+                        if (!isVisitor) {
+                            CT.needs[priority] = CT.needs[priority] ? ++CT.needs[priority] : 1
+                        }
+                    }
+
+                    for (const [k] of Object.entries(newSkills.value)) {
+                        let newSkill   = new NBT(newSkills.value[k])
+                        let experience = newSkill.get('experience')
+                        let level      = newSkill.get('level')
+                        let skill      = newSkill.get('skill')
+
+                        skills[skill] = {skill, level, experience}
+                    }
+
+                    let totalHappiness     = 0
+                    let totalEmotionWeight = 0
+
+                    for (const [emotion] of Object.entries(happinessHandler)) {
+                        if (emotion !== 'root') {
+                            let value          = happinessHandler.get(emotion).get('Value')
+                            let day            = happinessHandler.get(emotion).day ? happinessHandler.get(emotion).get('day') : 0
+                            totalHappiness += Emotions[emotion] * value
+                            totalEmotionWeight += Emotions[emotion]
+                            happiness[emotion] = {value, emotion, day}
+                        }
+                    }
+
+                    const happinessTotal = (totalHappiness / totalEmotionWeight) * 10
+
+                    function delJod(job) {
+                        if (job) {
+                            CT.jobs[job] = CT.jobs[job] ? --CT.jobs[job] : 1
+                        }
+                    }
+
+                    switch (true) {
+                        case (['miner', 'quarrier'].indexOf(job) > -1):
+                            delJod('miner');
+                            delJod('quarrier');
+                            break
+                        case (['knight', 'ranger', 'druid'].indexOf(job) > -1):
+                            delJod('knight');
+                            delJod('ranger');
+                            delJod('druid');
+                            break
+                        default:
+                            delJod(job)
+                    }
+
+                    CT.colonists[id] = {
+                        name,
+                        job,
+                        isWarrior,
+                        mourning,
+                        id,
+                        gender,
+                        skills,
+                        happinessTotal,
+                        happiness,
+                        isVisitor,
+                        cost,
+                        needMaxPriority,
+                        needs
+                    }
+                }
+            }
+
+            // Colonists
+            const citizens = new NBT(colonies).get('citizenManager').get('citizens')
+            getCitizens(citizens, Emotions)
+
+            // Visitors
+            const visitors = new NBT(colonies).get('visitManager').get('visitors')
+            getCitizens(visitors, Emotions)
+
+            // console.log(CT)
+            // console.log(CT.colonists[7].skills)
+            // console.log(CT.colonists[15].skills)
+
+        })
+        return CT
+    }
+}
+
+module.exports = Parser
