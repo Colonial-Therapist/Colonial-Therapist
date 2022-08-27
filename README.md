@@ -62,6 +62,7 @@ This program allows you to analyze the state of your colony. Who works where, th
 - [ ] refactoring create table
 - [ ] save config in home dir
 - [x] ~~reading while game is running~~
+- [x] ~~updating the table when changing the mod file~~
 - [ ] grave
 - [ ] configure builder
 - [x] ~~add icon app~~

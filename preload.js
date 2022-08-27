@@ -1,3 +1,4 @@
+const fs        = require('fs')
 const CreateGUI = require('./src/createGUI')
 const path      = require("path")
 const Parser    = require("./src/parser")
@@ -61,24 +62,6 @@ const builds = [
     "alchemist"
 ]
 
-const emotions = {
-    'homelessness': 4,
-    'unemployment': 2,
-    'health'      : 2,
-    'idleatjob'   : 1,
-
-    'school'      : 1,
-    'security'    : 2,
-    'social'      : 2,
-    'saturation'  : 1,
-    'mysticalsite': 1,
-
-    'damage'          : 1,
-    'death'           : 2,
-    'raidwithoutdeath': 1,
-    'slepttonight'    : 2,
-}
-
 const needsList = [
     'sync',
     'homelessness',
@@ -90,8 +73,15 @@ const needsList = [
 ]
 
 window.addEventListener('DOMContentLoaded', () => {
+    const el = document.getElementById('content')
+
     Parser.getCT(datFile, CT).then(CT_obj => {
-        const el = document.getElementById('content')
         if (el) el.innerHTML = CreateGUI.getGUI(CT_obj)
+    })
+
+    fs.watchFile(datFile, () => {
+        Parser.getCT(datFile, CT).then(CT_obj => {
+            if (el) el.innerHTML = CreateGUI.getGUI(CT_obj)
+        })
     })
 })
