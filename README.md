@@ -31,7 +31,7 @@ This program allows you to analyze the state of your colony. Who works where, th
     - [ ] level
     - [ ] home
     - [x] ~~job~~
-    - [x] ~~sex~~
+    - [x] ~~gender~~
   - [x] ~~get skills~~
     - [x] ~~skill registry~~
   - [ ] get jobs (houses)
@@ -44,7 +44,7 @@ This program allows you to analyze the state of your colony. Who works where, th
     - [x] ~~costs~~
     - [x] ~~skills~~
     - [x] ~~happiness~~
-    - [x] ~~sex~~
+    - [x] ~~gender~~
 - [ ] convert data to table
   - [x] ~~base table~~
   - [x] ~~icons for skills~~
