@@ -1,11 +1,10 @@
 const fs        = require('fs')
 const CreateGUI = require('./src/createGUI')
-const path      = require("path")
 const Parser    = require("./src/parser")
 const CT        = require("./src/CT")
+const Config    = require('./src/config.js')
 
-// const datFile = path.join(__dirname, 'data/capabilities.dat')
-const datFile = path.join('C:/Users/s_kus/AppData/Roaming/.curseforge/Instances/MineColonies Official/saves/-_-/data/capabilities.dat')
+const datFile = Config.getDatFile()
 
 const builds = [
     "archery",

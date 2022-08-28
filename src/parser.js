@@ -1,10 +1,12 @@
 "use strict"
 
-const fs                = require("fs");
-const nbt_data          = require("prismarine-nbt");
-const NBT               = require("./NBT.js");
-const SkillsProfessions = require("./skillsProfessions.js");
-const Emotions          = require("./emotions.js");
+const fs                = require("fs")
+const nbt_data          = require("prismarine-nbt")
+const NBT               = require("./NBT.js")
+const SkillsProfessions = require("./skillsProfessions.js")
+const Emotions          = require("./emotions.js")
+const path              = require("path")
+const Config            = require("./config.js")
 
 class Parser {
     /**
@@ -13,12 +15,13 @@ class Parser {
      * @param {string | Buffer | URL | number} datFile
      */
     static async getCT(datFile, CT) {
-        const data = fs.readFileSync(datFile)
+        const colonyKey = Config.get('colonyKey')
+        const data      = fs.readFileSync(datFile)
 
         await nbt_data.parse(data, function (error, data) {
             const nbt = new NBT(data)
             console.log(nbt)
-            const colonies = nbt.get('').get('data').get('minecolonies:colonymanager').get('colonies').value[0]
+            const colonies = nbt.get('').get('data').get('minecolonies:colonymanager').get('colonies').value[colonyKey]
 
             // Builds
             const buildings = new NBT(colonies).get('buildingManager').get('buildings')

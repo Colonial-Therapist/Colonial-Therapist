@@ -58,13 +58,18 @@ This program allows you to analyze the state of your colony. Who works where, th
   - [ ] save sort order before refreshing
   - [x] ~~bug: data is not updated the first time~~
 - [x] ~~counter of citizens and workers~~
-- [ ] select colonies
 - [ ] refactoring create table
 - [ ] save config in home dir
+  - [x] create default config in home dir
+  - [x] read config from home dir
+  - [ ] selecting a folder with a world with an empty config
+  - [ ] select colonies
+  - [ ] edit config
+  - [ ] history opening the worlds dir
 - [x] ~~reading while game is running~~
 - [x] ~~updating the table when changing the mod file~~
 - [ ] grave
-- [ ] configure builder
+- [ ] configure app builder
 - [x] ~~add icon app~~
 - [ ] debug mode
 - [ ] multilingualism
