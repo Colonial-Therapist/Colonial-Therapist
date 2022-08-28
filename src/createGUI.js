@@ -224,11 +224,11 @@ class CrateGUI {
         let needs = `
 <div class="c_needs">
   Needs: 
-  <span class="need4">${CT.needs[4]}</span> / 
-  <span class="need3">${CT.needs[3]}</span> / 
-  <span class="need2">${CT.needs[2]}</span> / 
-  <span class="need1">${CT.needs[1]}</span> /
-  <span class="need0">${CT.needs[0]}</span>
+  <span class="need4">${CT.needs[4] ? CT.needs[4] : 0}</span> / 
+  <span class="need3">${CT.needs[3] ? CT.needs[3] : 0}</span> / 
+  <span class="need2">${CT.needs[2] ? CT.needs[2] : 0}</span> / 
+  <span class="need1">${CT.needs[1] ? CT.needs[1] : 0}</span> /
+  <span class="need0">${CT.needs[0] ? CT.needs[0] : 0}</span>
 </div>`
         let citizens = `
 <div class="c_citizens">
