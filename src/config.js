@@ -10,7 +10,7 @@ class Config {
     static config_path    = path.join(this.dir, 'config.json')
     static default_config = {
         "worldDir" : "",
-        "colonyKey": 0
+        "colonyKey": -1
     }
 
     static getConfig() {

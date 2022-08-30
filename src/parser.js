@@ -186,6 +186,32 @@ class Parser {
         })
         return Promise.resolve(CT)
     }
+
+    /**
+     * @param {string | Buffer | URL | number} datFile
+     */
+    static async getColonies(datFile) {
+        const data = fs.readFileSync(datFile)
+        let list   = []
+
+        await nbt_data.parse(data, function (error, data) {
+            const nbt      = new NBT(data)
+            const colonies = nbt.get('').get('data').get('minecolonies:colonymanager').get('colonies')
+
+            for (let [key, colony] of Object.entries(colonies.value)) {
+                colony = new NBT(colony)
+
+                key       = Number(key)
+                const id        = Number(colony.get('id'))
+                const name      = colony.get('name')
+                const owner     = colony.get('owner')
+                const dimension = colony.get('dimension')
+
+                list[key] = {key, id, name, owner, dimension}
+            }
+        })
+        return Promise.resolve(list)
+    }
 }
 
 module.exports = Parser
