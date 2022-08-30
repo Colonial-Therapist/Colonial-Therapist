@@ -1,8 +1,6 @@
 // Modules to control application life and create native browser window
-const {app, BrowserWindow} = require('electron')
+const {app, BrowserWindow, ipcMain, dialog} = require('electron')
 const path = require('path')
-
-app.disableHardwareAcceleration()
 
 try {
   require('electron-reloader')(module);
@@ -17,9 +15,11 @@ function createWindow () {
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
       nodeIntegration: true,
-      contextIsolation: false
+      contextIsolation: true
     }
   })
+
+  ipcMain.handle('dialog', (event, method, params) => dialog[method](params))
 
   // and load the index.html of the app.
   mainWindow.loadFile('index.html')

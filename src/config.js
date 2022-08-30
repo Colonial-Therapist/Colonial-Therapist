@@ -31,6 +31,13 @@ class Config {
     static get(key) {
         return this.getConfig()[key]
     }
+
+    static set(key, value) {
+        let newConfig = this.getConfig()
+        newConfig[key] = value
+
+        fs.writeFileSync(this.config_path, JSON.stringify(newConfig, null, 4))
+    }
 }
 
 module.exports = Config

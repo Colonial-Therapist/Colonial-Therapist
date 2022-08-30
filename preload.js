@@ -2,6 +2,7 @@ const fs        = require('fs')
 const CreateGUI = require('./src/createGUI')
 const Parser    = require("./src/parser")
 const Config    = require('./src/config.js')
+const {contextBridge, ipcRenderer} = require("electron")
 
 const datFile = Config.getDatFile()
 
@@ -70,8 +71,34 @@ const needsList = [
     'sleeping',
 ]
 
+// contextBridge.exposeInMainWorld('api', {
+//     openDialog: (method, config) => ipcRenderer.invoke('dialog', method, config)
+// })
+
+async function getSavePath() {
+    const dialogConfig = {
+        title      : 'Select a world dir',
+        buttonLabel: 'This save dir',
+        properties : ['openDirectory']
+    }
+
+    let worldDir = ''
+    await ipcRenderer.invoke('dialog', 'showOpenDialog', dialogConfig)
+        .then(result => worldDir = result.filePaths[0])
+
+    return Promise.resolve(worldDir)
+}
+
 window.addEventListener('DOMContentLoaded', () => {
     const el = document.getElementById('content')
+
+    if (!Config.get('worldDir')) {
+
+        getSavePath().then(worldDir => {
+            Config.set('worldDir', worldDir)
+            location.reload()
+        })
+    }
 
     Parser.getCT(datFile).then(CT_obj => {
         if (el) el.innerHTML = CreateGUI.getGUI(CT_obj)
