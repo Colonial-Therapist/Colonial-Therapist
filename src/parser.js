@@ -87,7 +87,7 @@ class Parser {
                     const gender           = citizen.get('female') ? 0 : 1
                     const skills           = {}
                     const happiness        = {}
-                    let needMaxPriority    = 0
+                    let needMaxPriority    = -1
                     const needs            = {}
 
                     if (rcost) {
