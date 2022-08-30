@@ -91,11 +91,12 @@ class CrateGUI {
         for (const [key] of Object.entries(CT.colonists)) {
             let col = CT.colonists[key]
             let vis = CT.colonists[key].isVisitor ? 'vis' : ''
+            let child = CT.colonists[key].isChild ? 'child' : ''
             let gender = col.gender ? '♂' : '♀'
             let emotionTotalColor = ''
             table += `
           <td class="gender">${gender}</td>
-          <td class="name ${vis}_name">${col.name}</td>`
+          <td class="name ${vis} ${child}">${col.name}</td>`
 
             let trouble = ''
             // switch (true) {
@@ -195,7 +196,7 @@ class CrateGUI {
 
                     const  isVacancies = CT.jobs[job] ? 'isVacancies' : ''
 
-                    table += `<td class="${work} s_cell ${sepSlot} ${vis} ${isVacancies}" data-sort="${ball}">
+                    table += `<td class="${work} s_cell ${sepSlot} ${vis} ${child} ${isVacancies}" data-sort="${ball}">
                         <span class="square" style="--square: ${square}px;"></span>
                         <span class="tip">${skillList}</span>
                      </td>`

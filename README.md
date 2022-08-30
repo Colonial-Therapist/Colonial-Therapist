@@ -24,7 +24,7 @@ This program allows you to analyze the state of your colony. Who works where, th
     - [x] ~~happiness~~
     - [ ] happiness refactoring
     - [x] ~~needs~~
-    - [ ] babies
+    - [x] ~~childs~~
     - [ ] current task (job)
     - [ ] weapons (military)
     - [x] ~~skills~~

@@ -226,11 +226,13 @@ span.countVac {
     opacity: 0.8;
 }
 
-td.vis{
+td.vis:not(.name),
+td.child:not(.name) {
     position: relative;
 }
 
-td.vis:before {
+td.vis:not(.name):before,
+td.child:not(.name):before {
     display: block;
     content: " ";
     position: absolute;
@@ -307,9 +309,15 @@ td.name {
     padding: 0 5px 0 0;
 }
 
-td.vis_name {
+td.name.vis {
     font-style: italic;
     color: #747474;
+}
+
+td.name.child {
+    font-style: italic;
+    text-decoration: underline;
+    color: #575757;
 }
 
 .tip {

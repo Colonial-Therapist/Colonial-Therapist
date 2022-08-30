@@ -5,15 +5,13 @@ const nbt_data          = require("prismarine-nbt")
 const NBT               = require("./NBT.js")
 const SkillsProfessions = require("./skillsProfessions.js")
 const Emotions          = require("./emotions.js")
-const path              = require("path")
 const Config            = require("./config.js")
 const CT_c              = require("./CT")
 
 class Parser {
     /**
-     * @param {{needs: number[], jobs: *[], homes: {}, factories: {}, colonists: {}}} CT
-     * @return CT
      * @param {string | Buffer | URL | number} datFile
+     * @return CT
      */
     static async getCT(datFile) {
         const colonyKey = Config.get('colonyKey')
@@ -75,6 +73,7 @@ class Parser {
                     const rcost            = citizen.root.rcost ? citizen.get('rcost') : ''
                     const chatoptions      = citizen.get('chatoptions')
                     let isVisitor          = 0
+                    let isChild            = citizen.get('child')
                     let cost               = []
                     const name             = citizen.get('name')
                     const warriors         = ['ranger', 'knight', 'druid']
@@ -91,7 +90,7 @@ class Parser {
                     const needs            = {}
 
                     if (rcost) {
-                        isVisitor = 1;
+                        isVisitor = 1
                         cost      = [rcost.get('id'), rcost.get('Count')]
                     }
 
@@ -164,6 +163,7 @@ class Parser {
                         happinessTotal,
                         happiness,
                         isVisitor,
+                        isChild,
                         cost,
                         needMaxPriority,
                         needs
