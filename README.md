@@ -72,4 +72,6 @@ This program allows you to analyze the state of your colony. Who works where, th
 - [ ] configure app builder
 - [x] ~~add icon app~~
 - [ ] debug mode
+- [ ] choose a license
+- [ ] create a repository on GitHub
 - [ ] multilingualism
