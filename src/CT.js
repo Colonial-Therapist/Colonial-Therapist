@@ -1,11 +1,13 @@
 "use strict"
 
-const CT = {
-    factories: {},
-    homes    : {},
-    colonists: {},
-    jobs     : [],
-    needs    : [0, 0, 0, 0]
+class CT {
+    constructor() {
+        this.factories = {}
+        this.homes     = {}
+        this.colonists = {}
+        this.jobs      = []
+        this.needs     = [0, 0, 0, 0]
+    }
 }
 
 module.exports = CT

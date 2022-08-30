@@ -7,6 +7,7 @@ const SkillsProfessions = require("./skillsProfessions.js")
 const Emotions          = require("./emotions.js")
 const path              = require("path")
 const Config            = require("./config.js")
+const CT_c              = require("./CT")
 
 class Parser {
     /**
@@ -14,9 +15,10 @@ class Parser {
      * @return CT
      * @param {string | Buffer | URL | number} datFile
      */
-    static async getCT(datFile, CT) {
+    static async getCT(datFile) {
         const colonyKey = Config.get('colonyKey')
         const data      = fs.readFileSync(datFile)
+        let CT          = new CT_c
 
         await nbt_data.parse(data, function (error, data) {
             const nbt = new NBT(data)

@@ -1,7 +1,6 @@
 const fs        = require('fs')
 const CreateGUI = require('./src/createGUI')
 const Parser    = require("./src/parser")
-const CT        = require("./src/CT")
 const Config    = require('./src/config.js')
 
 const datFile = Config.getDatFile()
@@ -74,12 +73,12 @@ const needsList = [
 window.addEventListener('DOMContentLoaded', () => {
     const el = document.getElementById('content')
 
-    Parser.getCT(datFile, CT).then(CT_obj => {
+    Parser.getCT(datFile).then(CT_obj => {
         if (el) el.innerHTML = CreateGUI.getGUI(CT_obj)
     })
 
     fs.watchFile(datFile, () => {
-        Parser.getCT(datFile, CT).then(CT_obj => {
+        Parser.getCT(datFile).then(CT_obj => {
             if (el) el.innerHTML = CreateGUI.getGUI(CT_obj)
         })
     })
