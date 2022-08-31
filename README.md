@@ -7,9 +7,7 @@ This program allows you to analyze the state of your colony. Who works where, th
 The inspiration was the [Dwarf-Therapist](https://github.com/Dwarf-Therapist/Dwarf-Therapist) project for the game [Dwarf Fortress](http://www.bay12games.com/dwarves/) ([steam](https://store.steampowered.com/app/975370/Dwarf_Fortress/)).
 
 
-##ROAD MAP
-
----
+## ROAD MAP
 
 - [x] ~~send message in console~~
 - [x] ~~print text in main window~~
@@ -78,8 +76,6 @@ The inspiration was the [Dwarf-Therapist](https://github.com/Dwarf-Therapist/Dwa
 - [ ] multilingualism
 
 ## License
-
----
 
 Colonial-Therapist is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 
