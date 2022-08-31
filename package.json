@@ -15,7 +15,7 @@
     "nbt"
   ],
   "author": "LEXX",
-  "license": "",
+  "license": "GPL-3.0",
   "devDependencies": {
     "electron": "^20.0.1",
     "electron-builder": "^23.3.3",

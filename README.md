@@ -1,14 +1,15 @@
 # Colonial-Therapist
 
-Colonist management tool.
-
-The inspiration was the [Dwarf-Therapist](https://github.com/Dwarf-Therapist/Dwarf-Therapist) project for the game [Dwarf Fortress](http://www.bay12games.com/dwarves/) ([steam](https://store.steampowered.com/app/975370/Dwarf_Fortress/)).
-
-Tool on mod [MineColonies](https://minecolonies.com/) for [Minecraft](https://www.minecraft.net/).
+Colonist management tool on mod [MineColonies](https://minecolonies.com/) for [Minecraft](https://www.minecraft.net/).
 
 This program allows you to analyze the state of your colony. Who works where, the needs and happiness of citizens.
 
+The inspiration was the [Dwarf-Therapist](https://github.com/Dwarf-Therapist/Dwarf-Therapist) project for the game [Dwarf Fortress](http://www.bay12games.com/dwarves/) ([steam](https://store.steampowered.com/app/975370/Dwarf_Fortress/)).
+
+
 ##ROAD MAP
+
+---
 
 - [x] ~~send message in console~~
 - [x] ~~print text in main window~~
@@ -72,6 +73,16 @@ This program allows you to analyze the state of your colony. Who works where, th
 - [ ] configure app builder
 - [x] ~~add icon app~~
 - [ ] debug mode
-- [ ] choose a license
+- [x] choose a license
 - [ ] create a repository on GitHub
 - [ ] multilingualism
+
+## License
+
+---
+
+Colonial-Therapist is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+
+Colonial-Therapist is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with Colonial-Therapist. If not, see <https://www.gnu.org/licenses/>.
