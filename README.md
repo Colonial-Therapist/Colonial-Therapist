@@ -71,8 +71,8 @@ The inspiration was the [Dwarf-Therapist](https://github.com/Dwarf-Therapist/Dwa
 - [ ] configure app builder
 - [x] ~~add icon app~~
 - [ ] debug mode
-- [x] choose a license
-- [ ] create a repository on GitHub
+- [x] ~~choose a license~~
+- [x] ~~create a repository on GitHub~~
 - [ ] multilingualism
 
 ## License
