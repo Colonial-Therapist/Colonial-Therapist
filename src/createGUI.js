@@ -2,7 +2,7 @@
 
 const SkillsProfessions = require('./skillsProfessions.js')
 const skillsLabels = require('./skillsLabels.js')
-const skillsLabelsRus = require('./skillsLabelsRus.js')
+const Translate = require('./translate.js')
 
 class CrateGUI {
     static getGUI(CT) {
@@ -57,10 +57,10 @@ class CrateGUI {
 <table class="sortable CT_table">
     <thead>
       <tr>
-        <th class="hap">gender</th>
+        <th class="hap">`+ Translate.text(`gui.gender`) +`</th>
         <th class="hap"></th>
-        <th class="hap">needs</th>
-        <th class="hap">happiness</th>`
+        <th class="hap">`+ Translate.text(`gui.needs`) +`</th>
+        <th class="hap">`+ Translate.text(`gui.happiness`) +`</th>`
 
         let sepSlot = ''
         for (const [k, job] of Object.entries(headJobs)) {
@@ -72,7 +72,7 @@ class CrateGUI {
                 sepSlot = sep[1]
             }
 
-            let thName = sep ? '' : job
+            let thName = sep ? '' : Translate.text(`jobs.${job}`)
 
             let isVacancies = ''
             let countVacancies = ''
@@ -119,8 +119,8 @@ class CrateGUI {
                     if (col.needMaxPriority === need.priority) {
                         trouble = need.need
                     }
-
-                    need_tip += need.need ? `<span>${need.need} ${need.priority} <img alt="${troubles}" src="./src/img/needs/${need.need}.png"></span><br>` : ''
+                    const tNeed = Translate.text(`needs.${need.need}`)
+                    need_tip += need.need ? `<span>${tNeed} <img alt="${troubles}" src="./src/img/needs/${need.need}.png"></span><br>` : ''
                 }
                 let icon = col.needMaxPriority >= 0 ? `<img class="need_icon" alt="${trouble}" src="./src/img/needs/${trouble}.png">` : ''
                 let tip = col.needMaxPriority >= 0 ? `<span class="tip">${need_tip}</span>` : ''
@@ -146,7 +146,8 @@ class CrateGUI {
                 }
 
                 let icon = ' <img alt="" src="./src/img/' + emotionColor + '.png" class="skillIcon">'
-                emotionList += `<span>` + emotion.emotion + ': ' + emotion.value.toFixed(1) + icon +"</span><br>"
+                emotionList += `<span>` + Translate.text(`happiness.${emotion.emotion}`) + ': '
+                    + emotion.value.toFixed(1) + icon +"</span><br>"
             }
 
             table += `<td class="${emotionTotalColor} s_cell" data-sort="${col.happinessTotal}"><span class="tip">${emotionList}</span></td>`
@@ -191,7 +192,8 @@ class CrateGUI {
                         let skillSecond = skill.skill === secondReqSkill ? 'second' : ''
                         let skillName = skillsLabels[skill.skill].toLowerCase()
                         let icon = ' <img alt="" src="./src/img/skills/' + skillName + '.png" class="skillIcon">'
-                        skillList += `<span class="${skillFirst} ${skillSecond}">` + skillsLabelsRus[skill.skill] + ': ' + skill.level + icon +"</span><br>"
+                        skillList += `<span class="${skillFirst} ${skillSecond}">`
+                            + Translate.text(`skills.${skill.skill}`) + ': ' + skill.level + icon +"</span><br>"
                     }
 
                     const  isVacancies = CT.jobs[job] ? 'isVacancies' : ''
@@ -208,7 +210,7 @@ class CrateGUI {
     </tbody>
 </table>
 `
-        let cols = 0
+        let civ = 0
         let wars = 0
         let unWork = 0
         let vis = 0
@@ -217,14 +219,14 @@ class CrateGUI {
             switch (true) {
                 case (col.isWarrior): ++wars; break;
                 case (col.isVisitor === 1): ++vis; break;
-                case (!col.job): ++unWork; ++cols; break;
-                default: ++cols
+                case (!col.job): ++unWork; ++civ; break;
+                default: ++civ
             }
         }
 
         let needs = `
 <div class="c_needs">
-  Needs: 
+  `+ Translate.text(`gui.needs`) +`:
   <span class="need4">${CT.needs[4] ? CT.needs[4] : 0}</span> / 
   <span class="need3">${CT.needs[3] ? CT.needs[3] : 0}</span> / 
   <span class="need2">${CT.needs[2] ? CT.needs[2] : 0}</span> / 
@@ -233,10 +235,10 @@ class CrateGUI {
 </div>`
         let citizens = `
 <div class="c_citizens">
-  Colonists: <span class="t_col">${cols}</span>
-  Militia: <span class="t_mil">${wars}</span>
-  Unemployed: <span class="t_unw">${unWork}</span>
-  Visitors: <span class="t_vis">${vis}</span>
+  `+ Translate.text(`gui.civilians`) +`: <span class="t_col">${civ}</span>
+  `+ Translate.text(`gui.militia`) +`: <span class="t_mil">${wars}</span>
+  `+ Translate.text(`gui.unemployed`) +`: <span class="t_unw">${unWork}</span>
+  `+ Translate.text(`gui.visitors`) +`: <span class="t_vis">${vis}</span>
 </div>`
 
         let counters = `<div class="counters">${needs} ${citizens}</div>`
