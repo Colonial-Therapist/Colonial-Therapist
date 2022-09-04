@@ -4,7 +4,9 @@
   "description": "Colonist management tool",
   "main": "main.js",
   "scripts": {
-    "start": "electron --enable-logging ."
+    "start": "electron . --enable-logging",
+    "dev": "set APP_DEV=true && electron . --enable-logging",
+    "dist": "electron-builder"
   },
   "repository": "",
   "keywords": [
@@ -23,5 +25,19 @@
   },
   "dependencies": {
     "prismarine-nbt": "^2.2.1"
+  },
+  "build": {
+    "appId": "ru.colonial-therapist.app",
+    "productName": "Colonial-Therapist",
+    "target": "portable",
+    "directories":{
+      "output": "build"
+    },
+    "win": {
+      "target": [
+        "portable"
+      ],
+      "icon": "./src/img/icons/icon.png"
+    }
   }
 }
