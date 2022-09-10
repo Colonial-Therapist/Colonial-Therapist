@@ -72,7 +72,7 @@ class CrateGUI {
                 sepSlot = sep[1]
             }
 
-            let thName = sep ? '' : Translate.text(`jobs.${job}`)
+            let thName = sep ? '' : job
 
             let isVacancies = ''
             let countVacancies = ''
@@ -80,6 +80,8 @@ class CrateGUI {
                 isVacancies = 'isVacancies'
                 countVacancies = CT.jobs[thName]
             }
+
+            thName = thName ? Translate.text(`jobs.${thName}`) : ''
 
             table += `<th class="${sepClass} ${sepSlot} ${isVacancies}">${thName}<span class="countVac">${countVacancies}</span></th>`
         }
