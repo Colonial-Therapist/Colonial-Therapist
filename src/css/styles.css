@@ -193,12 +193,16 @@ th {
     background-color: rgb(var(--var-rgb));
 }
 
+td.notBuilt,
+th.notBuilt,
 td.isVacancies,
 th.isVacancies {
     position: relative;
     --vac-rgb: 255, 255, 255;
 }
 
+td.notBuilt:before,
+th.notBuilt:before,
 td.isVacancies:before,
 th.isVacancies:before {
     display: block;
@@ -209,11 +213,21 @@ th.isVacancies:before {
     top: -1px;
     left: -1px;
     opacity: 0.2;
+}
+
+td.isVacancies:before,
+th.isVacancies:before {
     background: linear-gradient(45deg, rgba(var(--vac-rgb), 0.0) 12.5%, #fff 12.5%, #fff 37.5%, rgba(var(--vac-rgb), 0.0) 37.5%, rgba(var(--vac-rgb), 0.0) 62.5%, #fff 62.5%, #fff 87.5%, rgba(var(--vac-rgb), 0.0) 87.5%);
     background-size: 10px 10px;
     background-position: 5px 5px;
 }
 
+td.notBuilt:before,
+th.notBuilt:before {
+    background: rgba(255, 255, 255, 1);
+}
+
+th.notBuilt:before,
 th.isVacancies:before {
     height: 100%;
 }
@@ -250,9 +264,16 @@ td.active {
     background-color: #7a77b2;
 }
 
+td.active.notBuilt:before,
 td.active.isVacancies:before {
     opacity: 0;
 }
+
+.notBuilt span.countVac {
+     color: #000000;
+     text-shadow: 1px 1px 1px white;
+     opacity: 0.3;
+ }
 
 td.active span.square {
     background-color: white;

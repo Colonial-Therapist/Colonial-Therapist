@@ -62,6 +62,37 @@ class CrateGUI {
         <th class="hap">`+ Translate.text(`gui.needs`) +`</th>
         <th class="hap">`+ Translate.text(`gui.happiness`) +`</th>`
 
+        let jobBuilds = []
+
+        function addJod(job) {
+            if (job) {
+                jobBuilds[job] = jobBuilds[job] ? ++jobBuilds[job] : 1
+            }
+        }
+
+        Object.keys(CT.factories).forEach((key) => {
+            let job   = CT.factories[key].type
+            let level = CT.factories[key].level
+
+            job = job === 'hospital' ? 'healer' : job
+            job = job === 'university' ? 'researcher' : job
+            job = job === 'cook' && level > 2 ? 'cook assistant' : job
+
+            if (level) {
+                switch (true) {
+                    case (['barracks', 'guardtower'].indexOf(job) > -1):
+                        addJod('knight')
+                        addJod('ranger')
+                        addJod('druid')
+                        break
+                    default:
+                        addJod(job)
+                }
+            }
+        })
+
+        // console.log(jobBuilds)
+
         let sepSlot = ''
         for (const [k, job] of Object.entries(headJobs)) {
             let sep = regex_sep.exec(job)
@@ -75,15 +106,21 @@ class CrateGUI {
             let thName = sep ? '' : job
 
             let isVacancies = ''
+            let notBuilt = ''
             let countVacancies = ''
             if (CT.jobs[thName]) {
                 isVacancies = 'isVacancies'
                 countVacancies = CT.jobs[thName]
             }
 
+            if (thName && jobBuilds[thName] === undefined) {
+                notBuilt = 'notBuilt'
+                countVacancies = 'X'
+            }
+
             thName = thName ? Translate.text(`jobs.${thName}`) : ''
 
-            table += `<th class="${sepClass} ${sepSlot} ${isVacancies}">${thName}<span class="countVac">${countVacancies}</span></th>`
+            table += `<th class="${sepClass} ${sepSlot} ${isVacancies} ${notBuilt}">${thName}<span class="countVac">${countVacancies}</span></th>`
         }
 
         table += `
@@ -200,7 +237,12 @@ class CrateGUI {
 
                     const  isVacancies = CT.jobs[job] ? 'isVacancies' : ''
 
-                    table += `<td class="${work} s_cell ${sepSlot} ${vis} ${child} ${isVacancies}" data-sort="${ball}">
+                    let  notBuilt = ''
+                    if (job && jobBuilds[job] === undefined) {
+                        notBuilt = 'notBuilt'
+                    }
+
+                    table += `<td class="${work} s_cell ${sepSlot} ${vis} ${child} ${isVacancies} ${notBuilt}" data-sort="${ball}">
                         <span class="square" style="--square: ${square}px;"></span>
                         <span class="tip">${skillList}</span>
                      </td>`
