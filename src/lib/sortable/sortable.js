@@ -48,15 +48,17 @@ document.addEventListener('click', function (e) {
 
         var down_class = ' dir-d '
         var up_class = ' dir-u '
-        var regex_dir = / dir-(u|d) /
+        var regex_dir = /dir-(u|d)/
         var regex_table = /\bsortable\b/
         var alt_sort = e.shiftKey || e.altKey
         var element = findElementRecursive(e.target, 'TH')
         var tr = findElementRecursive(element, 'TR')
         var table = findElementRecursive(tr, 'TABLE')
+        var current_dir = regex_dir.exec(element.classList.value)
 
         function reClassify(element, dir) {
             element.className = element.className.replace(regex_dir, '') + dir
+            element.className = element.className.replace(/ +(?= )/g,'')
         }
 
         function getValue(element) {
@@ -79,15 +81,31 @@ document.addEventListener('click', function (e) {
                     reClassify(nodes[i], '')
                 }
             }
+            var dir = ''
+            if (current_dir) {
+                dir = ` ${current_dir[0]} ` === down_class ? up_class : down_class
+            } else {
+                dir = down_class
 
-            var dir = down_class
-
-            // check if we're sorting up or down, and update the css accordingly
-            if (element.className.indexOf(down_class) !== -1) {
-                dir = up_class
+                // check if we're sorting up or down, and update the css accordingly
+                if (element.className.indexOf(down_class) !== -1) {
+                    dir = up_class
+                }
             }
 
             reClassify(element, dir)
+
+            var numb = 0
+            var sss = [...document.querySelectorAll('th')].reduce(function(previousValue, currentValue) {
+                var id = ++previousValue
+                if (currentValue.isEqualNode(element)) {
+                    numb = id
+                }
+                return id
+            }, 0)
+
+            localStorage.setItem('numb', numb)
+            localStorage.setItem('dir', dir)
 
             // extract all table rows, so the sorting can start.
             var org_tbody = table.tBodies[0]

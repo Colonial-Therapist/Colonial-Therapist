@@ -107,12 +107,24 @@ window.addEventListener('DOMContentLoaded', () => {
             }
         }
 
+        function GUI(CT_obj) {
+            if (el) el.innerHTML = CreateGUI.getGUI(CT_obj)
+
+            if (localStorage.numb && localStorage.dir) {
+                let sortColumn = document.querySelector(`.sortable th:nth-child(${localStorage.numb})`)
+
+                sortColumn.classList.add(localStorage.dir.trim())
+                sortColumn.click()
+                sortColumn.click()
+            }
+        }
+
         const CT_obj = await Parser.getCT(datFile)
-        if (el) el.innerHTML = CreateGUI.getGUI(CT_obj)
+        GUI(CT_obj)
 
         fs.watchFile(datFile, () => {
             Parser.getCT(datFile).then(CT_obj => {
-                if (el) el.innerHTML = CreateGUI.getGUI(CT_obj)
+                GUI(CT_obj)
             })
         })
     }
