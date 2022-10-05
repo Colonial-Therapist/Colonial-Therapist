@@ -6,6 +6,7 @@ This program allows you to analyze the state of your colony. Who works where, th
 
 The inspiration was the [Dwarf-Therapist](https://github.com/Dwarf-Therapist/Dwarf-Therapist) project for the game [Dwarf Fortress](http://www.bay12games.com/dwarves/) ([steam](https://store.steampowered.com/app/975370/Dwarf_Fortress/)).
 
+![GUI](GUI.png)
 
 ## ROAD MAP
 
