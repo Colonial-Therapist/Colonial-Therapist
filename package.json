@@ -1,6 +1,6 @@
 {
   "name": "colonial-therapist",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "description": "Colonist management tool",
   "main": "main.js",
   "scripts": {
@@ -30,7 +30,7 @@
     "appId": "ru.colonial-therapist.app",
     "productName": "Colonial-Therapist",
     "target": "portable",
-    "directories":{
+    "directories": {
       "output": "build"
     },
     "win": {
