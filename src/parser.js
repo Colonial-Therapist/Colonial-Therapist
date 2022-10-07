@@ -44,19 +44,16 @@ class Parser {
                     type = type === 'quarrier' ? 'miner' : type
                     type = type === 'university' ? 'researcher' : type
                     type = type === 'hospital' ? 'healer' : type
+                    type = type === 'smeltery' ? 'smelter' : type
+                    type = type === 'guardtower' ? 'knight' : type
 
-                    if (type === 'guardtower') {
-                        type      = 'knight'
-                        vacancies = 1 * level
-                    }
-
-                    if (type === 'barracks') {
+                    if (type === 'barrackstower') {
                         type      = 'knight'
                         vacancies = 1 * level
                     }
 
                     if (SkillsProfessions.hasOwnProperty(type) && level > 0) {
-                        CT.jobs[type] = CT.jobs[type] ? ++CT.jobs[type] : 1
+                        CT.jobs[type] = CT.jobs[type] ? CT.jobs[type] + vacancies : 1
                     }
                 }
             }
