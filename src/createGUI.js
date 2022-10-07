@@ -256,6 +256,8 @@ class CrateGUI {
 </table>
 `
         let civ = 0
+        let civMax = 0
+        let civLimit = 20
         let wars = 0
         let unWork = 0
         let vis = 0
@@ -269,6 +271,18 @@ class CrateGUI {
             }
         }
 
+        for (let [k, home] of Object.entries(CT.homes)) {
+            if (home.type === 'tavern' && home.level > 0) {
+                civMax += 4
+            }
+            if (home.type === 'home' && home.level > 0) {
+                civMax += home.level
+            }
+        }
+
+        let warsMax = wars + CT.jobs.knight
+        let civAva  = civMax <= civLimit ? civMax : civLimit
+
         let needs = `
 <div class="c_needs">
   `+ Translate.text(`gui.needs`) +`:
@@ -280,8 +294,8 @@ class CrateGUI {
 </div>`
         let citizens = `
 <div class="c_citizens">
-  `+ Translate.text(`gui.civilians`) +`: <span class="t_col">${civ}</span>
-  `+ Translate.text(`gui.militia`) +`: <span class="t_mil">${wars}</span>
+  `+ Translate.text(`gui.civilians`) +`: <span class="t_col">${civ}</span>/<span class="t_colMax" title="${civMax}">${civAva}</span>
+  `+ Translate.text(`gui.militia`) +`: <span class="t_mil">${wars}</span>/<span class="t_milMax">${warsMax}</span>
   `+ Translate.text(`gui.unemployed`) +`: <span class="t_unw">${unWork}</span>
   `+ Translate.text(`gui.visitors`) +`: <span class="t_vis">${vis}</span>
 </div>`
