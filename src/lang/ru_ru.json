@@ -20,6 +20,10 @@
   "needs.sleeping": "Сплю",
   "needs.unemployment": "Безработный",
   "needs.waitingforcure": "Заболел",
+  "needs.slepttonight": "Спал на посту",
+  "needs.wrongfood": "Неправильная еда",
+  "needs.raid": "Нападение",
+  "needs.messagenobees": "Нет пчёл",
 
   "happiness.damage": "Травмы",
   "happiness.death": "Летальные исходы",

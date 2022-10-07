@@ -20,6 +20,10 @@
   "needs.sleeping": "Sleeping",
   "needs.unemployment": "Unemployment",
   "needs.waitingforcure": "Waiting for cure",
+  "needs.slepttonight": "Slept tonight",
+  "needs.wrongfood": "Wrong food",
+  "needs.raid": "Raid",
+  "needs.messagenobees": "No bees",
 
   "happiness.damage": "Damage",
   "happiness.death": "Death",
