@@ -1,5 +1,24 @@
 # Changelog
 
+## [0.7.0](https://github.com/Colonial-Therapist/Colonial-Therapist/compare/v0.6.0...v0.7.0) (2022-10-07)
+
+
+### Features
+
+* add needs icons ([dc54edc](https://github.com/Colonial-Therapist/Colonial-Therapist/commit/dc54edcfe4985b633a4bb12fd97c405be183e931))
+* added civilian and guard limit indicator ([31ee0e8](https://github.com/Colonial-Therapist/Colonial-Therapist/commit/31ee0e892066103933daaca7650493f73877e8b8))
+* added display of unavailable professions ([d83f16c](https://github.com/Colonial-Therapist/Colonial-Therapist/commit/d83f16cca8de834366e7f02e6c1bd0692db0e426))
+* added highlighting rows and columns ([4743f19](https://github.com/Colonial-Therapist/Colonial-Therapist/commit/4743f19e4417f7ce252693fa8164b31705e67b0a))
+* added memorization of sorting ([eb5fe0c](https://github.com/Colonial-Therapist/Colonial-Therapist/commit/eb5fe0cd8b752cd706daaa4d9b6c672ba9985c77))
+* added multilingual functionality ([2993cab](https://github.com/Colonial-Therapist/Colonial-Therapist/commit/2993cab6f008209229f01bd8da56d4679f0e6488))
+* added vacancy count for barracks towers and smelter ([eb5a44e](https://github.com/Colonial-Therapist/Colonial-Therapist/commit/eb5a44ef2355aaf19d0bbd56ff635a76e681ee2b))
+
+
+### Bug Fixes
+
+* fixed a bug with incorrect counting of renamed buildings ([716e9c9](https://github.com/Colonial-Therapist/Colonial-Therapist/commit/716e9c9672c82c98a2832b93bcd146f4b6f4d81f))
+* fixed translation of headings ([1e6a721](https://github.com/Colonial-Therapist/Colonial-Therapist/commit/1e6a721a33aa81c19a66ffe878c86163245d97a5))
+
 ## [0.6.0](https://github.com/Colonial-Therapist/Colonial-Therapist/compare/v0.5.0...v0.6.0) (2022-08-31)
 
 
