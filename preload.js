@@ -89,6 +89,35 @@ async function getSavePath() {
     return Promise.resolve(worldDir)
 }
 
+function columnHover() {
+    let numbTr  = 0
+    const cells = document.querySelectorAll(".s_cell");
+    cells.forEach(
+        cell => {
+            cell.addEventListener("mouseenter", (event) => {
+                event.target.classList.add("numb-mark")
+                let tds = event.target.closest("tr").querySelectorAll('td')
+                for (let td of tds) {
+                    numbTr++
+                    if (td.classList.contains('numb-mark')) {
+                        break
+                    }
+                }
+                event.target.classList.remove("numb-mark")
+                document.querySelector(`th:nth-child(${numbTr})`).classList.add("hover")
+            })
+
+            cell.addEventListener("mouseout", (event) => {
+                const elNumb = document.querySelector(`th:nth-child(${numbTr})`)
+                if (elNumb) {
+                    elNumb.classList.remove("hover")
+                }
+                numbTr = 0
+            })
+        }
+    )
+}
+
 window.addEventListener('DOMContentLoaded', () => {
     const el = document.getElementById('content')
 
@@ -116,6 +145,8 @@ window.addEventListener('DOMContentLoaded', () => {
                 sortColumn.classList.add(localStorage.dir.trim())
                 sortColumn.click()
                 sortColumn.click()
+
+                columnHover()
             }
         }
 
