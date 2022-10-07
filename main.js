@@ -11,7 +11,7 @@ function createWindow () {
   const mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
-    icon: path.join(__dirname, 'img/icons/icon.png'),
+    icon: path.join(__dirname, 'src/img/icons/icon.png'),
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
       nodeIntegration: true,
@@ -24,8 +24,10 @@ function createWindow () {
   // and load the index.html of the app.
   mainWindow.loadFile('index.html')
 
-  // Open the DevTools.
-  mainWindow.webContents.openDevTools()
+  if (process.env.APP_DEV !== undefined) {
+    // Open the DevTools.
+    mainWindow.webContents.openDevTools()
+  }
 }
 
 // This method will be called when Electron has finished

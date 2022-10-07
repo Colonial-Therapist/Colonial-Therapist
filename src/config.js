@@ -10,7 +10,8 @@ class Config {
     static config_path    = path.join(this.dir, 'config.json')
     static default_config = {
         "worldDir" : "",
-        "colonyKey": -1
+        "colonyKey": -1,
+        "currentLang": "en_en"
     }
 
     static getConfig() {

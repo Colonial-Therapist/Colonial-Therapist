@@ -29,7 +29,7 @@ class Parser {
             // console.log(buildings.value)
             // console.log(buildings.get('0').value)
             for (const [key, build] of Object.entries(buildings.value)) {
-                const type  = build.type.value.replace("minecolonies:", "")
+                let type    = build.type.value.replace("minecolonies:", "")
                 let name    = build.customName.value ? build.customName.value : type
                 const level = build.level.value
                 const homes = ['home', 'tavern']
@@ -41,22 +41,19 @@ class Parser {
 
                     let vacancies = 1
 
-                    name = name === 'quarrier' ? 'miner' : name
-                    name = name === 'university' ? 'researcher' : name
-                    name = name === 'hospital' ? 'healer' : name
+                    type = type === 'quarrier' ? 'miner' : type
+                    type = type === 'university' ? 'researcher' : type
+                    type = type === 'hospital' ? 'healer' : type
+                    type = type === 'smeltery' ? 'smelter' : type
+                    type = type === 'guardtower' ? 'knight' : type
 
-                    if (name === 'guardtower') {
-                        name      = 'knight'
+                    if (type === 'barrackstower') {
+                        type      = 'knight'
                         vacancies = 1 * level
                     }
 
-                    if (name === 'barracks') {
-                        name      = 'knight'
-                        vacancies = 1 * level
-                    }
-
-                    if (SkillsProfessions.hasOwnProperty(name) && level > 0) {
-                        CT.jobs[name] = CT.jobs[name] ? ++CT.jobs[name] : 1
+                    if (SkillsProfessions.hasOwnProperty(type) && level > 0) {
+                        CT.jobs[type] = CT.jobs[type] ? CT.jobs[type] + vacancies : 1
                     }
                 }
             }
