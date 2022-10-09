@@ -52,8 +52,14 @@ class Parser {
                         vacancies = 1 * level
                     }
 
+                    if (type === 'university') {
+                        type      = 'researcher'
+                        vacancies = 1 * level
+                    }
+
                     if (SkillsProfessions.hasOwnProperty(type) && level > 0) {
-                        CT.jobs[type] = CT.jobs[type] ? CT.jobs[type] + vacancies : 1
+                        CT.jobs[type] = CT.jobs[type] ? CT.jobs[type] : 0
+                        CT.jobs[type] = CT.jobs[type] + vacancies
                     }
                 }
             }
