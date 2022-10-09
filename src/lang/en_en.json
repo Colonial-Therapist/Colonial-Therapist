@@ -85,6 +85,7 @@
   "gui.gender": "Gender",
   "gui.needs": "Needs",
   "gui.happiness": "Happiness",
+  "gui.all": "Colonists",
   "gui.civilians": "Civilians",
   "gui.militia": "Militia",
   "gui.unemployed": "Unemployed",
