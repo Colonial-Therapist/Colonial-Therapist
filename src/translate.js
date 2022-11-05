@@ -11,7 +11,8 @@ class Translate {
 
     static text(key) {
         key = key.toLowerCase()
-        return this.lang[key] ? this.lang[key] : this.langDef[key]
+        let lang = this.lang[key] ? this.lang[key] : this.langDef[key]
+        return lang ? lang : key
     }
 }
 
