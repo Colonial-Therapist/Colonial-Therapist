@@ -3,6 +3,7 @@ const CreateGUI                    = require('./src/createGUI')
 const Parser                       = require("./src/parser")
 const Config                       = require('./src/config.js')
 const {contextBridge, ipcRenderer} = require("electron")
+const Translate                    = require("./src/translate.js")
 
 const datFile = Config.getDatFile()
 
@@ -134,6 +135,11 @@ window.addEventListener('DOMContentLoaded', () => {
             } else {
                 console.log(colonyList)
             }
+        } else {
+            const colonyList = await Parser.getColonies(datFile)
+            if (!colonyList[Config.get('colonyKey')]) {
+                Config.set('colonyKey', -1)
+            }
         }
 
         function GUI(CT_obj) {
@@ -150,14 +156,19 @@ window.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        const CT_obj = await Parser.getCT(datFile)
-        GUI(CT_obj)
+        if (Config.get('colonyKey') < 0) {
+            if (el) el.innerHTML = `<div class="err">${Translate.text('error.colonies not found')}</div>`
+        } else {
+            const CT_obj = await Parser.getCT(datFile)
 
-        fs.watchFile(datFile, () => {
-            Parser.getCT(datFile).then(CT_obj => {
-                GUI(CT_obj)
+            GUI(CT_obj)
+
+            fs.watchFile(datFile, () => {
+                Parser.getCT(datFile).then(CT_obj => {
+                    GUI(CT_obj)
+                })
             })
-        })
+        }
     }
 
     awaitConfig()

@@ -466,3 +466,17 @@ tr:hover td.need
     left: 0;
     opacity: 0.3;
 }
+
+.err {
+    display: block;
+    width: 400px;
+    margin: 30px;
+    padding: 20px;
+    border: 3px solid #b14545;
+    border-radius: 8px;
+    text-align: center;
+    background-color: #b54a4a1a;
+    box-shadow: 3px 3px 10px 0 #342e2ead;
+    color: #5c3636;
+    font-weight: bolder;
+}

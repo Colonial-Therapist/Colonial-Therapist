@@ -92,5 +92,7 @@
   "gui.unemployed": "Безработные",
   "gui.visitors": "Гости",
 
+  "error.colonies not found": "В этом мире ещё нет ни одной колонии!",
+
   "end": "-"
 }
