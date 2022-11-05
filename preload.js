@@ -163,6 +163,9 @@ window.addEventListener('DOMContentLoaded', () => {
         } else {
             const CT_obj = await Parser.getCT(datFile)
 
+            const save = path.basename(Config.get('worldDir'))
+            await ipcRenderer.invoke('setTitle', `${save} - ${AppName.get()}`)
+
             GUI(CT_obj)
 
             fs.watchFile(datFile, () => {

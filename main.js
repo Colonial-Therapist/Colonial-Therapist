@@ -20,6 +20,7 @@ function createWindow () {
   })
 
   ipcMain.handle('dialog', (event, method, params) => dialog[method](params))
+  ipcMain.handle('setTitle', (event, params) => mainWindow.setTitle(params))
 
   // and load the index.html of the app.
   mainWindow.loadFile('index.html')
