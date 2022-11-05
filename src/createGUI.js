@@ -284,7 +284,7 @@ class CrateGUI {
             citLimit = 50
         }
 
-        let warsMax = wars + CT.jobs.knight
+        let warsMax = wars + (CT.jobs.knight > 0 ? CT.jobs.knight : 0)
         let cit = civ + wars
         let citMax = civMax + warsMax
         let citAva  = citMax <= citLimit ? citMax : citLimit
