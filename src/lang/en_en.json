@@ -92,6 +92,17 @@
   "gui.unemployed": "Unemployed",
   "gui.visitors": "Visitors",
 
+  "dialog.select world": "Select a world dir",
+  "dialog.save dir": "This save dir",
+
+  "menu.file": "File",
+  "menu.open save": "Open save dir",
+  "menu.open recent": "Open recent",
+  "menu.language": "Language",
+
+  "en_en.json": "English",
+  "ru_ru.json": "Russian",
+
   "error.colonies not found": "There is not a single colony in this world yet!",
 
   "end": "-"

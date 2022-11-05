@@ -4,6 +4,8 @@ const Parser                       = require("./src/parser")
 const Config                       = require('./src/config.js')
 const {contextBridge, ipcRenderer} = require("electron")
 const Translate                    = require("./src/translate.js")
+const AppName                      = require("./src/appName")
+const path                         = require("path")
 
 const datFile = Config.getDatFile()
 
@@ -78,8 +80,8 @@ const needsList = [
 
 async function getSavePath() {
     const dialogConfig = {
-        title      : 'Select a world dir',
-        buttonLabel: 'This save dir',
+        title      : Translate.text(`dialog.select world`),
+        buttonLabel: Translate.text(`dialog.save dir`),
         properties : ['openDirectory']
     }
 

@@ -1,6 +1,7 @@
 // Modules to control application life and create native browser window
-const {app, BrowserWindow, ipcMain, dialog} = require('electron')
-const path = require('path')
+const {app, BrowserWindow, ipcMain, Menu, dialog} = require('electron')
+const {mainMenu}                                  = require('./src/menu.js')
+const path                                        = require('path')
 
 try {
   require('electron-reloader')(module);
@@ -18,6 +19,8 @@ function createWindow () {
       contextIsolation: true
     }
   })
+
+  Menu.setApplicationMenu(mainMenu)
 
   ipcMain.handle('dialog', (event, method, params) => dialog[method](params))
   ipcMain.handle('setTitle', (event, params) => mainWindow.setTitle(params))
