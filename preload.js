@@ -125,7 +125,9 @@ window.addEventListener('DOMContentLoaded', () => {
     async function awaitConfig() {
         if (!Config.get('worldDir')) {
             const worldDir = await getSavePath()
-            Config.set('worldDir', worldDir)
+            if (worldDir) {
+                Config.set('worldDir', worldDir)
+            }
         }
 
         if (Config.get('worldDir') && Config.get('colonyKey') < 0) {
