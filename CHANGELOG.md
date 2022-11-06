@@ -1,5 +1,27 @@
 # Changelog
 
+## [0.8.0](https://github.com/Colonial-Therapist/Colonial-Therapist/compare/v0.7.0...v0.8.0) (2022-11-06)
+
+
+### Features
+
+* added a restaurant needs icon ([6092c5e](https://github.com/Colonial-Therapist/Colonial-Therapist/commit/6092c5e64a9ad18e29ce1d6fde471c66b0219cc5))
+* added dependence of the colonists limit on research ([e31bbf8](https://github.com/Colonial-Therapist/Colonial-Therapist/commit/e31bbf85f6bbe382c5a0691c554639a954b66ae4))
+* added sticky table header ([28b50d5](https://github.com/Colonial-Therapist/Colonial-Therapist/commit/28b50d57b3a4f4ab349a22c5d184f2a201f6e8f5))
+* added the output of the application version and the name of the open world to the window title ([7720563](https://github.com/Colonial-Therapist/Colonial-Therapist/commit/77205638c71e1e529e9b056d608bc9a766d7684b))
+* added to the world discovery menu, save browsing history and language selection ([c5096e8](https://github.com/Colonial-Therapist/Colonial-Therapist/commit/c5096e87ec013d0ef81c64645fc2593b674d2376))
+
+
+### Bug Fixes
+
+* added a message output when the colony is not found ([dc1797e](https://github.com/Colonial-Therapist/Colonial-Therapist/commit/dc1797ef0f5f55c4561b6007571eac706154b995))
+* adjusted calculation of scientists ([b8d0065](https://github.com/Colonial-Therapist/Colonial-Therapist/commit/b8d0065f0c7f2558a7eb9742dcd292dab0775017))
+* fixed a broken reboot in a portable application ([1448daf](https://github.com/Colonial-Therapist/Colonial-Therapist/commit/1448daf7ec7636a7d740c491afc1bf092a93e52d))
+* fixed dynamic detection of available translations ([e7b52f5](https://github.com/Colonial-Therapist/Colonial-Therapist/commit/e7b52f5f253b073767bbc393ab450bc7ba40ce74))
+* fixed incorrect configuration entry when canceling the opening of the world ([5dfdeaa](https://github.com/Colonial-Therapist/Colonial-Therapist/commit/5dfdeaac7a5aa4bd748fa56c810c13bef7badc5f))
+* fixed the calculation of the maximum value of the warriors ([7c177c6](https://github.com/Colonial-Therapist/Colonial-Therapist/commit/7c177c65fdf06f09657f6b50a3f0598801c42718))
+* now, if there is no translation, the key is output ([fce0782](https://github.com/Colonial-Therapist/Colonial-Therapist/commit/fce078255482b94144369a5e7f37c0461c924dec))
+
 ## [0.7.0](https://github.com/Colonial-Therapist/Colonial-Therapist/compare/v0.6.0...v0.7.0) (2022-10-07)
 
 
