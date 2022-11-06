@@ -5,6 +5,11 @@ const Translate                  = require("./translate.js");
 
 const isMac = process.platform === 'darwin'
 
+function restart() {
+    app.relaunch({ execPath: process.env.PORTABLE_EXECUTABLE_FILE })
+    app.quit()
+}
+
 const openRecent      = Config.get('openRecent')
 let submenuOpenRecent = []
 let numb              = 1
@@ -13,8 +18,7 @@ for (const save of openRecent) {
         label: numb++ + ": " + path.basename(save),
         click: () => {
             Config.set('worldDir', save)
-            app.relaunch()
-            app.exit(0)
+            restart()
         }
     })
 }
@@ -30,13 +34,15 @@ fs.readdirSync(testFolder).forEach(file => {
 
 let submenuLanguage = []
 for (const lang of availableLang) {
-    let cur = currentLang === path.parse(lang).name ? 'v' : '-'
+    let nameLang = path.parse(lang).name
+    let cur = currentLang === nameLang ? 'v' : '-'
     submenuLanguage.push({
         label: cur + ' ' + Translate.text(lang),
         click: () => {
-            Config.set('currentLang', path.parse(lang).name)
-            app.relaunch()
-            app.exit(0)
+            if (currentLang !== nameLang) {
+                Config.set('currentLang', nameLang)
+                restart()
+            }
         }
     })
 }
