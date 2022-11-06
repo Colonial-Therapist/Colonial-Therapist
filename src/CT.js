@@ -7,6 +7,7 @@ class CT {
         this.colonists = {}
         this.jobs      = []
         this.needs     = [0, 0, 0, 0]
+        this.research  = []
     }
 }
 

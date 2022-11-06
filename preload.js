@@ -3,6 +3,9 @@ const CreateGUI                    = require('./src/createGUI')
 const Parser                       = require("./src/parser")
 const Config                       = require('./src/config.js')
 const {contextBridge, ipcRenderer} = require("electron")
+const Translate                    = require("./src/translate.js")
+const AppName                      = require("./src/appName")
+const path                         = require("path")
 
 const datFile = Config.getDatFile()
 
@@ -77,8 +80,8 @@ const needsList = [
 
 async function getSavePath() {
     const dialogConfig = {
-        title      : 'Select a world dir',
-        buttonLabel: 'This save dir',
+        title      : Translate.text(`dialog.select world`),
+        buttonLabel: Translate.text(`dialog.save dir`),
         properties : ['openDirectory']
     }
 
@@ -124,7 +127,9 @@ window.addEventListener('DOMContentLoaded', () => {
     async function awaitConfig() {
         if (!Config.get('worldDir')) {
             const worldDir = await getSavePath()
-            Config.set('worldDir', worldDir)
+            if (worldDir) {
+                Config.set('worldDir', worldDir)
+            }
         }
 
         if (Config.get('worldDir') && Config.get('colonyKey') < 0) {
@@ -133,6 +138,11 @@ window.addEventListener('DOMContentLoaded', () => {
                 Config.set('colonyKey', colonyList[0].key)
             } else {
                 console.log(colonyList)
+            }
+        } else {
+            const colonyList = await Parser.getColonies(datFile)
+            if (!colonyList[Config.get('colonyKey')]) {
+                Config.set('colonyKey', -1)
             }
         }
 
@@ -150,14 +160,22 @@ window.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        const CT_obj = await Parser.getCT(datFile)
-        GUI(CT_obj)
+        if (Config.get('colonyKey') < 0) {
+            if (el) el.innerHTML = `<div class="err">${Translate.text('error.colonies not found')}</div>`
+        } else {
+            const CT_obj = await Parser.getCT(datFile)
 
-        fs.watchFile(datFile, () => {
-            Parser.getCT(datFile).then(CT_obj => {
-                GUI(CT_obj)
+            const save = path.basename(Config.get('worldDir'))
+            await ipcRenderer.invoke('setTitle', `${save} - ${AppName.get()}`)
+
+            GUI(CT_obj)
+
+            fs.watchFile(datFile, () => {
+                Parser.getCT(datFile).then(CT_obj => {
+                    GUI(CT_obj)
+                })
             })
-        })
+        }
     }
 
     awaitConfig()

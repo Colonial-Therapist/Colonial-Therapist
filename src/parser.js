@@ -42,7 +42,6 @@ class Parser {
                     let vacancies = 1
 
                     type = type === 'quarrier' ? 'miner' : type
-                    type = type === 'university' ? 'researcher' : type
                     type = type === 'hospital' ? 'healer' : type
                     type = type === 'smeltery' ? 'smelter' : type
                     type = type === 'guardtower' ? 'knight' : type
@@ -52,8 +51,14 @@ class Parser {
                         vacancies = 1 * level
                     }
 
+                    if (type === 'university') {
+                        type      = 'researcher'
+                        vacancies = 1 * level
+                    }
+
                     if (SkillsProfessions.hasOwnProperty(type) && level > 0) {
-                        CT.jobs[type] = CT.jobs[type] ? CT.jobs[type] + vacancies : 1
+                        CT.jobs[type] = CT.jobs[type] ? CT.jobs[type] : 0
+                        CT.jobs[type] = CT.jobs[type] + vacancies
                     }
                 }
             }
@@ -175,6 +180,15 @@ class Parser {
             // Visitors
             const visitors = new NBT(colonies).get('visitManager').get('visitors')
             getCitizens(visitors, Emotions)
+
+            // Researches
+            const researches = new NBT(colonies).get('research').get('researchTree')
+            for (let [key, research] of Object.entries(researches.value)) {
+                research = new NBT(research)
+                if (research.get('Data').get('state') === 2) {
+                    CT.research.push(research.get('Data').get('id'))
+                }
+            }
 
             // console.log(CT)
             // console.log(CT.colonists[7].skills)

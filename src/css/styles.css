@@ -77,6 +77,23 @@ th {
     font-family: Arial, Georgia, serif;
 }
 
+/*#content {*/
+/*    scroll-snap-type: y mandatory;*/
+/*    height: 95vh;*/
+/*    overflow: auto;*/
+/*}*/
+
+/*tr, .counters {*/
+/*    scroll-snap-align: start;*/
+/*}*/
+
+thead tr:nth-child(1) th{
+    background: white;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
 /* fix mouseenter  */
 td.s_cell:before {
     background: rgba(255, 255, 255, 0);
@@ -96,7 +113,7 @@ td.s_cell:before {
 }
 
 .sortable th.hap:not(.separator) {
-    background: linear-gradient(180deg, rgba(var(--hap-rgb), 0.0) 10%, rgb(var(--hap-rgb)) 90%);
+    background: linear-gradient(180deg, white 10%, rgb(var(--hap-rgb)) 90%);
 }
 
 .sortable th.separator.hap, td.hap {
@@ -104,7 +121,7 @@ td.s_cell:before {
 }
 
 .sortable th.mnr:not(.separator) {
-    background: linear-gradient(180deg, rgba(var(--mnr-rgb), 0.0) 10%, rgb(var(--mnr-rgb)) 90%);
+    background: linear-gradient(180deg, white 10%, rgb(var(--mnr-rgb)) 90%);
 }
 
 .sortable th.separator.mnr, td.mnr {
@@ -112,7 +129,7 @@ td.s_cell:before {
 }
 
 .sortable th.crp:not(.separator) {
-    background: linear-gradient(180deg, rgba(var(--crp-rgb), 0.0) 10%, rgb(var(--crp-rgb)) 90%);
+    background: linear-gradient(180deg, white 10%, rgb(var(--crp-rgb)) 90%);
 }
 
 .sortable th.separator.crp, td.crp {
@@ -120,7 +137,7 @@ td.s_cell:before {
 }
 
 .sortable th.stn:not(.separator) {
-    background: linear-gradient(180deg, rgba(var(--stn-rgb), 0.0) 10%, rgb(var(--stn-rgb)) 90%);
+    background: linear-gradient(180deg, white 10%, rgb(var(--stn-rgb)) 90%);
 }
 
 .sortable th.separator.stn, td.stn {
@@ -128,7 +145,7 @@ td.s_cell:before {
 }
 
 .sortable th.thr:not(.separator) {
-    background: linear-gradient(180deg, rgba(var(--thr-rgb), 0.0) 10%, rgb(var(--thr-rgb)) 90%);
+    background: linear-gradient(180deg, white 10%, rgb(var(--thr-rgb)) 90%);
 }
 
 .sortable th.separator.thr, td.thr {
@@ -136,7 +153,7 @@ td.s_cell:before {
 }
 
 .sortable th.hlr:not(.separator) {
-    background: linear-gradient(180deg, rgba(var(--hlr-rgb), 0.0) 10%, rgb(var(--hlr-rgb)) 90%);
+    background: linear-gradient(180deg, white 10%, rgb(var(--hlr-rgb)) 90%);
 }
 
 .sortable th.separator.hlr, td.hlr {
@@ -144,7 +161,7 @@ td.s_cell:before {
 }
 
 .sortable th.frm:not(.separator) {
-    background: linear-gradient(180deg, rgba(var(--frm-rgb), 0.0) 10%, rgb(var(--frm-rgb)) 90%);
+    background: linear-gradient(180deg, white 10%, rgb(var(--frm-rgb)) 90%);
 }
 
 .sortable th.separator.frm, td.frm {
@@ -152,7 +169,7 @@ td.s_cell:before {
 }
 
 .sortable th.fhr:not(.separator) {
-    background: linear-gradient(180deg, rgba(var(--fhr-rgb), 0.0) 10%, rgb(var(--fhr-rgb)) 90%);
+    background: linear-gradient(180deg, white 10%, rgb(var(--fhr-rgb)) 90%);
 }
 
 .sortable th.separator.fhr, td.fhr {
@@ -160,7 +177,7 @@ td.s_cell:before {
 }
 
 .sortable th.smt:not(.separator) {
-    background: linear-gradient(180deg, rgba(var(--smt-rgb), 0.0) 10%, rgb(var(--smt-rgb)) 90%);
+    background: linear-gradient(180deg, white 10%, rgb(var(--smt-rgb)) 90%);
 }
 
 .sortable th.separator.smt, td.smt {
@@ -168,7 +185,7 @@ td.s_cell:before {
 }
 
 .sortable th.sts:not(.separator) {
-    background: linear-gradient(180deg, rgba(var(--sts-rgb), 0.0) 10%, rgb(var(--sts-rgb)) 90%);
+    background: linear-gradient(180deg, white 10%, rgb(var(--sts-rgb)) 90%);
 }
 
 .sortable th.separator.sts, td.sts {
@@ -176,7 +193,7 @@ td.s_cell:before {
 }
 
 .sortable th.bld:not(.separator) {
-    background: linear-gradient(180deg, rgba(var(--bld-rgb), 0.0) 10%, rgb(var(--bld-rgb)) 90%);
+    background: linear-gradient(180deg, white 10%, rgb(var(--bld-rgb)) 90%);
 }
 
 .sortable th.separator.bld, td.bld {
@@ -184,7 +201,7 @@ td.s_cell:before {
 }
 
 .sortable th.alh:not(.separator) {
-    background: linear-gradient(180deg, rgba(var(--alh-rgb), 0.0) 10%, rgb(var(--alh-rgb)) 90%);
+    background: linear-gradient(180deg, white 10%, rgb(var(--alh-rgb)) 90%);
 }
 
 .sortable th.separator.alh, td.alh {
@@ -192,7 +209,7 @@ td.s_cell:before {
 }
 
 .sortable th.dlv:not(.separator) {
-    background: linear-gradient(180deg, rgba(var(--dlv-rgb), 0.0) 10%, rgb(var(--dlv-rgb)) 90%);
+    background: linear-gradient(180deg, white 10%, rgb(var(--dlv-rgb)) 90%);
 }
 
 .sortable th.separator.dlv, td.dlv {
@@ -200,7 +217,7 @@ td.s_cell:before {
 }
 
 .sortable th.var:not(.separator) {
-    background: linear-gradient(180deg, rgba(var(--var-rgb), 0.0) 10%, rgb(var(--var-rgb)) 90%);
+    background: linear-gradient(180deg, white 10%, rgb(var(--var-rgb)) 90%);
 }
 
 .sortable th.separator.var, td.var {
@@ -363,7 +380,7 @@ td.name.child {
     border-radius: 3px;
     background-color: rgba(255, 255, 255, 0.95);
     display: none;
-    z-index: 1;
+    z-index: 2;
     text-align: right;
     padding: 6px;
     white-space: nowrap;
@@ -448,4 +465,18 @@ tr:hover td.need
     top: 0;
     left: 0;
     opacity: 0.3;
+}
+
+.err {
+    display: block;
+    width: 400px;
+    margin: 30px;
+    padding: 20px;
+    border: 3px solid #b14545;
+    border-radius: 8px;
+    text-align: center;
+    background-color: #b54a4a1a;
+    box-shadow: 3px 3px 10px 0 #342e2ead;
+    color: #5c3636;
+    font-weight: bolder;
 }

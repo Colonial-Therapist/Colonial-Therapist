@@ -24,6 +24,7 @@
   "needs.wrongfood": "Wrong food",
   "needs.raid": "Raid",
   "needs.messagenobees": "No bees",
+  "needs.norestaurant": "No restaurant",
 
   "happiness.damage": "Damage",
   "happiness.death": "Death",
@@ -85,10 +86,24 @@
   "gui.gender": "Gender",
   "gui.needs": "Needs",
   "gui.happiness": "Happiness",
+  "gui.all": "Colonists",
   "gui.civilians": "Civilians",
   "gui.militia": "Militia",
   "gui.unemployed": "Unemployed",
   "gui.visitors": "Visitors",
+
+  "dialog.select world": "Select a world dir",
+  "dialog.save dir": "This save dir",
+
+  "menu.file": "File",
+  "menu.open save": "Open save dir",
+  "menu.open recent": "Open recent",
+  "menu.language": "Language",
+
+  "en_en.json": "English",
+  "ru_ru.json": "Russian",
+
+  "error.colonies not found": "There is not a single colony in this world yet!",
 
   "end": "-"
 }

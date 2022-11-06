@@ -9,9 +9,10 @@ class Config {
     static dir            = path.join(this.userHomeDir + '/.Colonial-Therapist')
     static config_path    = path.join(this.dir, 'config.json')
     static default_config = {
-        "worldDir" : "",
-        "colonyKey": -1,
-        "currentLang": "en_en"
+        "worldDir"   : "",
+        "colonyKey"  : -1,
+        "currentLang": "en_en",
+        "openRecent" : []
     }
 
     static getConfig() {
@@ -34,8 +35,13 @@ class Config {
     }
 
     static set(key, value) {
-        let newConfig = this.getConfig()
+        let newConfig  = this.getConfig()
         newConfig[key] = value
+
+        if (key === 'worldDir') {
+            newConfig.openRecent.unshift(value)
+            newConfig.openRecent = newConfig.openRecent.filter((v, i, a) => a.indexOf(v) === i).slice(0, 10)
+        }
 
         fs.writeFileSync(this.config_path, JSON.stringify(newConfig, null, 4))
     }

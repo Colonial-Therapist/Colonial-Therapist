@@ -24,6 +24,7 @@
   "needs.wrongfood": "Неправильная еда",
   "needs.raid": "Нападение",
   "needs.messagenobees": "Нет пчёл",
+  "needs.norestaurant": "Нет ресторана",
 
   "happiness.damage": "Травмы",
   "happiness.death": "Летальные исходы",
@@ -85,10 +86,24 @@
   "gui.gender": "Пол",
   "gui.needs": "Нужды",
   "gui.happiness": "Счастье",
+  "gui.all": "Колонисты",
   "gui.civilians": "Гражданские",
   "gui.militia": "Охрана",
   "gui.unemployed": "Безработные",
   "gui.visitors": "Гости",
+
+  "dialog.select world": "Выберите папку с сохранением",
+  "dialog.save dir": "Выбрать эту",
+
+  "menu.file": "Файл",
+  "menu.open save": "Открыть сохранение",
+  "menu.open recent": "Открыть недавние",
+  "menu.language": "Язык",
+
+  "en_en.json": "Английский",
+  "ru_ru.json": "Русский",
+
+  "error.colonies not found": "В этом мире ещё нет ни одной колонии!",
 
   "end": "-"
 }

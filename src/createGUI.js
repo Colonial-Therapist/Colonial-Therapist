@@ -257,7 +257,7 @@ class CrateGUI {
 `
         let civ = 0
         let civMax = 0
-        let civLimit = 20
+        let citLimit = 25
         let wars = 0
         let unWork = 0
         let vis = 0
@@ -280,21 +280,29 @@ class CrateGUI {
             }
         }
 
-        let warsMax = wars + CT.jobs.knight
-        let civAva  = civMax <= civLimit ? civMax : civLimit
+        if (CT.research.includes('minecolonies:civilian/outpost')) {
+            citLimit = 50
+        }
+
+        let warsMax = wars + (CT.jobs.knight > 0 ? CT.jobs.knight : 0)
+        let cit = civ + wars
+        let citMax = civMax + warsMax
+        let citAva  = citMax <= citLimit ? citMax : citLimit
 
         let needs = `
 <div class="c_needs">
   `+ Translate.text(`gui.needs`) +`:
-  <span class="need4">${CT.needs[4] ? CT.needs[4] : 0}</span> / 
-  <span class="need3">${CT.needs[3] ? CT.needs[3] : 0}</span> / 
-  <span class="need2">${CT.needs[2] ? CT.needs[2] : 0}</span> / 
-  <span class="need1">${CT.needs[1] ? CT.needs[1] : 0}</span> /
+  <span class="need4">${CT.needs[4] ? CT.needs[4] : 0}</span> | 
+  <span class="need3">${CT.needs[3] ? CT.needs[3] : 0}</span> | 
+  <span class="need2">${CT.needs[2] ? CT.needs[2] : 0}</span> | 
+  <span class="need1">${CT.needs[1] ? CT.needs[1] : 0}</span> |
+  <span class="need1">${CT.needs[1] ? CT.needs[1] : 0}</span> |
   <span class="need0">${CT.needs[0] ? CT.needs[0] : 0}</span>
 </div>`
         let citizens = `
 <div class="c_citizens">
-  `+ Translate.text(`gui.civilians`) +`: <span class="t_col">${civ}</span>/<span class="t_colMax" title="${civMax}">${civAva}</span>
+  `+ Translate.text(`gui.all`) +`: <span>${cit}</span>/<span title="${citMax}">${citAva}</span>
+  `+ Translate.text(`gui.civilians`) +`: <span class="t_col">${civ}</span>/<span class="t_colMax">${civMax}</span>
   `+ Translate.text(`gui.militia`) +`: <span class="t_mil">${wars}</span>/<span class="t_milMax">${warsMax}</span>
   `+ Translate.text(`gui.unemployed`) +`: <span class="t_unw">${unWork}</span>
   `+ Translate.text(`gui.visitors`) +`: <span class="t_vis">${vis}</span>

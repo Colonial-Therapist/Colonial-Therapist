@@ -8,6 +8,16 @@ The inspiration was the [Dwarf-Therapist](https://github.com/Dwarf-Therapist/Dwa
 
 ![GUI](GUI.png)
 
+## How to use
+
+1. Launch the program.
+2. Select the folder with the saved world. 
+If you don't know where your world lies, you can find it by configuring resource Packs (Options... -> Resource Packs... -> Open Pack Folder).
+3. Choose a colony. Now automatically selects the first one.
+
+Saves all user settings in the home directory (<home dir>/.Colonial-Therapist/).
+If something went wrong, try deleting the config.json file.
+
 ## ROAD MAP
 
 - [x] ~~send message in console~~
@@ -62,19 +72,19 @@ The inspiration was the [Dwarf-Therapist](https://github.com/Dwarf-Therapist/Dwa
 - [ ] save config in home dir
   - [x] create default config in home dir
   - [x] read config from home dir
-  - [ ] selecting a folder with a world with an empty config
+  - [x] selecting a folder with a world with an empty config
   - [ ] select colonies
-  - [ ] edit config
-  - [ ] history opening the worlds dir
+  - [x] edit config
+  - [x] history opening the worlds dir
 - [x] ~~reading while game is running~~
 - [x] ~~updating the table when changing the mod file~~
 - [ ] grave
-- [ ] configure app builder
+- [x] configure app builder
 - [x] ~~add icon app~~
 - [ ] debug mode
 - [x] ~~choose a license~~
 - [x] ~~create a repository on GitHub~~
-- [ ] multilingualism
+- [x] multilingualism
 
 ## License
 
