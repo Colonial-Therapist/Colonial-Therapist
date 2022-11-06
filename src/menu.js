@@ -1,7 +1,7 @@
 const {app, Menu, shell, dialog} = require('electron')
 const Config                     = require("./config.js")
-const path                       = require("path");
-const Translate                  = require("./translate.js");
+const path                       = require("path")
+const Translate                  = require("./translate.js")
 
 const isMac = process.platform === 'darwin'
 
@@ -23,8 +23,8 @@ for (const save of openRecent) {
     })
 }
 
-const testFolder  = 'src/lang/';
-const fs          = require('fs');
+const testFolder  = path.join(__dirname, 'lang/')
+const fs          = require('fs')
 const currentLang = Config.get('currentLang')
 let availableLang = []
 
