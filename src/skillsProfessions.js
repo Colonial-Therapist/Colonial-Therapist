@@ -32,7 +32,7 @@ const SkillsProfessions = {
     'miner'          : [2, 4], //
     'nether miner'   : [6, 2], //
     'planter'        : [3, 1], //
-    'pupil'          : [[10, 9], 5], //
+    'pupil'          : [9, 5], //[[10, 9], 5]
     'quarrier'       : [2, 4], //
     'rabbit herder'  : [3, 0], //
     'shepherd'       : [7, 2], //

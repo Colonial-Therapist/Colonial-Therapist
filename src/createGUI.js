@@ -18,7 +18,7 @@ class CrateGUI {
             'crusher', 'sifter', 'stonemason',
             '--stn',
             '--thr',
-            'teacher', //'pupil',
+            'teacher', 'pupil',
             '--thr',
             '--hlr',
             'healer',
@@ -85,6 +85,10 @@ class CrateGUI {
                         addJod('knight')
                         addJod('ranger')
                         addJod('druid')
+                        break
+                    case (job === 'school'):
+                        addJod('pupil')
+                        addJod('teacher')
                         break
                     default:
                         addJod(job)
