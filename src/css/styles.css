@@ -480,3 +480,7 @@ tr:hover td.need
     color: #5c3636;
     font-weight: bolder;
 }
+
+td.noJob:not(.vis) {
+    font-weight: bolder;
+}

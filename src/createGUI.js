@@ -138,17 +138,13 @@ class CrateGUI {
             let child = CT.colonists[key].isChild ? 'child' : ''
             let gender = col.gender ? '♂' : '♀'
             let emotionTotalColor = ''
+            let noJob = !col.job ? 'noJob' : ''
+
             table += `
           <td class="gender">${gender}</td>
-          <td class="name ${vis} ${child}">${col.name}</td>`
+          <td class="name ${vis} ${child} ${noJob}">${col.name}</td>`
 
             let trouble = ''
-            // switch (true) {
-            //     case col.needMaxPriority === 4: trouble = 'blocking'; break
-            //     case col.needMaxPriority === 3: trouble = 'recruiticon'; break
-            //     case col.needMaxPriority === 2: trouble = 'warning'; break
-            //     case col.needMaxPriority === 1: trouble = 'warning'; break
-            // }
 
             if (vis) {
                 let tip = `<span class="tip">${col.cost[0]} ${col.cost[1]}</span>`
