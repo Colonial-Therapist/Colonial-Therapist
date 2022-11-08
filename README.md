@@ -9,11 +9,11 @@ The inspiration was the [Dwarf-Therapist](https://github.com/Dwarf-Therapist/Dwa
 ![GUI](GUI.png)
 
 ## How to use
-
-1. Launch the program.
-2. Select the folder with the saved world. 
+1. Download [Colonial-Therapist](https://github.com/Colonial-Therapist/Colonial-Therapist/releases/latest)
+2. Launch the program.
+3. Select the folder with the saved world. 
 If you don't know where your world lies, you can find it by configuring resource Packs (Options... -> Resource Packs... -> Open Pack Folder).
-3. Choose a colony. Now automatically selects the first one.
+4. Choose a colony. Now automatically selects the first one.
 
 Saves all user settings in the home directory (<home dir>/.Colonial-Therapist/).
 If something went wrong, try deleting the config.json file.
@@ -65,26 +65,26 @@ If something went wrong, try deleting the config.json file.
   - [ ] specification of needs
   - [ ] filter by military
   - [x] ~~work capacity~~ 
-  - [ ] save sort order before refreshing
+  - [x] ~~save sort order before refreshing~~
   - [x] ~~bug: data is not updated the first time~~
 - [x] ~~counter of citizens and workers~~
 - [ ] refactoring create table
 - [ ] save config in home dir
-  - [x] create default config in home dir
-  - [x] read config from home dir
-  - [x] selecting a folder with a world with an empty config
+  - [x] ~~create default config in home dir~~
+  - [x] ~~read config from home dir~~
+  - [x] ~~selecting a folder with a world with an empty config~~
   - [ ] select colonies
-  - [x] edit config
-  - [x] history opening the worlds dir
+  - [x] ~~edit config~~
+  - [x] ~~history opening the worlds dir~~
 - [x] ~~reading while game is running~~
 - [x] ~~updating the table when changing the mod file~~
 - [ ] grave
-- [x] configure app builder
+- [x] ~~configure app builder~~
 - [x] ~~add icon app~~
 - [ ] debug mode
 - [x] ~~choose a license~~
 - [x] ~~create a repository on GitHub~~
-- [x] multilingualism
+- [x] ~~multilingualism~~
 
 ## License
 
