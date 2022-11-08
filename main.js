@@ -2,6 +2,7 @@
 const {app, BrowserWindow, ipcMain, Menu, dialog} = require('electron')
 const {mainMenu}                                  = require('./src/menu.js')
 const path                                        = require('path')
+const Config                                      = require("./src/config");
 
 try {
   require('electron-reloader')(module);
@@ -24,6 +25,7 @@ function createWindow () {
 
   ipcMain.handle('dialog', (event, method, params) => dialog[method](params))
   ipcMain.handle('setTitle', (event, params) => mainWindow.setTitle(params))
+  ipcMain.handle('config', (event, method, params) => Config[method](...params))
 
   // and load the index.html of the app.
   mainWindow.loadFile('index.html')

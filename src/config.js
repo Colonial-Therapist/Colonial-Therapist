@@ -12,6 +12,7 @@ class Config {
         "worldDir"   : "",
         "colonyKey"  : -1,
         "currentLang": "en_en",
+        "buildToggle": false,
         "openRecent" : []
     }
 

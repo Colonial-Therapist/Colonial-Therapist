@@ -484,3 +484,11 @@ tr:hover td.need
 td.noJob:not(.vis) {
     font-weight: bolder;
 }
+
+.notBuiltHide .notBuilt {
+    display: none;
+}
+
+.wsn {
+    white-space: nowrap;
+}

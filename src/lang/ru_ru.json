@@ -92,6 +92,7 @@
   "gui.militia": "Охрана",
   "gui.unemployed": "Безработные",
   "gui.visitors": "Гости",
+  "gui.not build": "Скрыть не построенные",
 
   "dialog.select world": "Выберите папку с сохранением",
   "dialog.save dir": "Выбрать эту",

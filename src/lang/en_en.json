@@ -92,6 +92,7 @@
   "gui.militia": "Militia",
   "gui.unemployed": "Unemployed",
   "gui.visitors": "Visitors",
+  "gui.not build": "Hide not built",
 
   "dialog.select world": "Select a world dir",
   "dialog.save dir": "This save dir",

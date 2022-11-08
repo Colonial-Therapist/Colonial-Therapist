@@ -110,7 +110,7 @@ function columnHover() {
                 document.querySelector(`th:nth-child(${numbTr})`).classList.add("hover")
             })
 
-            cell.addEventListener("mouseout", (event) => {
+            cell.addEventListener("mouseout", () => {
                 const elNumb = document.querySelector(`th:nth-child(${numbTr})`)
                 if (elNumb) {
                     elNumb.classList.remove("hover")
@@ -119,6 +119,15 @@ function columnHover() {
             })
         }
     )
+}
+
+function toggleBuild() {
+    const toggle = document.querySelector("#notBuild")
+    const CT_table = document.querySelector(".CT_table")
+    toggle.addEventListener('change', () => {
+        toggle.checked ? CT_table.classList.add("notBuiltHide") : CT_table.classList.remove("notBuiltHide")
+        ipcRenderer.invoke('config', 'set', ['buildToggle', toggle.checked])
+    })
 }
 
 window.addEventListener('DOMContentLoaded', () => {
@@ -157,6 +166,7 @@ window.addEventListener('DOMContentLoaded', () => {
                 sortColumn.click()
 
                 columnHover()
+                toggleBuild()
             }
         }
 

@@ -1,8 +1,9 @@
 "use strict"
 
 const SkillsProfessions = require('./skillsProfessions.js')
-const skillsLabels = require('./skillsLabels.js')
-const Translate = require('./translate.js')
+const skillsLabels      = require('./skillsLabels.js')
+const Translate         = require('./translate.js')
+const Config            = require("./config")
 
 class CrateGUI {
     static getGUI(CT) {
@@ -52,9 +53,10 @@ class CrateGUI {
         ]
         const regex_sep = /--(\w{3})/
         const rate = [8, 2]
+        const buildToggle = Config.get('buildToggle') ? 'notBuiltHide' : ''
 
         let table = `
-<table class="sortable CT_table">
+<table class="sortable CT_table ${buildToggle}">
     <thead>
       <tr>
         <th class="hap">`+ Translate.text(`gui.gender`) +`</th>
@@ -255,6 +257,12 @@ class CrateGUI {
     </tbody>
 </table>
 `
+        let checked = Config.get('buildToggle') ? 'checked' : ''
+        let toggle = `<label class="switch" for="notBuild" title="`+ Translate.text("gui.not build") +`">
+                          <input type="checkbox" id="notBuild" ${checked}/>
+                          <div class="slider round"></div>
+                      </label>`
+
         let civ = 0
         let civMax = 0
         let citLimit = 25
@@ -290,7 +298,7 @@ class CrateGUI {
         let citAva  = citMax <= citLimit ? citMax : citLimit
 
         let needs = `
-<div class="c_needs">
+<div class="c_needs wsn">
   `+ Translate.text(`gui.needs`) +`:
   <span class="need4">${CT.needs[4] ? CT.needs[4] : 0}</span> | 
   <span class="need3">${CT.needs[3] ? CT.needs[3] : 0}</span> | 
@@ -301,14 +309,14 @@ class CrateGUI {
 </div>`
         let citizens = `
 <div class="c_citizens">
-  `+ Translate.text(`gui.all`) +`: <span>${cit}</span>/<span title="${citMax}">${citAva}</span>
-  `+ Translate.text(`gui.civilians`) +`: <span class="t_col">${civ}</span>/<span class="t_colMax">${civMax}</span>
-  `+ Translate.text(`gui.militia`) +`: <span class="t_mil">${wars}</span>/<span class="t_milMax">${warsMax}</span>
-  `+ Translate.text(`gui.unemployed`) +`: <span class="t_unw">${unWork}</span>
-  `+ Translate.text(`gui.visitors`) +`: <span class="t_vis">${vis}</span>
+  <span class="wsn">`+ Translate.text(`gui.all`) +`: <span>${cit}</span>/<span title="${citMax}">${citAva}</span></span>
+  <span class="wsn">`+ Translate.text(`gui.civilians`) +`: <span class="t_col">${civ}</span>/<span class="t_colMax">${civMax}</span></span>
+  <span class="wsn">`+ Translate.text(`gui.militia`) +`: <span class="t_mil">${wars}</span>/<span class="t_milMax">${warsMax}</span></span>
+  <span class="wsn">`+ Translate.text(`gui.unemployed`) +`: <span class="t_unw">${unWork}</span></span>
+  <span class="wsn">`+ Translate.text(`gui.visitors`) +`: <span class="t_vis">${vis}</span></span>
 </div>`
 
-        let counters = `<div class="counters">${needs} ${citizens}</div>`
+        let counters = `${toggle}<div class="counters"> ${needs} ${citizens}</div>`
 
         return counters + table
     }
