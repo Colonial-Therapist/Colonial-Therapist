@@ -25,6 +25,7 @@
   "needs.raid": "Raid",
   "needs.messagenobees": "No bees",
   "needs.norestaurant": "No restaurant",
+  "needs.mourning": "Мourning",
 
   "happiness.damage": "Damage",
   "happiness.death": "Death",
