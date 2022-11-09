@@ -53,6 +53,7 @@ class Parser {
                     type = type === 'hospital' ? 'healer' : type
                     type = type === 'smeltery' ? 'smelter' : type
                     type = type === 'guardtower' ? 'knight' : type
+                    type = type === 'graveyard' ? 'undertaker' : type
 
                     if (type === 'barrackstower') {
                         type      = 'knight'
