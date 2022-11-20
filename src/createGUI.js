@@ -1,8 +1,9 @@
 "use strict"
 
 const SkillsProfessions = require('./skillsProfessions.js')
-const skillsLabels = require('./skillsLabels.js')
-const Translate = require('./translate.js')
+const skillsLabels      = require('./skillsLabels.js')
+const Translate         = require('./translate.js')
+const Config            = require("./config")
 
 class CrateGUI {
     static getGUI(CT) {
@@ -18,7 +19,7 @@ class CrateGUI {
             'crusher', 'sifter', 'stonemason',
             '--stn',
             '--thr',
-            'teacher', //'pupil',
+            'teacher', 'pupil', 'student',
             '--thr',
             '--hlr',
             'healer',
@@ -52,9 +53,13 @@ class CrateGUI {
         ]
         const regex_sep = /--(\w{3})/
         const rate = [8, 2]
-
+        const buildToggle = Config.toggle('notBuild') ? 'hideNotBuild' : ''
+        const t_civ = !Config.toggle('civ') ? 'hideCiv' : ''
+        const t_mil = !Config.toggle('mil') ? 'hideMil' : ''
+        const t_unw = !Config.toggle('unw') ? 'hideUnw' : ''
+        const t_vis = !Config.toggle('vis') ? 'hideVis' : ''
         let table = `
-<table class="sortable CT_table">
+<table class="sortable CT_table ${buildToggle} ${t_civ} ${t_mil} ${t_unw} ${t_vis}">
     <thead>
       <tr>
         <th class="hap">`+ Translate.text(`gui.gender`) +`</th>
@@ -78,6 +83,8 @@ class CrateGUI {
             job = job === 'university' ? 'researcher' : job
             job = job === 'cook' && level > 2 ? 'cook assistant' : job
             job = job === 'smeltery' ? 'smelter' : job
+            job = job === 'graveyard' ? 'undertaker' : job
+            job = job === 'library' ? 'student' : job
 
             if (level) {
                 switch (true) {
@@ -85,6 +92,10 @@ class CrateGUI {
                         addJod('knight')
                         addJod('ranger')
                         addJod('druid')
+                        break
+                    case (job === 'school'):
+                        addJod('pupil')
+                        addJod('teacher')
                         break
                     default:
                         addJod(job)
@@ -130,26 +141,31 @@ class CrateGUI {
     <tbody>`
         for (const [key] of Object.entries(CT.colonists)) {
             let col = CT.colonists[key]
-            let vis = CT.colonists[key].isVisitor ? 'vis' : ''
+            let vis = ''
             let child = CT.colonists[key].isChild ? 'child' : ''
             let gender = col.gender ? '♂' : '♀'
             let emotionTotalColor = ''
-            table += `
+            let noJob = ''
+            let mil = ''
+            let civ = ''
+
+            switch (true) {
+                case (!!CT.colonists[key].isVisitor): vis = 'vis'; break;
+                case (col.isWarrior): mil = 'mil'; break;
+                case (!col.job || col.job === 'student'): noJob = 'noJob'; civ = 'civ'; break;
+                default: civ = 'civ';
+            }
+
+            table += `<tr class="${civ} ${vis} ${child} ${noJob} ${mil}">
           <td class="gender">${gender}</td>
-          <td class="name ${vis} ${child}">${col.name}</td>`
+          <td class="name ${vis} ${child} ${noJob}">${col.name}</td>`
 
             let trouble = ''
-            // switch (true) {
-            //     case col.needMaxPriority === 4: trouble = 'blocking'; break
-            //     case col.needMaxPriority === 3: trouble = 'recruiticon'; break
-            //     case col.needMaxPriority === 2: trouble = 'warning'; break
-            //     case col.needMaxPriority === 1: trouble = 'warning'; break
-            // }
 
             if (vis) {
                 let tip = `<span class="tip">${col.cost[0]} ${col.cost[1]}</span>`
                 let cost_arr = col.cost[0].split(':')
-                let cost_img = `<img class="cost_icon" alt="${col.cost[0]}" src="./src/img/cost/${cost_arr[0]}/${cost_arr[1]}.png">`
+                let cost_img = `<img class="cost_icon" alt="${col.cost[0]}" src="./img/cost/${cost_arr[0]}/${cost_arr[1]}.png">`
                 table += `<td class="need" data-sort="${col.needMaxPriority}">${cost_img}<span class="cost_count">${col.cost[1]}</span>${tip}</td>`
             } else {
                 let need_tip = ''
@@ -160,9 +176,9 @@ class CrateGUI {
                         trouble = need.need
                     }
                     const tNeed = Translate.text(`needs.${need.need}`)
-                    need_tip += need.need ? `<span>${tNeed} <img alt="${troubles}" src="./src/img/needs/${need.need}.png"></span><br>` : ''
+                    need_tip += need.need ? `<span>${tNeed} <img alt="${troubles}" src="./img/needs/${need.need}.png"></span><br>` : ''
                 }
-                let icon = col.needMaxPriority >= 0 ? `<img class="need_icon" alt="${trouble}" src="./src/img/needs/${trouble}.png">` : ''
+                let icon = col.needMaxPriority >= 0 ? `<img class="need_icon" alt="${trouble}" src="./img/needs/${trouble}.png">` : ''
                 let tip = col.needMaxPriority >= 0 ? `<span class="tip">${need_tip}</span>` : ''
                 let countNeeds = Object.keys(col.needs).length > 1 ? Object.keys(col.needs).length : ''
                 table += `<td class="need" data-sort="${col.needMaxPriority}">${icon}<span class="cost_count">${countNeeds}</span>${tip}</td>`
@@ -185,7 +201,7 @@ class CrateGUI {
                     default: emotionColor = 'red_icon'; break
                 }
 
-                let icon = ' <img alt="" src="./src/img/' + emotionColor + '.png" class="skillIcon">'
+                let icon = ' <img alt="" src="./img/' + emotionColor + '.png" class="skillIcon">'
                 emotionList += `<span>` + Translate.text(`happiness.${emotion.emotion}`) + ': '
                     + emotion.value.toFixed(1) + icon +"</span><br>"
             }
@@ -209,7 +225,7 @@ class CrateGUI {
                     let secondReqSkill = SkillsProfessions[job][1]
 
                     let firstCurSkill = col.skills[firstReqSkill].level
-                    let secondCurSkill = col.skills[secondReqSkill].level
+                    let secondCurSkill = secondReqSkill ? col.skills[secondReqSkill].level : 0
 
                     // range 10 - 990
                     let ball = firstCurSkill * rate[0] + secondCurSkill * rate[1]
@@ -231,7 +247,7 @@ class CrateGUI {
                         let skillFirst = skill.skill === firstReqSkill ? 'first' : ''
                         let skillSecond = skill.skill === secondReqSkill ? 'second' : ''
                         let skillName = skillsLabels[skill.skill].toLowerCase()
-                        let icon = ' <img alt="" src="./src/img/skills/' + skillName + '.png" class="skillIcon">'
+                        let icon = ' <img alt="" src="./img/skills/' + skillName + '.png" class="skillIcon">'
                         skillList += `<span class="${skillFirst} ${skillSecond}">`
                             + Translate.text(`skills.${skill.skill}`) + ': ' + skill.level + icon +"</span><br>"
                     }
@@ -255,6 +271,12 @@ class CrateGUI {
     </tbody>
 </table>
 `
+        let checked = Config.toggle('notBuild') ? 'checked' : ''
+        let toggle = `<label class="switch" for="notBuild" title="`+ Translate.text("gui.not build") +`">
+                          <input type="checkbox" id="notBuild" ${checked}/>
+                          <div class="slider round"></div>
+                      </label>`
+
         let civ = 0
         let civMax = 0
         let citLimit = 25
@@ -266,7 +288,7 @@ class CrateGUI {
             switch (true) {
                 case (col.isWarrior): ++wars; break;
                 case (col.isVisitor === 1): ++vis; break;
-                case (!col.job): ++unWork; ++civ; break;
+                case (!col.job || col.job === 'student'): ++unWork; ++civ; break;
                 default: ++civ
             }
         }
@@ -290,7 +312,7 @@ class CrateGUI {
         let citAva  = citMax <= citLimit ? citMax : citLimit
 
         let needs = `
-<div class="c_needs">
+<div class="c_needs wsn">
   `+ Translate.text(`gui.needs`) +`:
   <span class="need4">${CT.needs[4] ? CT.needs[4] : 0}</span> | 
   <span class="need3">${CT.needs[3] ? CT.needs[3] : 0}</span> | 
@@ -299,16 +321,22 @@ class CrateGUI {
   <span class="need1">${CT.needs[1] ? CT.needs[1] : 0}</span> |
   <span class="need0">${CT.needs[0] ? CT.needs[0] : 0}</span>
 </div>`
+
+        let c_civ = Config.toggle('civ') ? 'checked' : ''
+        let c_mil = Config.toggle('mil') ? 'checked' : ''
+        let c_unw = Config.toggle('unw') ? 'checked' : ''
+        let c_vis = Config.toggle('vis') ? 'checked' : ''
+
         let citizens = `
 <div class="c_citizens">
-  `+ Translate.text(`gui.all`) +`: <span>${cit}</span>/<span title="${citMax}">${citAva}</span>
-  `+ Translate.text(`gui.civilians`) +`: <span class="t_col">${civ}</span>/<span class="t_colMax">${civMax}</span>
-  `+ Translate.text(`gui.militia`) +`: <span class="t_mil">${wars}</span>/<span class="t_milMax">${warsMax}</span>
-  `+ Translate.text(`gui.unemployed`) +`: <span class="t_unw">${unWork}</span>
-  `+ Translate.text(`gui.visitors`) +`: <span class="t_vis">${vis}</span>
+  <span class="wsn">`+ Translate.text(`gui.all`) +`: <span>${cit}</span>/<span title="${citMax}">${citAva}</span></span>
+  <label class="wsn"><input id="civ" type="checkbox" ${c_civ}>`+ Translate.text(`gui.civilians`) +`: <span class="t_col">${civ}</span>/<span class="t_colMax">${civMax}</span></label>
+  <label class="wsn"><input id="mil" type="checkbox" ${c_mil}>`+ Translate.text(`gui.militia`) +`: <span class="t_mil">${wars}</span>/<span class="t_milMax">${warsMax}</span></label>
+  <label class="wsn"><input id="unw" type="checkbox" ${c_unw}>`+ Translate.text(`gui.unemployed`) +`: <span class="t_unw">${unWork}</span></label>
+  <label class="wsn"><input id="vis" type="checkbox" ${c_vis}>`+ Translate.text(`gui.visitors`) +`: <span class="t_vis">${vis}</span></label>
 </div>`
 
-        let counters = `<div class="counters">${needs} ${citizens}</div>`
+        let counters = `${toggle}<div class="counters"> ${needs} ${citizens}</div>`
 
         return counters + table
     }

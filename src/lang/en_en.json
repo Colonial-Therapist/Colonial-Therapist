@@ -25,6 +25,7 @@
   "needs.raid": "Raid",
   "needs.messagenobees": "No bees",
   "needs.norestaurant": "No restaurant",
+  "needs.mourning": "Мourning",
 
   "happiness.damage": "Damage",
   "happiness.death": "Death",
@@ -51,6 +52,7 @@
   "jobs.stonemason": "stonemason",
   "jobs.teacher": "teacher",
   "jobs.pupil": "pupil",
+  "jobs.student": "student",
   "jobs.healer": "healer",
   "jobs.farmer": "farmer",
   "jobs.planter": "planter",
@@ -91,6 +93,7 @@
   "gui.militia": "Militia",
   "gui.unemployed": "Unemployed",
   "gui.visitors": "Visitors",
+  "gui.not build": "Hide not built",
 
   "dialog.select world": "Select a world dir",
   "dialog.save dir": "This save dir",

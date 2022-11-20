@@ -480,3 +480,23 @@ tr:hover td.need
     color: #5c3636;
     font-weight: bolder;
 }
+
+td.noJob:not(.vis) {
+    font-weight: bolder;
+}
+
+.hideNotBuild .notBuilt,
+.hideCiv tr.civ,
+.hideMil tr.mil,
+.hideUnw tr.noJob,
+.hideVis tr.vis {
+    display: none;
+}
+
+input[type="checkbox"] {
+    accent-color: #74992e;
+}
+
+.wsn {
+    white-space: nowrap;
+}

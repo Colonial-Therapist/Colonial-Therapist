@@ -25,6 +25,7 @@
   "needs.raid": "Нападение",
   "needs.messagenobees": "Нет пчёл",
   "needs.norestaurant": "Нет ресторана",
+  "needs.mourning": "Траур",
 
   "happiness.damage": "Травмы",
   "happiness.death": "Летальные исходы",
@@ -51,6 +52,7 @@
   "jobs.stonemason": "Каменщик",
   "jobs.teacher": "Учитель",
   "jobs.pupil": "Ученик",
+  "jobs.student": "Студент",
   "jobs.healer": "Врач",
   "jobs.farmer": "Фермер",
   "jobs.planter": "Плантатор",
@@ -66,7 +68,7 @@
   "jobs.cook": "Повар",
   "jobs.assistant cook": "Поварёнок",
   "jobs.fisherman": "Рыбак",
-  "jobs.smelter": "Плавильщик",
+  "jobs.smelter": "Металлург",
   "jobs.blacksmith": "Кузнец",
   "jobs.concrete mixer": "Изготовитель бетона",
   "jobs.stone smelter": "Плавильщик камня",
@@ -91,6 +93,7 @@
   "gui.militia": "Охрана",
   "gui.unemployed": "Безработные",
   "gui.visitors": "Гости",
+  "gui.not build": "Скрыть не построенные",
 
   "dialog.select world": "Выберите папку с сохранением",
   "dialog.save dir": "Выбрать эту",

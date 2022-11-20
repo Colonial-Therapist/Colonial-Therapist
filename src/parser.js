@@ -20,7 +20,7 @@ class Parser {
 
         await nbt_data.parse(data, function (error, data) {
             const nbt = new NBT(data)
-            console.log(nbt)
+            // console.log(nbt)
             const colonies = nbt.get('').get('data').get('minecolonies:colonymanager').get('colonies').value[colonyKey]
 
             // Builds
@@ -28,6 +28,14 @@ class Parser {
             // buildingManager
             // console.log(buildings.value)
             // console.log(buildings.get('0').value)
+
+            function addJod(type, level, vacancies) {
+                if (SkillsProfessions.hasOwnProperty(type) && level > 0) {
+                    CT.jobs[type] = CT.jobs[type] ? CT.jobs[type] : 0
+                    CT.jobs[type] = CT.jobs[type] + vacancies
+                }
+            }
+
             for (const [key, build] of Object.entries(buildings.value)) {
                 let type    = build.type.value.replace("minecolonies:", "")
                 let name    = build.customName.value ? build.customName.value : type
@@ -45,6 +53,7 @@ class Parser {
                     type = type === 'hospital' ? 'healer' : type
                     type = type === 'smeltery' ? 'smelter' : type
                     type = type === 'guardtower' ? 'knight' : type
+                    type = type === 'graveyard' ? 'undertaker' : type
 
                     if (type === 'barrackstower') {
                         type      = 'knight'
@@ -56,10 +65,17 @@ class Parser {
                         vacancies = 1 * level
                     }
 
-                    if (SkillsProfessions.hasOwnProperty(type) && level > 0) {
-                        CT.jobs[type] = CT.jobs[type] ? CT.jobs[type] : 0
-                        CT.jobs[type] = CT.jobs[type] + vacancies
+                    if (type === 'school') {
+                        type = 'teacher'
+                        addJod('pupil', level, 2 * level)
                     }
+
+                    if (type === 'library') {
+                        type      = 'student'
+                        vacancies = 2 * level
+                    }
+
+                    addJod(type, level, vacancies)
                 }
             }
             CT.jobs['quarrier'] = CT.jobs['miner']

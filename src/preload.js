@@ -1,10 +1,10 @@
 const fs                           = require('fs')
-const CreateGUI                    = require('./src/createGUI')
-const Parser                       = require("./src/parser")
-const Config                       = require('./src/config.js')
+const CreateGUI                    = require('./createGUI')
+const Parser                       = require("./parser")
+const Config                       = require('./config.js')
 const {contextBridge, ipcRenderer} = require("electron")
-const Translate                    = require("./src/translate.js")
-const AppName                      = require("./src/appName")
+const Translate                    = require("./translate.js")
+const AppName                      = require("./appName")
 const path                         = require("path")
 
 const datFile = Config.getDatFile()
@@ -64,16 +64,6 @@ const builds = [
     "alchemist"
 ]
 
-const needsList = [
-    'sync',
-    'homelessness',
-    'noguardnearhome',
-    'noguardnearwork',
-    'waitingforcure',
-    'recruitstory',
-    'sleeping',
-]
-
 // contextBridge.exposeInMainWorld('api', {
 //     openDialog: (method, config) => ipcRenderer.invoke('dialog', method, config)
 // })
@@ -110,7 +100,7 @@ function columnHover() {
                 document.querySelector(`th:nth-child(${numbTr})`).classList.add("hover")
             })
 
-            cell.addEventListener("mouseout", (event) => {
+            cell.addEventListener("mouseout", () => {
                 const elNumb = document.querySelector(`th:nth-child(${numbTr})`)
                 if (elNumb) {
                     elNumb.classList.remove("hover")
@@ -119,6 +109,20 @@ function columnHover() {
             })
         }
     )
+}
+
+function toggles(toggleName, invert) {
+    const toggle = document.querySelector('#' + toggleName)
+    const CT_table = document.querySelector(".CT_table")
+    const capName = toggleName.charAt(0).toUpperCase() + toggleName.slice(1)
+    toggle.addEventListener('change', () => {
+        if (invert) {
+            toggle.checked ? CT_table.classList.add("hide" + capName) : CT_table.classList.remove("hide" + capName)
+        } else {
+            toggle.checked ? CT_table.classList.remove("hide" + capName) : CT_table.classList.add("hide" + capName)
+        }
+        ipcRenderer.invoke('config', 'toggle', [toggleName, toggle.checked])
+    })
 }
 
 window.addEventListener('DOMContentLoaded', () => {
@@ -157,6 +161,11 @@ window.addEventListener('DOMContentLoaded', () => {
                 sortColumn.click()
 
                 columnHover()
+                toggles('notBuild', true)
+                toggles('civ')
+                toggles('vis')
+                toggles('unw')
+                toggles('mil')
             }
         }
 
