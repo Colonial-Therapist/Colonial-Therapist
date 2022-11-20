@@ -19,7 +19,7 @@ class CrateGUI {
             'crusher', 'sifter', 'stonemason',
             '--stn',
             '--thr',
-            'teacher', 'pupil',
+            'teacher', 'pupil', 'student',
             '--thr',
             '--hlr',
             'healer',
@@ -81,6 +81,7 @@ class CrateGUI {
             job = job === 'cook' && level > 2 ? 'cook assistant' : job
             job = job === 'smeltery' ? 'smelter' : job
             job = job === 'graveyard' ? 'undertaker' : job
+            job = job === 'library' ? 'student' : job
 
             if (level) {
                 switch (true) {
@@ -141,7 +142,7 @@ class CrateGUI {
             let child = CT.colonists[key].isChild ? 'child' : ''
             let gender = col.gender ? '♂' : '♀'
             let emotionTotalColor = ''
-            let noJob = !col.job ? 'noJob' : ''
+            let noJob = !col.job || col.job === 'student' ? 'noJob' : ''
 
             table += `
           <td class="gender">${gender}</td>
@@ -212,7 +213,7 @@ class CrateGUI {
                     let secondReqSkill = SkillsProfessions[job][1]
 
                     let firstCurSkill = col.skills[firstReqSkill].level
-                    let secondCurSkill = col.skills[secondReqSkill].level
+                    let secondCurSkill = secondReqSkill ? col.skills[secondReqSkill].level : 0
 
                     // range 10 - 990
                     let ball = firstCurSkill * rate[0] + secondCurSkill * rate[1]
@@ -275,7 +276,7 @@ class CrateGUI {
             switch (true) {
                 case (col.isWarrior): ++wars; break;
                 case (col.isVisitor === 1): ++vis; break;
-                case (!col.job): ++unWork; ++civ; break;
+                case (!col.job || col.job === 'student'): ++unWork; ++civ; break;
                 default: ++civ
             }
         }

@@ -27,7 +27,7 @@ const SkillsProfessions = {
     'glassblower'    : [8, 7], //
     'healer'         : [5, 9], //
     'knight'         : [6, 4], //
-    'library student': [10, null],
+    'student'        : [10, null],
     'mechanic'       : [9, 3], //
     'miner'          : [2, 4], //
     'nether miner'   : [6, 2], //

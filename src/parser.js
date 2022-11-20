@@ -70,6 +70,11 @@ class Parser {
                         addJod('pupil', level, 2 * level)
                     }
 
+                    if (type === 'library') {
+                        type      = 'student'
+                        vacancies = 2 * level
+                    }
+
                     addJod(type, level, vacancies)
                 }
             }
