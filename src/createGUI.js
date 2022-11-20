@@ -53,10 +53,13 @@ class CrateGUI {
         ]
         const regex_sep = /--(\w{3})/
         const rate = [8, 2]
-        const buildToggle = Config.get('buildToggle') ? 'notBuiltHide' : ''
-
+        const buildToggle = Config.toggle('notBuild') ? 'hideNotBuild' : ''
+        const t_civ = !Config.toggle('civ') ? 'hideCiv' : ''
+        const t_mil = !Config.toggle('mil') ? 'hideMil' : ''
+        const t_unw = !Config.toggle('unw') ? 'hideUnw' : ''
+        const t_vis = !Config.toggle('vis') ? 'hideVis' : ''
         let table = `
-<table class="sortable CT_table ${buildToggle}">
+<table class="sortable CT_table ${buildToggle} ${t_civ} ${t_mil} ${t_unw} ${t_vis}">
     <thead>
       <tr>
         <th class="hap">`+ Translate.text(`gui.gender`) +`</th>
@@ -138,13 +141,22 @@ class CrateGUI {
     <tbody>`
         for (const [key] of Object.entries(CT.colonists)) {
             let col = CT.colonists[key]
-            let vis = CT.colonists[key].isVisitor ? 'vis' : ''
+            let vis = ''
             let child = CT.colonists[key].isChild ? 'child' : ''
             let gender = col.gender ? '♂' : '♀'
             let emotionTotalColor = ''
-            let noJob = !col.job || col.job === 'student' ? 'noJob' : ''
+            let noJob = ''
+            let mil = ''
+            let civ = ''
 
-            table += `
+            switch (true) {
+                case (!!CT.colonists[key].isVisitor): vis = 'vis'; break;
+                case (col.isWarrior): mil = 'mil'; break;
+                case (!col.job || col.job === 'student'): noJob = 'noJob'; civ = 'civ'; break;
+                default: civ = 'civ';
+            }
+
+            table += `<tr class="${civ} ${vis} ${child} ${noJob} ${mil}">
           <td class="gender">${gender}</td>
           <td class="name ${vis} ${child} ${noJob}">${col.name}</td>`
 
@@ -259,7 +271,7 @@ class CrateGUI {
     </tbody>
 </table>
 `
-        let checked = Config.get('buildToggle') ? 'checked' : ''
+        let checked = Config.toggle('notBuild') ? 'checked' : ''
         let toggle = `<label class="switch" for="notBuild" title="`+ Translate.text("gui.not build") +`">
                           <input type="checkbox" id="notBuild" ${checked}/>
                           <div class="slider round"></div>
@@ -309,13 +321,19 @@ class CrateGUI {
   <span class="need1">${CT.needs[1] ? CT.needs[1] : 0}</span> |
   <span class="need0">${CT.needs[0] ? CT.needs[0] : 0}</span>
 </div>`
+
+        let c_civ = Config.toggle('civ') ? 'checked' : ''
+        let c_mil = Config.toggle('mil') ? 'checked' : ''
+        let c_unw = Config.toggle('unw') ? 'checked' : ''
+        let c_vis = Config.toggle('vis') ? 'checked' : ''
+
         let citizens = `
 <div class="c_citizens">
   <span class="wsn">`+ Translate.text(`gui.all`) +`: <span>${cit}</span>/<span title="${citMax}">${citAva}</span></span>
-  <span class="wsn">`+ Translate.text(`gui.civilians`) +`: <span class="t_col">${civ}</span>/<span class="t_colMax">${civMax}</span></span>
-  <span class="wsn">`+ Translate.text(`gui.militia`) +`: <span class="t_mil">${wars}</span>/<span class="t_milMax">${warsMax}</span></span>
-  <span class="wsn">`+ Translate.text(`gui.unemployed`) +`: <span class="t_unw">${unWork}</span></span>
-  <span class="wsn">`+ Translate.text(`gui.visitors`) +`: <span class="t_vis">${vis}</span></span>
+  <label class="wsn"><input id="civ" type="checkbox" ${c_civ}>`+ Translate.text(`gui.civilians`) +`: <span class="t_col">${civ}</span>/<span class="t_colMax">${civMax}</span></label>
+  <label class="wsn"><input id="mil" type="checkbox" ${c_mil}>`+ Translate.text(`gui.militia`) +`: <span class="t_mil">${wars}</span>/<span class="t_milMax">${warsMax}</span></label>
+  <label class="wsn"><input id="unw" type="checkbox" ${c_unw}>`+ Translate.text(`gui.unemployed`) +`: <span class="t_unw">${unWork}</span></label>
+  <label class="wsn"><input id="vis" type="checkbox" ${c_vis}>`+ Translate.text(`gui.visitors`) +`: <span class="t_vis">${vis}</span></label>
 </div>`
 
         let counters = `${toggle}<div class="counters"> ${needs} ${citizens}</div>`

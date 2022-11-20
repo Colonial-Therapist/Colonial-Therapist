@@ -121,12 +121,17 @@ function columnHover() {
     )
 }
 
-function toggleBuild() {
-    const toggle = document.querySelector("#notBuild")
+function toggles(toggleName, invert) {
+    const toggle = document.querySelector('#' + toggleName)
     const CT_table = document.querySelector(".CT_table")
+    const capName = toggleName.charAt(0).toUpperCase() + toggleName.slice(1)
     toggle.addEventListener('change', () => {
-        toggle.checked ? CT_table.classList.add("notBuiltHide") : CT_table.classList.remove("notBuiltHide")
-        ipcRenderer.invoke('config', 'set', ['buildToggle', toggle.checked])
+        if (invert) {
+            toggle.checked ? CT_table.classList.add("hide" + capName) : CT_table.classList.remove("hide" + capName)
+        } else {
+            toggle.checked ? CT_table.classList.remove("hide" + capName) : CT_table.classList.add("hide" + capName)
+        }
+        ipcRenderer.invoke('config', 'toggle', [toggleName, toggle.checked])
     })
 }
 
@@ -166,7 +171,11 @@ window.addEventListener('DOMContentLoaded', () => {
                 sortColumn.click()
 
                 columnHover()
-                toggleBuild()
+                toggles('notBuild', true)
+                toggles('civ')
+                toggles('vis')
+                toggles('unw')
+                toggles('mil')
             }
         }
 

@@ -485,8 +485,16 @@ td.noJob:not(.vis) {
     font-weight: bolder;
 }
 
-.notBuiltHide .notBuilt {
+.hideNotBuild .notBuilt,
+.hideCiv tr.civ,
+.hideMil tr.mil,
+.hideUnw tr.noJob,
+.hideVis tr.vis {
     display: none;
+}
+
+input[type="checkbox"] {
+    accent-color: #74992e;
 }
 
 .wsn {

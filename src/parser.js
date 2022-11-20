@@ -20,7 +20,7 @@ class Parser {
 
         await nbt_data.parse(data, function (error, data) {
             const nbt = new NBT(data)
-            console.log(nbt)
+            // console.log(nbt)
             const colonies = nbt.get('').get('data').get('minecolonies:colonymanager').get('colonies').value[colonyKey]
 
             // Builds

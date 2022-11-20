@@ -12,7 +12,13 @@ class Config {
         "worldDir"   : "",
         "colonyKey"  : -1,
         "currentLang": "en_en",
-        "buildToggle": false,
+        "toggles": {
+            "notBuild": false,
+            "civ": true,
+            "vis": true,
+            "unw": true,
+            "mil": true
+        },
         "openRecent" : []
     }
 
@@ -45,6 +51,16 @@ class Config {
         }
 
         fs.writeFileSync(this.config_path, JSON.stringify(newConfig, null, 4))
+    }
+
+    static toggle(key, value) {
+        if (value !== undefined) {
+            let newConfig  = this.getConfig()
+            newConfig.toggles[key] = value
+            fs.writeFileSync(this.config_path, JSON.stringify(newConfig, null, 4))
+        } else {
+            return this.getConfig()["toggles"][key]
+        }
     }
 }
 
