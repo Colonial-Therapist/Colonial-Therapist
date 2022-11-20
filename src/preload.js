@@ -1,10 +1,10 @@
 const fs                           = require('fs')
-const CreateGUI                    = require('./src/createGUI')
-const Parser                       = require("./src/parser")
-const Config                       = require('./src/config.js')
+const CreateGUI                    = require('./createGUI')
+const Parser                       = require("./parser")
+const Config                       = require('./config.js')
 const {contextBridge, ipcRenderer} = require("electron")
-const Translate                    = require("./src/translate.js")
-const AppName                      = require("./src/appName")
+const Translate                    = require("./translate.js")
+const AppName                      = require("./appName")
 const path                         = require("path")
 
 const datFile = Config.getDatFile()
@@ -62,16 +62,6 @@ const builds = [
     "mediumquarry",
     "largequarry",
     "alchemist"
-]
-
-const needsList = [
-    'sync',
-    'homelessness',
-    'noguardnearhome',
-    'noguardnearwork',
-    'waitingforcure',
-    'recruitstory',
-    'sleeping',
 ]
 
 // contextBridge.exposeInMainWorld('api', {

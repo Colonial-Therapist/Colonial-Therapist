@@ -165,7 +165,7 @@ class CrateGUI {
             if (vis) {
                 let tip = `<span class="tip">${col.cost[0]} ${col.cost[1]}</span>`
                 let cost_arr = col.cost[0].split(':')
-                let cost_img = `<img class="cost_icon" alt="${col.cost[0]}" src="./src/img/cost/${cost_arr[0]}/${cost_arr[1]}.png">`
+                let cost_img = `<img class="cost_icon" alt="${col.cost[0]}" src="./img/cost/${cost_arr[0]}/${cost_arr[1]}.png">`
                 table += `<td class="need" data-sort="${col.needMaxPriority}">${cost_img}<span class="cost_count">${col.cost[1]}</span>${tip}</td>`
             } else {
                 let need_tip = ''
@@ -176,9 +176,9 @@ class CrateGUI {
                         trouble = need.need
                     }
                     const tNeed = Translate.text(`needs.${need.need}`)
-                    need_tip += need.need ? `<span>${tNeed} <img alt="${troubles}" src="./src/img/needs/${need.need}.png"></span><br>` : ''
+                    need_tip += need.need ? `<span>${tNeed} <img alt="${troubles}" src="./img/needs/${need.need}.png"></span><br>` : ''
                 }
-                let icon = col.needMaxPriority >= 0 ? `<img class="need_icon" alt="${trouble}" src="./src/img/needs/${trouble}.png">` : ''
+                let icon = col.needMaxPriority >= 0 ? `<img class="need_icon" alt="${trouble}" src="./img/needs/${trouble}.png">` : ''
                 let tip = col.needMaxPriority >= 0 ? `<span class="tip">${need_tip}</span>` : ''
                 let countNeeds = Object.keys(col.needs).length > 1 ? Object.keys(col.needs).length : ''
                 table += `<td class="need" data-sort="${col.needMaxPriority}">${icon}<span class="cost_count">${countNeeds}</span>${tip}</td>`
@@ -201,7 +201,7 @@ class CrateGUI {
                     default: emotionColor = 'red_icon'; break
                 }
 
-                let icon = ' <img alt="" src="./src/img/' + emotionColor + '.png" class="skillIcon">'
+                let icon = ' <img alt="" src="./img/' + emotionColor + '.png" class="skillIcon">'
                 emotionList += `<span>` + Translate.text(`happiness.${emotion.emotion}`) + ': '
                     + emotion.value.toFixed(1) + icon +"</span><br>"
             }
@@ -247,7 +247,7 @@ class CrateGUI {
                         let skillFirst = skill.skill === firstReqSkill ? 'first' : ''
                         let skillSecond = skill.skill === secondReqSkill ? 'second' : ''
                         let skillName = skillsLabels[skill.skill].toLowerCase()
-                        let icon = ' <img alt="" src="./src/img/skills/' + skillName + '.png" class="skillIcon">'
+                        let icon = ' <img alt="" src="./img/skills/' + skillName + '.png" class="skillIcon">'
                         skillList += `<span class="${skillFirst} ${skillSecond}">`
                             + Translate.text(`skills.${skill.skill}`) + ': ' + skill.level + icon +"</span><br>"
                     }

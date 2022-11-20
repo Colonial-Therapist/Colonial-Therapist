@@ -2,7 +2,7 @@
   "name": "colonial-therapist",
   "version": "0.8.0",
   "description": "Colonist management tool",
-  "main": "main.js",
+  "main": "src/main.js",
   "scripts": {
     "start": "electron . --enable-logging",
     "dev": "set APP_DEV=true && electron . --enable-logging",
