@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.9.0](https://github.com/Colonial-Therapist/Colonial-Therapist/compare/v0.8.0...v0.9.0) (2022-11-20)
+
+
+### Features
+
+* added hiding groups ([5846198](https://github.com/Colonial-Therapist/Colonial-Therapist/commit/584619839ea1b6db86d90e6cf03eaf0964176b9e))
+* added mourning ([eec118a](https://github.com/Colonial-Therapist/Colonial-Therapist/commit/eec118a072924d351d9c2d0845944f83db85e149))
+* added need icon idle at job ([5466e65](https://github.com/Colonial-Therapist/Colonial-Therapist/commit/5466e6551f71dbb0f5272cd23a841970edfe585a))
+* added school ([696928f](https://github.com/Colonial-Therapist/Colonial-Therapist/commit/696928ff9ccb3660bdf8c927aa8982b236454770))
+* added student ([47d8cab](https://github.com/Colonial-Therapist/Colonial-Therapist/commit/47d8cabfe1eb70f936d0e0cea10617c0e6271cdb))
+* added the ability to hide unbuilt buildings ([6b60ff6](https://github.com/Colonial-Therapist/Colonial-Therapist/commit/6b60ff6f1800b5de8d107b83ec56b3042b0a7550))
+* added undertaker ([66a59b6](https://github.com/Colonial-Therapist/Colonial-Therapist/commit/66a59b68ee8fd917d4cb7cd42fdb0fe54816c1db))
+* the unemployed are in bold ([9ec38eb](https://github.com/Colonial-Therapist/Colonial-Therapist/commit/9ec38ebbe729253952d2086a1c0c221fed60ee76))
+
 ## [0.8.0](https://github.com/Colonial-Therapist/Colonial-Therapist/compare/v0.7.0...v0.8.0) (2022-11-06)
 
 
