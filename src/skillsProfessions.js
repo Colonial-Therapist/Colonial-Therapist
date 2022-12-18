@@ -9,7 +9,7 @@ const SkillsProfessions = {
     'blacksmith'    : [2, 7],
     'builder'       : [6, 0],
     'sawmill'       : [9, 1],
-    'chicken farmer': [6, 3],
+    'chickenherder' : [6, 3],
     'composter'     : [4, 0],
     'concrete mixer': [4, 1],
     'cook'          : [6, 9],

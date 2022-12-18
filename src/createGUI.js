@@ -25,7 +25,7 @@ class CrateGUI {
             'healer',
             '--hlr',
             '--frm',
-            'farmer', 'planter', 'cowboy', 'shepherd', 'swineherd', 'rabbit herder', 'chicken farmer', 'beekeeper', 'florist', 'composter',
+            'farmer', 'planter', 'cowboy', 'shepherd', 'swineherd', 'rabbit herder', 'chickenherder', 'beekeeper', 'florist', 'composter',
             '--frm',
             'baker', 'cook', 'cookassistant',
             '--frm',
