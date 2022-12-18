@@ -38,7 +38,6 @@ If something went wrong, try deleting the config.json file.
     - [ ] current task (job)
     - [ ] weapons (military)
     - [x] ~~skills~~
-    - [ ] level
     - [ ] home
     - [x] ~~job~~
     - [x] ~~gender~~
@@ -49,7 +48,7 @@ If something went wrong, try deleting the config.json file.
     - [x] ~~building levels~~
     - [x] ~~skills assessment system~~
     - [x] ~~custom name~~
-    - [ ] library student and pupil
+    - [x] ~~library student and pupil~~
   - [x] ~~get visitors~~
     - [x] ~~costs~~
     - [x] ~~skills~~
