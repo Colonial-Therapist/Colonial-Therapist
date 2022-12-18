@@ -13,7 +13,7 @@ class CrateGUI {
             'miner', 'quarrier', 'nether miner',
             '--mnr',
             '--crp',
-            'lumberjack', 'fletcher', 'carpenter',
+            'lumberjack', 'fletcher', 'sawmill',
             '--crp',
             '--stn',
             'crusher', 'sifter', 'stonemason',

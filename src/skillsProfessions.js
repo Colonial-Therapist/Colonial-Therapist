@@ -8,7 +8,7 @@ const SkillsProfessions = {
     'beekeeper'     : [1, 6],
     'blacksmith'    : [2, 7],
     'builder'       : [6, 0],
-    'carpenter'     : [9, 1],
+    'sawmill'       : [9, 1],
     'chicken farmer': [6, 3],
     'composter'     : [4, 0],
     'concrete mixer': [4, 1],
