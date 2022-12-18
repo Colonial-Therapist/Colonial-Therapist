@@ -193,7 +193,7 @@ class CrateGUI {
                 case col.happinessTotal > 4: emotionTotalColor = 'yellow_icon'; break
                 default: emotionTotalColor = 'red_icon'; break
             }
-            let range = `<input type="range" id="range" disabled value="${col.happinessTotal}" min="1" max="10">`
+            let range = `<input type="range" disabled value="${col.happinessTotal}" min="1" max="10">`
             let emotionList = `${range} ${col.happinessTotal.toFixed(1)}<br>`
             for (const [k, emotion] of Object.entries(col.happiness)) {
                 let emotionColor = ''
