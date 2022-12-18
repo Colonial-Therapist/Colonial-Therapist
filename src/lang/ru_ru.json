@@ -26,6 +26,7 @@
   "needs.messagenobees": "Нет пчёл",
   "needs.norestaurant": "Нет ресторана",
   "needs.mourning": "Траур",
+  "needs.nowarehouse": "Не назначен склад",
 
   "happiness.damage": "Травмы",
   "happiness.death": "Летальные исходы",
