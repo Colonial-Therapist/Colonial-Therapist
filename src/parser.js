@@ -75,6 +75,10 @@ class Parser {
                         vacancies = 2 * level
                     }
 
+                    if (type === 'cook') {
+                        level >= 3 && addJod('cookassistant', level, 1)
+                    }
+
                     addJod(type, level, vacancies)
                 }
             }

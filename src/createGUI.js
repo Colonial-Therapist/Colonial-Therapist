@@ -27,7 +27,7 @@ class CrateGUI {
             '--frm',
             'farmer', 'planter', 'cowboy', 'shepherd', 'swineherd', 'rabbit herder', 'chicken farmer', 'beekeeper', 'florist', 'composter',
             '--frm',
-            'baker', 'cook', 'assistant cook',
+            'baker', 'cook', 'cookassistant',
             '--frm',
             '--fhr',
             'fisherman',
@@ -81,7 +81,6 @@ class CrateGUI {
 
             job = job === 'hospital' ? 'healer' : job
             job = job === 'university' ? 'researcher' : job
-            job = job === 'cook' && level > 2 ? 'cook assistant' : job
             job = job === 'smeltery' ? 'smelter' : job
             job = job === 'graveyard' ? 'undertaker' : job
             job = job === 'library' ? 'student' : job
@@ -96,6 +95,10 @@ class CrateGUI {
                     case (job === 'school'):
                         addJod('pupil')
                         addJod('teacher')
+                        break
+                    case (job === 'cook'):
+                        addJod('cook')
+                        level > 2 && addJod('cookassistant')
                         break
                     default:
                         addJod(job)

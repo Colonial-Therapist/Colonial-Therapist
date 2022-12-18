@@ -3,7 +3,7 @@
 const SkillsProfessions = {
     'alchemist'     : [1, 5],
     'ranger'        : [3, 6],
-    'assistant cook': [8, 9],
+    'cookassistant' : [8, 9],
     'baker'         : [9, 1],
     'beekeeper'     : [1, 6],
     'blacksmith'    : [2, 7],
