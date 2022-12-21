@@ -55,6 +55,10 @@ class Parser {
                     type = type === 'guardtower' ? 'knight' : type
                     type = type === 'graveyard' ? 'undertaker' : type
 
+                    if (type === 'builder' && level === 0) {
+                        addJod(type, 1, 1)
+                    }
+
                     if (type === 'barrackstower') {
                         type      = 'knight'
                         vacancies = 1 * level
