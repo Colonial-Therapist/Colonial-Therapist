@@ -13,7 +13,7 @@ function createWindow() {
     const mainWindow = new BrowserWindow({
         width         : 800,
         height        : 600,
-        icon          : path.join(__dirname, 'src/img/icons/icon.png'),
+        icon          : path.join(__dirname, 'img/icons/icon.png'),
         webPreferences: {
             preload         : path.join(__dirname, 'preload.js'),
             nodeIntegration : true,
@@ -33,6 +33,7 @@ function createWindow() {
     if (process.env.APP_DEV !== undefined) {
         // Open the DevTools.
         mainWindow.webContents.openDevTools()
+        //mainWindow.maximize()
     }
 }
 

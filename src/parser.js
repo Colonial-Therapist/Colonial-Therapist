@@ -21,6 +21,7 @@ class Parser {
         await nbt_data.parse(data, function (error, data) {
             const nbt = new NBT(data)
             // console.log(nbt)
+            //const colonies = nbt.get(''). <- error
             const colonies = nbt.get('').get('data').get('minecolonies:colonymanager').get('colonies').value[colonyKey]
 
             // Builds
@@ -55,6 +56,10 @@ class Parser {
                     type = type === 'guardtower' ? 'knight' : type
                     type = type === 'graveyard' ? 'undertaker' : type
 
+                    if (type === 'builder' && level === 0) {
+                        addJod(type, 1, 1)
+                    }
+
                     if (type === 'barrackstower') {
                         type      = 'knight'
                         vacancies = 1 * level
@@ -73,6 +78,10 @@ class Parser {
                     if (type === 'library') {
                         type      = 'student'
                         vacancies = 2 * level
+                    }
+
+                    if (type === 'cook') {
+                        level >= 3 && addJod('cookassistant', level, 1)
                     }
 
                     addJod(type, level, vacancies)

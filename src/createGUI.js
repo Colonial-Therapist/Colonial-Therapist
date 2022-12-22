@@ -13,7 +13,7 @@ class CrateGUI {
             'miner', 'quarrier', 'nether miner',
             '--mnr',
             '--crp',
-            'lumberjack', 'fletcher', 'carpenter',
+            'lumberjack', 'fletcher', 'sawmill',
             '--crp',
             '--stn',
             'crusher', 'sifter', 'stonemason',
@@ -25,9 +25,9 @@ class CrateGUI {
             'healer',
             '--hlr',
             '--frm',
-            'farmer', 'planter', 'cowboy', 'shepherd', 'swineherd', 'rabbit herder', 'chicken farmer', 'beekeeper', 'florist', 'composter',
+            'farmer', 'planter', 'cowboy', 'shepherd', 'swineherd', 'rabbit herder', 'chickenherder', 'beekeeper', 'florist', 'composter',
             '--frm',
-            'baker', 'cook', 'assistant cook',
+            'baker', 'cook', 'cookassistant',
             '--frm',
             '--fhr',
             'fisherman',
@@ -81,7 +81,6 @@ class CrateGUI {
 
             job = job === 'hospital' ? 'healer' : job
             job = job === 'university' ? 'researcher' : job
-            job = job === 'cook' && level > 2 ? 'cook assistant' : job
             job = job === 'smeltery' ? 'smelter' : job
             job = job === 'graveyard' ? 'undertaker' : job
             job = job === 'library' ? 'student' : job
@@ -96,6 +95,10 @@ class CrateGUI {
                     case (job === 'school'):
                         addJod('pupil')
                         addJod('teacher')
+                        break
+                    case (job === 'cook'):
+                        addJod('cook')
+                        level > 2 && addJod('cookassistant')
                         break
                     default:
                         addJod(job)
@@ -190,7 +193,7 @@ class CrateGUI {
                 case col.happinessTotal > 4: emotionTotalColor = 'yellow_icon'; break
                 default: emotionTotalColor = 'red_icon'; break
             }
-            let range = `<input type="range" id="range" disabled value="${col.happinessTotal}" min="1" max="10">`
+            let range = `<input type="range" disabled value="${col.happinessTotal}" min="1" max="10">`
             let emotionList = `${range} ${col.happinessTotal.toFixed(1)}<br>`
             for (const [k, emotion] of Object.entries(col.happiness)) {
                 let emotionColor = ''
