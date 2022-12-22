@@ -33,6 +33,7 @@ function createWindow() {
     if (process.env.APP_DEV !== undefined) {
         // Open the DevTools.
         mainWindow.webContents.openDevTools()
+        //mainWindow.maximize()
     }
 }
 
