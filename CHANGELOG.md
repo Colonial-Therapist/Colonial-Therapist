@@ -1,5 +1,24 @@
 # Changelog
 
+## [0.10.0](https://github.com/Colonial-Therapist/Colonial-Therapist/compare/v0.9.0...v0.10.0) (2022-12-22)
+
+
+### Features
+
+* added carpenter ([c6a0a43](https://github.com/Colonial-Therapist/Colonial-Therapist/commit/c6a0a43748a602e1a3906141b08e38a42b5b287c))
+* added chicken herder ([5c15d25](https://github.com/Colonial-Therapist/Colonial-Therapist/commit/5c15d25a3360fc4537a864eff074d06ff8e3a7be))
+* added cook assistant ([d0a20e2](https://github.com/Colonial-Therapist/Colonial-Therapist/commit/d0a20e20ba48f1bc3c896d13d631425fd7b042e3))
+* added need icon home too far ([9f95de0](https://github.com/Colonial-Therapist/Colonial-Therapist/commit/9f95de0257c962aa863e43e5498710b8f5de9b9b))
+* added need icon no warehouse ([fcb0100](https://github.com/Colonial-Therapist/Colonial-Therapist/commit/fcb010074a1a668592b553dc4757bcd0f0e9a885))
+
+
+### Bug Fixes
+
+* app icon ([b110b7a](https://github.com/Colonial-Therapist/Colonial-Therapist/commit/b110b7a2427b4814f7f3f0329167533089d2e4da))
+* builder is displayed at level zero ([216f8ad](https://github.com/Colonial-Therapist/Colonial-Therapist/commit/216f8ad96dd6ff5426b4b608954b2273164e5795))
+* corrected the translation of the profession fletcher ([52393fe](https://github.com/Colonial-Therapist/Colonial-Therapist/commit/52393fe5bd5096cd0c962877f989167a75016a9c))
+* remove duplicate id ([4b42f00](https://github.com/Colonial-Therapist/Colonial-Therapist/commit/4b42f006984ea5e3fd06f2f5f7a675faee1c534c))
+
 ## [0.9.0](https://github.com/Colonial-Therapist/Colonial-Therapist/compare/v0.8.0...v0.9.0) (2022-11-20)
 
 
