@@ -39,7 +39,7 @@ const SkillsProfessions = {
     'sifter'        : [7, 2],
     'smelter'       : [0, 2],
     'stonemason'    : [8, 1],
-    'stone smelter' : [0, 1],
+    'stonesmeltery' : [0, 1],
     'swineherd'     : [2, 0],
     'teacher'       : [9, 5],
     'undertaker'    : [2, 5],
