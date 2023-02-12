@@ -55,6 +55,7 @@ class Parser {
                     type = type === 'smeltery' ? 'smelter' : type
                     type = type === 'guardtower' ? 'knight' : type
                     type = type === 'graveyard' ? 'undertaker' : type
+                    type = type === 'rabbithutch' ? 'rabbitherder' : type
 
                     if (type === 'builder' && level === 0) {
                         addJod(type, 1, 1)

@@ -34,7 +34,7 @@ const SkillsProfessions = {
     'planter'       : [3, 1],
     'pupil'         : [9, 5], //[[10, 9], 5]
     'quarrier'      : [2, 4],
-    'rabbit herder' : [3, 0],
+    'rabbitherder'  : [3, 0],
     'shepherd'      : [7, 2],
     'sifter'        : [7, 2],
     'smelter'       : [0, 2],

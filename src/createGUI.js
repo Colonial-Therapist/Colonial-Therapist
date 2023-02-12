@@ -25,7 +25,7 @@ class CrateGUI {
             'healer',
             '--hlr',
             '--frm',
-            'farmer', 'planter', 'cowboy', 'shepherd', 'swineherd', 'rabbit herder', 'chickenherder', 'beekeeper', 'florist', 'composter',
+            'farmer', 'planter', 'cowboy', 'shepherd', 'swineherd', 'rabbitherder', 'chickenherder', 'beekeeper', 'florist', 'composter',
             '--frm',
             'baker', 'cook', 'cookassistant',
             '--frm',
@@ -84,6 +84,7 @@ class CrateGUI {
             job = job === 'smeltery' ? 'smelter' : job
             job = job === 'graveyard' ? 'undertaker' : job
             job = job === 'library' ? 'student' : job
+            job = job === 'rabbithutch' ? 'rabbitherder' : job
 
             if (level) {
                 switch (true) {
