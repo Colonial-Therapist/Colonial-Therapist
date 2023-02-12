@@ -310,6 +310,10 @@ class CrateGUI {
             citLimit = 50
         }
 
+        if (CT.research.includes('minecolonies:civilian/hamlet')) {
+            citLimit = 100
+        }
+
         let warsMax = wars + (CT.jobs.knight > 0 ? CT.jobs.knight : 0)
         let cit = civ + wars
         let citMax = civMax + warsMax
