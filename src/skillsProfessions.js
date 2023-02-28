@@ -11,7 +11,7 @@ const SkillsProfessions = {
     'sawmill'       : [9, 1],
     'chickenherder' : [6, 3],
     'composter'     : [4, 0],
-    'concrete mixer': [4, 1],
+    'concretemixer' : [4, 1],
     'cook'          : [6, 9],
     'deliveryman'   : [3, 6],
     'cowboy'        : [0, 4],

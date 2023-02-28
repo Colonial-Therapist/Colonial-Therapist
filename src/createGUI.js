@@ -36,7 +36,7 @@ class CrateGUI {
             'smelter', 'blacksmith',
             '--smt',
             '--sts',
-            'concrete mixer', 'stonesmeltery', 'glassblower', 'dyer',
+            'concretemixer', 'stonesmeltery', 'glassblower', 'dyer',
             '--sts',
             '--bld',
             'builder', 'mechanic',
