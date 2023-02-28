@@ -85,6 +85,7 @@ class CrateGUI {
             job = job === 'graveyard' ? 'undertaker' : job
             job = job === 'library' ? 'student' : job
             job = job === 'rabbithutch' ? 'rabbitherder' : job
+            job = job === 'plantation' ? 'planter' : job
 
             if (level) {
                 switch (true) {
