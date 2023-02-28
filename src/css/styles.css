@@ -306,6 +306,11 @@ td.active.isVacancies:before {
      opacity: 0.3;
  }
 
+.notResearch span.countVac {
+    color: red;
+    font-weight: bolder;
+}
+
 td.active span.square {
     background-color: white;
 }
