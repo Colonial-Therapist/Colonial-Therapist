@@ -6,6 +6,7 @@ const {contextBridge, ipcRenderer} = require("electron")
 const Translate                    = require("./translate.js")
 const AppName                      = require("./appName")
 const path                         = require("path")
+const CreateMap                    = require("./createMap.js")
 
 const datFile = Config.getDatFile()
 
@@ -111,6 +112,51 @@ function columnHover() {
     )
 }
 
+function toggleResidents(idHome, display) {
+    const lines = document.querySelectorAll(`path[data-id-build='${idHome}']`)
+    lines.forEach(line => {
+        const idCol   = line.dataset.idCol
+        const targets = document.querySelectorAll(`[data-id-col='${idCol}']`)
+        targets.forEach(el => el.style.display = display)
+    })
+}
+
+function homeHover() {
+    const homes = document.querySelectorAll(".home[data-id-build], .tavern[data-id-build]")
+    homes.forEach(
+        home => {
+            home.addEventListener("mouseenter", event =>
+                toggleResidents(event.target.dataset.idBuild, 'block')
+            )
+
+            home.addEventListener("mouseout", event =>
+                toggleResidents(event.target.dataset.idBuild, 'none')
+            )
+        }
+    )
+}
+
+function guardHover() {
+    const towers = document.querySelectorAll(".barrackstower[data-id-build], .guardtower[data-id-build]")
+    towers.forEach(
+        tower => {
+            tower.addEventListener("mouseenter", event => {
+                    const el         = document.querySelector(`circle[data-id-build='${event.target.dataset.idBuild}']`)
+                    el.style.display = 'block'
+                }
+            )
+
+            tower.addEventListener("mouseout", event => {
+                    const el = document.querySelector(`circle[data-id-build='${event.target.dataset.idBuild}']`)
+                    if (el) {
+                        el.style.display = 'none'
+                    }
+                }
+            )
+        }
+    )
+}
+
 function toggles(toggleName, invert) {
     const toggle = document.querySelector('#' + toggleName)
     const CT_table = document.querySelector(".CT_table")
@@ -122,6 +168,15 @@ function toggles(toggleName, invert) {
             toggle.checked ? CT_table.classList.remove("hide" + capName) : CT_table.classList.add("hide" + capName)
         }
         ipcRenderer.invoke('config', 'toggle', [toggleName, toggle.checked])
+    })
+}
+
+function tabs(tab) {
+    const t = document.querySelector('#tab-' + tab)
+    const w = document.querySelector('#' + tab)
+    t.addEventListener('click', () => {
+        t.classList.toggle("active")
+        w.classList.toggle("hidden")
     })
 }
 
@@ -166,6 +221,13 @@ window.addEventListener('DOMContentLoaded', () => {
                 toggles('vis')
                 toggles('unw')
                 toggles('mil')
+                tabs('content')
+                tabs('map')
+
+                CreateMap.create(CT_obj)
+
+                homeHover()
+                guardHover()
             }
         }
 

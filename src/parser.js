@@ -24,6 +24,11 @@ class Parser {
             //const colonies = nbt.get(''). <- error
             const colonies = nbt.get('').get('data').get('minecolonies:colonymanager').get('colonies').value[colonyKey]
 
+            const name   = new NBT(colonies).get('name')
+            const owner  = new NBT(colonies).get('owner')
+            const center = getCoordinates(new NBT(colonies).get('center'))
+            CT.colony    = {name, owner, center}
+
             // Builds
             const buildings = new NBT(colonies).get('buildingManager').get('buildings')
             // buildingManager
@@ -37,16 +42,45 @@ class Parser {
                 }
             }
 
+            function saveMinMaxCoords(c) {
+                CT.map.minX = CT.map.minX < c.x ? CT.map.minX : c.x
+                CT.map.maxX = CT.map.maxX > c.x ? CT.map.maxX : c.x
+                CT.map.minY = CT.map.minY < c.y ? CT.map.minY : c.y
+                CT.map.maxY = CT.map.maxY > c.y ? CT.map.maxY : c.y
+                CT.map.minZ = CT.map.minZ < c.z ? CT.map.minZ : c.z
+                CT.map.maxZ = CT.map.maxZ > c.z ? CT.map.maxZ : c.z
+            }
+
+            function getCoordinates(location) {
+                const coords = {
+                    x: location.x.value,
+                    y: location.y.value,
+                    z: location.z.value,
+                }
+                saveMinMaxCoords(coords)
+                return coords
+            }
+
             for (const [key, build] of Object.entries(buildings.value)) {
-                let type    = build.type.value.replace("minecolonies:", "")
-                let name    = build.customName.value ? build.customName.value : type
-                const level = build.level.value
-                const homes = ['home', 'tavern']
+                let type       = build.type.value.replace("minecolonies:", "")
+                let name       = build.customName.value ? build.customName.value : type
+                const level    = build.level.value
+                const location = build.location.value
+                const corner1  = build.corner1.value
+                const corner2  = build.corner2.value
+                const homes    = ['home', 'tavern']
+
+                const coordinates = {
+                    location: getCoordinates(location),
+                    corner1 : getCoordinates(corner1),
+                    corner2 : getCoordinates(corner2),
+                }
 
                 if (homes.indexOf(type) > -1) {
-                    CT.homes[key] = {type, name, level, key}
+                    const residents = build?.residents?.value
+                    CT.homes[key]   = {type, name, level, key, coordinates, residents}
                 } else {
-                    CT.factories[key] = {type, name, level, key}
+                    CT.factories[key] = {type, name, level, key, coordinates}
 
                     let vacancies = 1
 
@@ -117,6 +151,7 @@ class Parser {
                     const happiness        = {}
                     let needMaxPriority    = -1
                     const needs            = {}
+                    const pos              = getCoordinates(citizen.get('pos'))
 
                     if (rcost) {
                         isVisitor = 1
@@ -195,7 +230,8 @@ class Parser {
                         isChild,
                         cost,
                         needMaxPriority,
-                        needs
+                        needs,
+                        pos
                     }
                 }
             }

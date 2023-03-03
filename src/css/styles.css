@@ -505,3 +505,36 @@ input[type="checkbox"] {
 .wsn {
     white-space: nowrap;
 }
+
+#map, #tabs, #content {
+    display: inline-block;
+    vertical-align:top;
+}
+
+#map.hidden, #content.hidden {
+    display: none;
+}
+
+#tabs {
+    margin-left: 3px;
+    margin-right: -4px;
+    margin-top: 34px;
+}
+
+.tab {
+    display: inline-block;
+    border: 2px solid #a2a2a2;
+    padding: 5px;
+    writing-mode: vertical-lr;
+    transform: rotate(180deg);
+    border-radius: 0 10px 10px 0;
+    cursor: pointer;
+    margin-bottom: -5px;
+    background: #ddd;
+    user-select: none;
+}
+
+.tab.active {
+    border-left: 0;
+    background: white;
+}
