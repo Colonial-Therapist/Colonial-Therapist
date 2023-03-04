@@ -347,7 +347,7 @@ td.s_cell, td.gender, td.need {
 td.s_cell:hover > span.tip,
 td.gender:hover > span.tip,
 td.need:hover > span.tip {
-    display: block;
+    /*display: block;*/
 }
 
 td.gender, td.need {
@@ -504,4 +504,17 @@ input[type="checkbox"] {
 
 .wsn {
     white-space: nowrap;
+}
+
+.tippy-box[data-theme~='light'] {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+.tippy-box[data-theme~='light'] > .tippy-arrow::before {
+    border-right-color: #ffffff;
+}
+
+.tippy-content {
+    text-align: right;
 }

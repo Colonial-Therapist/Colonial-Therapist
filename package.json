@@ -24,7 +24,8 @@
     "electron-reloader": "^1.2.3"
   },
   "dependencies": {
-    "prismarine-nbt": "^2.2.1"
+    "prismarine-nbt": "^2.2.1",
+    "tippy.js": "^6.3.7"
   },
   "build": {
     "appId": "ru.colonial-therapist.app",

@@ -7,6 +7,8 @@ const Translate                    = require("./translate.js")
 const AppName                      = require("./appName")
 const path                         = require("path")
 
+// const tippy                         = require("tippy.js")
+
 const datFile = Config.getDatFile()
 
 const builds = [
@@ -125,6 +127,19 @@ function toggles(toggleName, invert) {
     })
 }
 
+// function tips() {
+//     tippy('td.s_cell, td.need', {
+//         content(reference) {
+//             const tip = reference.querySelector('.tip')
+//             return tip ? tip.innerHTML : null
+//         },
+//         allowHTML: true,
+//         placement: 'right',
+//         animation: false,
+//         theme: 'light',
+//     })
+// }
+
 window.addEventListener('DOMContentLoaded', () => {
     const el = document.getElementById('content')
 
@@ -166,6 +181,7 @@ window.addEventListener('DOMContentLoaded', () => {
                 toggles('vis')
                 toggles('unw')
                 toggles('mil')
+                // tips()
             }
         }
 

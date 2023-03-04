@@ -19,3 +19,20 @@
 
 //func()
 
+function tips() {
+    tippy('td.s_cell, td.need', {
+        content(reference) {
+            const tip = reference.querySelector('.tip')
+            return tip ? tip.innerHTML : null
+        },
+        allowHTML: true,
+        // trigger: 'click',
+        placement: 'right',
+        animation: false,
+        theme: 'light',
+    })
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+    tips()
+})
