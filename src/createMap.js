@@ -100,6 +100,7 @@ class CreateMap {
 
         b.dataset.idBuild = id
         h.dataset.idBuild = id
+        h.classList.add('bh')
         b.classList.add(type)
 
         b.appendChild(r)

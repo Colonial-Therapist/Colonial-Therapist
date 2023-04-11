@@ -121,9 +121,9 @@ function toggleResidents(idHome, display) {
     })
 }
 
-function homeHover() {
-    const homes = document.querySelectorAll(".home[data-id-build], .tavern[data-id-build]")
-    homes.forEach(
+function buildHover() {
+    const build = document.querySelectorAll(".bh[data-id-build]")
+    build.forEach(
         home => {
             home.addEventListener("mouseenter", event =>
                 toggleResidents(event.target.dataset.idBuild, 'block')
@@ -226,7 +226,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
                 CreateMap.create(CT_obj)
 
-                homeHover()
+                buildHover()
                 guardHover()
             }
         }
