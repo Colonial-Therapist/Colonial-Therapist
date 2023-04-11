@@ -173,8 +173,9 @@ function toggles(toggleName, invert) {
 
 function tabs(tab) {
     const t = document.querySelector('#tab-' + tab)
-    const w = document.querySelector('#' + tab)
     t.addEventListener('click', () => {
+        tab = t.id.replace(/tab-/i, '')
+        const w = document.querySelector('#' + tab)
         t.classList.toggle("active")
         w.classList.toggle("hidden")
     })
