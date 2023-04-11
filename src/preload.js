@@ -136,7 +136,7 @@ function buildHover() {
     )
 }
 
-function guardHover() {
+function guardHoverArea() {
     const towers = document.querySelectorAll(".barrackstower[data-id-build], .guardtower[data-id-build]")
     towers.forEach(
         tower => {
@@ -227,7 +227,7 @@ window.addEventListener('DOMContentLoaded', () => {
                 CreateMap.create(CT_obj)
 
                 buildHover()
-                guardHover()
+                //guardHoverArea()
             }
         }
 
