@@ -91,18 +91,20 @@ class CreateMap {
     static createBuild(svg, name, x, y, fill, minX, minY, maxX, maxY, level, id, stroke, type) {
         const centerX = minX + ((maxX - minX) / 2)
         const centerY = minY + ((maxY - minY) / 2)
-        const r       = this.createRect(minX, minY, maxX, maxY, fill, stroke)
-        const c       = this.createCircle(x, y, fill, 0.8)
-        const t       = this.createText(name, centerX, centerY, 3)
-        const l       = this.createText(level, centerX, centerY, 0)
-        const b       = this.createSvgElement('g')
-        const h       = this.createRect(minX, minY, maxX, maxY, '#00000000', '#00000000')
 
-        b.dataset.idBuild = id
+        const f = this.createRect(minX, minY, maxX, maxY, '#fff', '#fff')
+        const r = this.createRect(minX, minY, maxX, maxY, fill, stroke)
+        const c = this.createCircle(x, y, fill, 0.8)
+        const t = this.createText(name, centerX, centerY, 3)
+        const l = this.createText(level, centerX, centerY, 0)
+        const b = this.createSvgElement('g')
+        const h = this.createRect(minX, minY, maxX, maxY, '#00000000', '#00000000')
+
         h.dataset.idBuild = id
         h.classList.add('bh')
         b.classList.add(type)
 
+        b.appendChild(f)
         b.appendChild(r)
         b.appendChild(c)
         b.appendChild(t)
