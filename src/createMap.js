@@ -163,7 +163,8 @@ class CreateMap {
                     case (level === 5) : r = 200; break;
                 }
 
-                const a           = this.createCircle(x, z, 'rgba(0,0,255,0.05)', r)
+                const a = this.createCircle(x, z, 'rgba(0, 0, 255, 0.05)', r)
+
                 a.dataset.idBuild = key
                 a.style.display   = 'none'
                 svg.appendChild(a)
@@ -226,12 +227,13 @@ class CreateMap {
                     const g    = Math.sqrt(Math.pow(x2 - x, 2) + Math.pow(z2 - z, 2))
 
                     switch (true) {
-                        case (g <= 30) :          stroke = 'green';  break;
+                        case (g <= 30)          : stroke = 'green';  break;
                         case (g > 30 && g < 60) : stroke = 'yellow'; break;
-                        case (g >= 60) :          stroke = 'red';    break;
+                        case (g >= 60)          : stroke = 'red';    break;
                     }
 
-                    const l           = this.createArc(x, z, x2, z2, stroke)
+                    const l = this.createArc(x, z, x2, z2, stroke)
+
                     l.dataset.idBuild = key
                     l.dataset.idCol   = id
                     l.style.display   = "none"
