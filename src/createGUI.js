@@ -2,55 +2,12 @@
 
 const SkillsProfessions = require('./skillsProfessions.js')
 const skillsLabels      = require('./skillsLabels.js')
+const headJobs          = require('./headJobs.js')
 const Translate         = require('./translate.js')
 const Config            = require("./config")
 
 class CrateGUI {
     static getGUI(CT) {
-        const headJobs = [
-            '--hap',
-            '--mnr',
-            'miner', 'quarrier', 'nether miner',
-            '--mnr',
-            '--crp',
-            'lumberjack', 'fletcher', 'sawmill',
-            '--crp',
-            '--stn',
-            'crusher', 'sifter', 'stonemason',
-            '--stn',
-            '--thr',
-            'teacher', 'pupil', 'student',
-            '--thr',
-            '--hlr',
-            'healer',
-            '--hlr',
-            '--frm',
-            'farmer', 'planter', 'cowboy', 'shepherd', 'swineherd', 'rabbitherder', 'chickenherder', 'beekeeper', 'florist', 'composter',
-            '--frm',
-            'baker', 'cook', 'cookassistant',
-            '--frm',
-            '--fhr',
-            'fisherman',
-            '--fhr',
-            '--smt',
-            'smelter', 'blacksmith',
-            '--smt',
-            '--sts',
-            'concretemixer', 'stonesmeltery', 'glassblower', 'dyer',
-            '--sts',
-            '--bld',
-            'builder', 'mechanic',
-            '--bld',
-            '--alh',
-            'alchemist', 'enchanter', 'researcher',
-            '--alh',
-            '--dlv',
-            'deliveryman', 'undertaker',
-            '--dlv',
-            '--var',
-            'knight', 'ranger', 'druid',
-            '--var',
-        ]
         const regex_sep = /--(\w{3})/
         const rate = [8, 2]
         const buildToggle = Config.toggle('notBuild') ? 'hideNotBuild' : ''

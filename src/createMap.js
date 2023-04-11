@@ -1,6 +1,41 @@
 "use strict"
 
+const headJobs = require('./headJobs.js')
+
 class CreateMap {
+    //TODO reactor
+    static factoryGroups(factory) {
+        const regex_sep = /(--\w{3})/
+        let prevSep     = ''
+        //TODO put in the general class of associations of buildings and professions
+        factory = factory === 'hospital' ? 'healer' : factory
+        factory = factory === 'university' ? 'researcher' : factory
+        factory = factory === 'smeltery' ? 'smelter' : factory
+        factory = factory === 'graveyard' ? 'undertaker' : factory
+        factory = factory === 'library' ? 'student' : factory
+        factory = factory === 'rabbithutch' ? 'rabbitherder' : factory
+        factory = factory === 'plantation' ? 'planter' : factory
+        factory = factory === 'guardtower' ? 'knight' : factory
+        factory = factory === 'barracks' ? 'knight' : factory
+        factory = factory === 'barrackstower' ? 'knight' : factory
+        factory = factory === 'school' ? 'pupil' : factory
+
+        for (const job of headJobs) {
+
+            let sep = regex_sep.exec(job)
+
+            if (sep) {
+                prevSep = sep[1]
+            }
+
+            if (job === factory) {
+                return prevSep
+            }
+        }
+
+        return '--hap'
+    }
+
     static createSvgElement(tagName) {
         return document.createElementNS('http://www.w3.org/2000/svg', tagName)
     }
