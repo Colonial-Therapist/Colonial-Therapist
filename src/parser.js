@@ -69,6 +69,7 @@ class Parser {
                 const corner1  = build.corner1.value
                 const corner2  = build.corner2.value
                 const homes    = ['home', 'tavern']
+                const towers   = ['barrackstower', 'guardtower']
 
                 const coordinates = {
                     location: getCoordinates(location),
@@ -80,7 +81,17 @@ class Parser {
                     const residents = build?.residents?.value
                     CT.homes[key]   = {type, name, level, key, coordinates, residents}
                 } else {
-                    CT.factories[key] = {type, name, level, key, coordinates}
+                    if (towers.indexOf(type) > -1) {
+                        let residents = ['minecolonies:druid', 'minecolonies:knight', 'minecolonies:ranger']
+                            .reduce((a, c) => {
+                                let b = build[c].value?.residents?.value
+                                return b ? a.concat(b) : a
+                            }, [])
+
+                        CT.factories[key] = {type, name, level, key, coordinates, residents}
+                    } else {
+                        CT.factories[key] = {type, name, level, key, coordinates}
+                    }
 
                     let vacancies = 1
 

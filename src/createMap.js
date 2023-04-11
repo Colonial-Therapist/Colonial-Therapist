@@ -116,8 +116,19 @@ class CreateMap {
         const map   = document.getElementById('map')
         const field = document.createElement('div')
         const svg   = this.createSvgElement('svg')
+        const builds   = this.createSvgElement('g')
+        const colonists   = this.createSvgElement('g')
+        const lines   = this.createSvgElement('g')
 
         svg.style.border = '1px solid #000000'
+
+        builds.classList.add('builds')
+        colonists.classList.add('colonists')
+        lines.classList.add('lines')
+
+        svg.appendChild(builds)
+        svg.appendChild(colonists)
+        svg.appendChild(lines)
 
         const h = CT.map.maxX - CT.map.minX
         const w = CT.map.maxZ - CT.map.minZ
@@ -154,9 +165,33 @@ class CreateMap {
                 a.dataset.idBuild = key
                 a.style.display   = 'none'
                 svg.appendChild(a)
+
+                const res      = CT.factories[key].residents.length
+                const maxRes   = type === 'guardtower' ? 1 : level
+                const freeBeds = maxRes - res
+                stroke         = freeBeds ? 'blue' : 'black'
             }
 
-            this.createBuild(svg, name, x, z, `rgba(0,0,255,0.${level})`, minX, minZ, maxX, maxZ, level, key, stroke, type)
+            const group = this.factoryGroups(type)
+
+            this.createBuild(builds, name, x, z, `rgba(var(${group}-rgb),0.${Math.round(level*1.8)})`, minX, minZ, maxX, maxZ, level, key, stroke, type)
+
+            if (CT.factories[key].residents) {
+                CT.factories[key].residents.forEach((id) => {
+                    const x2 = CT.colonists[id].pos.x
+                    const z2 = CT.colonists[id].pos.z
+
+                    const stroke = 'darkblue'
+                    const l = this.createArc(x, z, x2, z2, stroke)
+
+                    l.dataset.idBuild = key
+                    l.dataset.idCol   = id
+                    l.style.display   = "none"
+
+                    lines.appendChild(l)
+                })
+            }
+
         })
 
         Object.keys(CT.homes).forEach(key => {
@@ -178,7 +213,7 @@ class CreateMap {
                 stroke         = freeBeds ? 'green' : 'black'
             }
 
-            this.createBuild(svg, name, x, z, `rgba(0,128,0,0.${level})`, minX, minZ, maxX, maxZ, level, key, stroke, type)
+            this.createBuild(builds, name, x, z, `rgba(0,128,0,0.${Math.round(level*1.8)})`, minX, minZ, maxX, maxZ, level, key, stroke, type)
 
             if (CT.homes[key].residents) {
                 CT.homes[key].residents.forEach((id) => {
@@ -199,7 +234,7 @@ class CreateMap {
                     l.dataset.idCol   = id
                     l.style.display   = "none"
 
-                    svg.appendChild(l)
+                    lines.appendChild(l)
                 })
             }
         })
@@ -209,21 +244,31 @@ class CreateMap {
             const z    = CT.colonists[key].pos.z
             const name = CT.colonists[key].name
             const id   = CT.colonists[key].id
-            const fill = 'yellow'
-            const c    = this.createCircle(x, z, fill, 1.5)
-            const t    = this.createText(name, x, z, 5.5)
+            const job  = CT.colonists[key].job
+
+            let fill = 'yellow';
+            switch (true) {
+                case (job === 'builder')     : fill = 'green';     break;
+                case (job === 'deliveryman') : fill = 'red';       break;
+                case (job === 'knight')      : fill = 'blue';      break;
+                case (job === 'ranger')      : fill = 'lightblue'; break;
+                case (job === 'druid')       : fill = 'darkblue';  break;
+            }
+
+            const c = this.createCircle(x, z, fill, 1.5)
+            const t = this.createText(name, x, z, 5.5)
 
             c.dataset.idCol = id
             c.style.display = "none"
             t.dataset.idCol = id
             t.style.display = "none"
 
-            svg.appendChild(c)
-            svg.appendChild(t)
+            colonists.appendChild(c)
+            colonists.appendChild(t)
         })
 
-        map.appendChild(field)
         field.appendChild(svg)
+        map.innerHTML = field.outerHTML
     }
 }
 
