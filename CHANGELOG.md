@@ -1,5 +1,27 @@
 # Changelog
 
+## [0.11.0](https://github.com/Colonial-Therapist/Colonial-Therapist/compare/v0.10.0...v0.11.0) (2023-04-14)
+
+
+### Features
+
+* added colony map ([30b9e8f](https://github.com/Colonial-Therapist/Colonial-Therapist/commit/30b9e8f0c74a964028eb7cf1ddff66a1bd82681e))
+* added concrete mixer ([da0492c](https://github.com/Colonial-Therapist/Colonial-Therapist/commit/da0492c37f0ea5d2db19801963e9bced1870f7fe))
+* added display of assigned guards in towers ([87f5474](https://github.com/Colonial-Therapist/Colonial-Therapist/commit/87f5474a10b540e253ce7241e08372d40343ab67))
+* added highlighting of unexplored buildings ([63db6a1](https://github.com/Colonial-Therapist/Colonial-Therapist/commit/63db6a197217a4f0a9b108cd64008b63f5a4797e))
+* added needs icon no compost ([04643c3](https://github.com/Colonial-Therapist/Colonial-Therapist/commit/04643c3d358b70a91448c4afdd1387a3d80fd1e2))
+* added planter ([d5fdb6f](https://github.com/Colonial-Therapist/Colonial-Therapist/commit/d5fdb6f843ea71be9285a93693f052c681fe121f))
+* added rabbit herder ([2dfb19f](https://github.com/Colonial-Therapist/Colonial-Therapist/commit/2dfb19f22de9db190385f2c77f839a1be24b153c))
+* added research hamlet ([4649984](https://github.com/Colonial-Therapist/Colonial-Therapist/commit/46499849ec0ad0c18a3e3400bfd637543e60c1b4))
+* added stone smeltery ([3a945e0](https://github.com/Colonial-Therapist/Colonial-Therapist/commit/3a945e03c8f14ba2143d300f480fabbae0e85521))
+* now the buildings on the map have the color of their group as in the table ([951a7cd](https://github.com/Colonial-Therapist/Colonial-Therapist/commit/951a7cdc426af5c5e553760a73a52b91034db4dc))
+* translation support for tabs ([04f9d28](https://github.com/Colonial-Therapist/Colonial-Therapist/commit/04f9d2857c29c236dc1e06afb3bec7ceab28b195))
+
+
+### Bug Fixes
+
+* removed the overlay of translucent buildings on top of each other ([14909a5](https://github.com/Colonial-Therapist/Colonial-Therapist/commit/14909a5d84284b360dea5a202a5ad1d2adef12a0))
+
 ## [0.10.0](https://github.com/Colonial-Therapist/Colonial-Therapist/compare/v0.9.0...v0.10.0) (2022-12-22)
 
 
