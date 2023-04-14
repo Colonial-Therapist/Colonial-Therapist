@@ -171,14 +171,27 @@ function toggles(toggleName, invert) {
     })
 }
 
-function tabs(tab) {
-    const t = document.querySelector('#tab-' + tab)
-    t.addEventListener('click', () => {
-        tab = t.id.replace(/tab-/i, '')
-        const w = document.querySelector('#' + tab)
-        t.classList.toggle("active")
-        w.classList.toggle("hidden")
+function tabs() {
+    let tabNav     = document.querySelectorAll('.tab:not(.disabled)')
+    let tabContent = document.querySelectorAll('.tab_content')
+
+    tabNav.forEach(item => {
+        item.addEventListener('click', selectTabNav)
     })
+
+    function selectTabNav() {
+        tabNav.forEach(item => {
+            item.classList.remove('active')
+        })
+        this.classList.add('active')
+        selectTabContent(this.id.replace(/tab-/i, ''))
+    }
+
+    function selectTabContent(tabName) {
+        tabContent.forEach(item => {
+            item.id === tabName ? item.classList.remove('hidden') : item.classList.add('hidden')
+        })
+    }
 }
 
 window.addEventListener('DOMContentLoaded', () => {
@@ -222,8 +235,7 @@ window.addEventListener('DOMContentLoaded', () => {
                 toggles('vis')
                 toggles('unw')
                 toggles('mil')
-                tabs('content')
-                tabs('map')
+                tabs()
 
                 CreateMap.create(CT_obj)
 

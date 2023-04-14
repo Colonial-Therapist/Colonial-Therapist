@@ -516,9 +516,14 @@ input[type="checkbox"] {
 }
 
 #tabs {
+    position: absolute;
     margin-left: 3px;
     margin-right: -4px;
-    margin-top: 34px;
+    margin-top: 33px;
+}
+
+.tab_content {
+    margin-left: 32px;
 }
 
 .tab {
@@ -532,9 +537,16 @@ input[type="checkbox"] {
     margin-bottom: -5px;
     background: #ddd;
     user-select: none;
+    border-left: none;
+    box-shadow: inset 2px 0 3px 0 #a2a2a2;
 }
 
 .tab.active {
-    border-left: 0;
+    box-shadow: inset 2px 0 0 0 rgba(162, 162, 162, 0);
     background: white;
+}
+
+.tab.disabled {
+    background: #a2a2a2;
+    cursor: no-drop;
 }
