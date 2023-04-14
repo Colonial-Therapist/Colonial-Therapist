@@ -177,6 +177,7 @@ function tabs() {
 
     tabNav.forEach(item => {
         item.addEventListener('click', selectTabNav)
+        item.innerHTML = Translate.text('tab.'+ item.innerHTML)
     })
 
     function selectTabNav() {

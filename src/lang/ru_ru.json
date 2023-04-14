@@ -101,6 +101,9 @@
   "dialog.select world": "Выберите папку с сохранением",
   "dialog.save dir": "Выбрать эту",
 
+  "tab.jobs": "Профессии",
+  "tab.map": "Карта",
+
   "menu.file": "Файл",
   "menu.open save": "Открыть сохранение",
   "menu.open recent": "Открыть недавние",
