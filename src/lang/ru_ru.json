@@ -28,6 +28,7 @@
   "needs.mourning": "Траур",
   "needs.nowarehouse": "Не назначен склад",
   "needs.hometoofar": "Дом слишком далеко",
+  "needs.nocompost": "Нет компоста",
 
   "happiness.damage": "Травмы",
   "happiness.death": "Летальные исходы",
@@ -61,7 +62,7 @@
   "jobs.cowboy": "Пастух",
   "jobs.shepherd": "Овцевод",
   "jobs.swineherd": "Свинопас",
-  "jobs.rabbit herder": "Кроликовод",
+  "jobs.rabbitherder": "Кроликовод",
   "jobs.chickenherder": "Птицевод",
   "jobs.beekeeper": "Пчеловод",
   "jobs.florist": "Цветовод",
@@ -72,8 +73,8 @@
   "jobs.fisherman": "Рыбак",
   "jobs.smelter": "Металлург",
   "jobs.blacksmith": "Кузнец",
-  "jobs.concrete mixer": "Изготовитель бетона",
-  "jobs.stone smelter": "Плавильщик камня",
+  "jobs.concretemixer": "Изготовитель бетона",
+  "jobs.stonesmeltery": "Плавильщик камня",
   "jobs.glassblower": "Стеклодув",
   "jobs.dyer": "Красильщик",
   "jobs.builder": "Строитель",
@@ -99,6 +100,9 @@
 
   "dialog.select world": "Выберите папку с сохранением",
   "dialog.save dir": "Выбрать эту",
+
+  "tab.jobs": "Профессии",
+  "tab.map": "Карта",
 
   "menu.file": "Файл",
   "menu.open save": "Открыть сохранение",

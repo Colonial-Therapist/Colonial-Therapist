@@ -2,55 +2,12 @@
 
 const SkillsProfessions = require('./skillsProfessions.js')
 const skillsLabels      = require('./skillsLabels.js')
+const headJobs          = require('./headJobs.js')
 const Translate         = require('./translate.js')
 const Config            = require("./config")
 
 class CrateGUI {
     static getGUI(CT) {
-        const headJobs = [
-            '--hap',
-            '--mnr',
-            'miner', 'quarrier', 'nether miner',
-            '--mnr',
-            '--crp',
-            'lumberjack', 'fletcher', 'sawmill',
-            '--crp',
-            '--stn',
-            'crusher', 'sifter', 'stonemason',
-            '--stn',
-            '--thr',
-            'teacher', 'pupil', 'student',
-            '--thr',
-            '--hlr',
-            'healer',
-            '--hlr',
-            '--frm',
-            'farmer', 'planter', 'cowboy', 'shepherd', 'swineherd', 'rabbit herder', 'chickenherder', 'beekeeper', 'florist', 'composter',
-            '--frm',
-            'baker', 'cook', 'cookassistant',
-            '--frm',
-            '--fhr',
-            'fisherman',
-            '--fhr',
-            '--smt',
-            'smelter', 'blacksmith',
-            '--smt',
-            '--sts',
-            'concrete mixer', 'stone smelter', 'glassblower', 'dyer',
-            '--sts',
-            '--bld',
-            'builder', 'mechanic',
-            '--bld',
-            '--alh',
-            'alchemist', 'enchanter', 'researcher',
-            '--alh',
-            '--dlv',
-            'deliveryman', 'undertaker',
-            '--dlv',
-            '--var',
-            'knight', 'ranger', 'druid',
-            '--var',
-        ]
         const regex_sep = /--(\w{3})/
         const rate = [8, 2]
         const buildToggle = Config.toggle('notBuild') ? 'hideNotBuild' : ''
@@ -84,6 +41,8 @@ class CrateGUI {
             job = job === 'smeltery' ? 'smelter' : job
             job = job === 'graveyard' ? 'undertaker' : job
             job = job === 'library' ? 'student' : job
+            job = job === 'rabbithutch' ? 'rabbitherder' : job
+            job = job === 'plantation' ? 'planter' : job
 
             if (level) {
                 switch (true) {
@@ -130,7 +89,44 @@ class CrateGUI {
 
             if (thName && jobBuilds[thName] === undefined) {
                 notBuilt = 'notBuilt'
-                countVacancies = 'X'
+
+                if (thName !== 'builder') {
+                    countVacancies = 'X'
+                }
+
+                switch (true) {
+                    // profession and research
+                    case thName === 'healer' && !CT.research.includes('minecolonies:civilian/stamina'):
+                    case thName === 'student' && !CT.research.includes('minecolonies:civilian/keen'):
+                    case thName === 'teacher' && !CT.research.includes('minecolonies:civilian/higherlearning'):
+                    case thName === 'pupil' && !CT.research.includes('minecolonies:civilian/higherlearning'):
+                    case thName === 'Mystical Site' && !CT.research.includes('minecolonies:civilian/stamina'): //
+                    case thName === 'undertaker' && !CT.research.includes('minecolonies:civilian/remembrance'): //
+                    case thName === 'knight' && !CT.research.includes('minecolonies:combat/tactictraining'):
+                    case thName === 'ranger' && !CT.research.includes('minecolonies:combat/tactictraining'):
+                    case thName === 'druid' && !CT.research.includes('minecolonies:combat/tactictraining'):
+                    case thName === 'Combat Academy' && !CT.research.includes('minecolonies:civilian/stamina'): //
+                    case thName === 'Archery' && !CT.research.includes('minecolonies:civilian/stamina'): //
+                    case thName === 'composter' && !CT.research.includes('minecolonies:technology/biodegradable'):
+                    case thName === 'stonemason' && !CT.research.includes('minecolonies:technology/stonecake'):
+                    case thName === 'sawmill' && !CT.research.includes('minecolonies:technology/woodwork'):
+                    case thName === 'smelter' && !CT.research.includes('minecolonies:technology/hot'):
+                    case thName === 'blacksmith' && !CT.research.includes('minecolonies:technology/hittingiron'):
+                    case thName === 'florist' && !CT.research.includes('minecolonies:technology/flowerpower'):
+                    case thName === 'plantation' && !CT.research.includes('minecolonies:technology/letitgrow'):
+                    case thName === 'nethermine' && !CT.research.includes('minecolonies:civilian/stamina'): //
+                    case thName === 'crusher' && !CT.research.includes('minecolonies:technology/rockingroll'):
+                    case thName === 'fletcher' && !CT.research.includes('minecolonies:technology/stringwork'):
+                    case thName === 'sifter' && !CT.research.includes('minecolonies:technology/Sieving'):
+                    case thName === 'stonesmeltery' && !CT.research.includes('minecolonies:technology/theflintstones'):
+                    case thName === 'glassblower' && !CT.research.includes('minecolonies:technology/thoselungs'):
+                    case thName === 'mechanic' && !CT.research.includes('minecolonies:technology/whatyaneed'):
+                    case thName === 'dyer' && !CT.research.includes('minecolonies:technology/rainbowheaven'):
+                    case thName === 'Alchemist Tower' && !CT.research.includes('minecolonies:technology/rainbowheaven'): //
+                    case thName === 'concretemixer' && !CT.research.includes('minecolonies:technology/pavetheroad'):
+                        countVacancies = '?'
+                        notBuilt += ' notResearch'
+                }
             }
 
             thName = thName ? Translate.text(`jobs.${thName}`) : ''
@@ -307,6 +303,10 @@ class CrateGUI {
 
         if (CT.research.includes('minecolonies:civilian/outpost')) {
             citLimit = 50
+        }
+
+        if (CT.research.includes('minecolonies:civilian/hamlet')) {
+            citLimit = 100
         }
 
         let warsMax = wars + (CT.jobs.knight > 0 ? CT.jobs.knight : 0)

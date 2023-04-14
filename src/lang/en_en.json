@@ -28,6 +28,7 @@
   "needs.mourning": "Мourning",
   "needs.nowarehouse": "No warehouse",
   "needs.hometoofar": "Home too far",
+  "needs.nocompost": "No compost",
 
   "happiness.damage": "Damage",
   "happiness.death": "Death",
@@ -61,7 +62,7 @@
   "jobs.cowboy": "cowboy",
   "jobs.shepherd": "shepherd",
   "jobs.swineherd": "swineherd",
-  "jobs.rabbit herder": "rabbit herder",
+  "jobs.rabbitherder": "rabbit herder",
   "jobs.chickenherder": "chicken farmer",
   "jobs.beekeeper": "beekeeper",
   "jobs.florist": "florist",
@@ -72,8 +73,8 @@
   "jobs.fisherman": "fisherman",
   "jobs.smelter": "smelter",
   "jobs.blacksmith": "blacksmith",
-  "jobs.concrete mixer": "concrete mixer",
-  "jobs.stone smelter": "stone smelter",
+  "jobs.concretemixer": "concrete mixer",
+  "jobs.stonesmeltery": "stone smelter",
   "jobs.glassblower": "glassblower",
   "jobs.dyer": "dyer",
   "jobs.builder": "builder",
@@ -99,6 +100,9 @@
 
   "dialog.select world": "Select a world dir",
   "dialog.save dir": "This save dir",
+
+  "tab.jobs": "Jobs",
+  "tab.map": "Map",
 
   "menu.file": "File",
   "menu.open save": "Open save dir",

@@ -7,6 +7,7 @@ This program allows you to analyze the state of your colony. Who works where, th
 The inspiration was the [Dwarf-Therapist](https://github.com/Dwarf-Therapist/Dwarf-Therapist) project for the game [Dwarf Fortress](http://www.bay12games.com/dwarves/) ([steam](https://store.steampowered.com/app/975370/Dwarf_Fortress/)).
 
 ![GUI](GUI.png)
+![GUI_map](GUI_map.png)
 
 ## How to use
 1. Download [Colonial-Therapist](https://github.com/Colonial-Therapist/Colonial-Therapist/releases/latest)
@@ -38,7 +39,7 @@ If something went wrong, try deleting the config.json file.
     - [ ] current task (job)
     - [ ] weapons (military)
     - [x] ~~skills~~
-    - [ ] home
+    - [x] ~~home~~
     - [x] ~~job~~
     - [x] ~~gender~~
   - [x] ~~get skills~~
@@ -62,7 +63,7 @@ If something went wrong, try deleting the config.json file.
   - [x] ~~fill table~~
   - [x] ~~genders~~
   - [ ] specification of needs
-  - [ ] filter by military
+  - [x] ~~filter by military~~
   - [x] ~~work capacity~~ 
   - [x] ~~save sort order before refreshing~~
   - [x] ~~bug: data is not updated the first time~~
