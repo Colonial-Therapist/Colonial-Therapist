@@ -1,6 +1,6 @@
 {
   "name": "colonial-therapist",
-  "version": "0.11.0",
+  "version": "0.11.1",
   "description": "Colonist management tool",
   "main": "src/main.js",
   "scripts": {
