@@ -43,12 +43,14 @@ class Parser {
             }
 
             function saveMinMaxCoords(c) {
-                CT.map.minX = CT.map.minX < c.x ? CT.map.minX : c.x
-                CT.map.maxX = CT.map.maxX > c.x ? CT.map.maxX : c.x
-                CT.map.minY = CT.map.minY < c.y ? CT.map.minY : c.y
-                CT.map.maxY = CT.map.maxY > c.y ? CT.map.maxY : c.y
-                CT.map.minZ = CT.map.minZ < c.z ? CT.map.minZ : c.z
-                CT.map.maxZ = CT.map.maxZ > c.z ? CT.map.maxZ : c.z
+                if (c.x + c.y + c.z) {
+                    CT.map.minX = CT.map.minX < c.x ? CT.map.minX : c.x
+                    CT.map.maxX = CT.map.maxX > c.x ? CT.map.maxX : c.x
+                    CT.map.minY = CT.map.minY < c.y ? CT.map.minY : c.y
+                    CT.map.maxY = CT.map.maxY > c.y ? CT.map.maxY : c.y
+                    CT.map.minZ = CT.map.minZ < c.z ? CT.map.minZ : c.z
+                    CT.map.maxZ = CT.map.maxZ > c.z ? CT.map.maxZ : c.z
+                }
             }
 
             function getCoordinates(location) {
