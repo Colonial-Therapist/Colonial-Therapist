@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.11.1](https://github.com/Colonial-Therapist/Colonial-Therapist/compare/v0.11.0...v0.11.1) (2023-04-15)
+
+
+### Bug Fixes
+
+* [#16](https://github.com/Colonial-Therapist/Colonial-Therapist/issues/16) excluded zero coordinates from colony size calculation ([6552573](https://github.com/Colonial-Therapist/Colonial-Therapist/commit/65525734b4d59f40fd95ddd7c0f648e91a5250cc))
+
 ## [0.11.0](https://github.com/Colonial-Therapist/Colonial-Therapist/compare/v0.10.0...v0.11.0) (2023-04-14)
 
 
