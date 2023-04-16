@@ -509,6 +509,12 @@ input[type="checkbox"] {
 #map, #tabs, #content {
     display: inline-block;
     vertical-align:top;
+    height: calc(100vh - 35px);
+    width: calc(100vw - 55px);
+}
+
+#map svg {
+    max-height: calc(100vh - 35px)
 }
 
 #map.hidden, #content.hidden {

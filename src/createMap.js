@@ -169,11 +169,12 @@ class CreateMap {
 
         const h = CT.map.maxX - CT.map.minX
         const w = CT.map.maxZ - CT.map.minZ
+        const o = 5
 
         this.setAttributes(svg, {
-            width  : '270%',
-            height : '270%',
-            viewBox: `${CT.map.minX - 20} ${CT.map.minZ - 20} ${h + 40} ${w + 40}`
+            width  : '100%',
+            height : '100%',
+            viewBox: `${CT.map.minX - o} ${CT.map.minZ - o} ${h + o * 2} ${w + o * 2}`
         })
 
         Object.keys(CT.factories).forEach(key => {
