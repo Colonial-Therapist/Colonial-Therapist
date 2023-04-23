@@ -177,7 +177,6 @@ function tabs() {
 
     tabNav.forEach(item => {
         item.addEventListener('click', selectTabNav)
-        item.innerHTML = Translate.text('tab.'+ item.innerHTML)
     })
 
     function selectTabNav() {
@@ -197,6 +196,9 @@ function tabs() {
 
 window.addEventListener('DOMContentLoaded', () => {
     const el = document.getElementById('content')
+    let tab  = document.querySelectorAll('.tab')
+
+    tab.forEach(item => item.innerHTML = Translate.text('tab.' + item.dataset.name))
 
     async function awaitConfig() {
         if (!Config.get('worldDir')) {

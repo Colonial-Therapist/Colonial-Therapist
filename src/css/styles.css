@@ -505,16 +505,23 @@ input[type="checkbox"] {
 .wsn {
     white-space: nowrap;
 }
-
-#map, #tabs, #content {
+#tabs {
     display: inline-block;
     vertical-align:top;
+}
+
+#map, #content {
+    display: inline-block;
+    vertical-align: top;
+}
+
+#map {
     height: calc(100vh - 35px);
     width: calc(100vw - 55px);
 }
 
 #map svg {
-    max-height: calc(100vh - 35px)
+    max-height: calc(100vh - 35px);
 }
 
 #map.hidden, #content.hidden {
