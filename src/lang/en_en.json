@@ -46,7 +46,7 @@
 
   "jobs.miner": "miner",
   "jobs.quarrier": "quarrier",
-  "jobs.nether miner": "nether mine",
+  "jobs.netherminer": "nether mine",
   "jobs.lumberjack": "lumberjack",
   "jobs.fletcher": "fletcher",
   "jobs.sawmill": "carpenter",

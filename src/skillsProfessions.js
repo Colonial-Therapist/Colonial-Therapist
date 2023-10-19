@@ -30,7 +30,7 @@ const SkillsProfessions = {
     'student'       : [10, null],
     'mechanic'      : [9, 3],
     'miner'         : [2, 4],
-    'nether miner'  : [6, 2],
+    'netherminer'   : [6, 2],
     'planter'       : [3, 1],
     'pupil'         : [9, 5], //[[10, 9], 5]
     'quarrier'      : [2, 4],

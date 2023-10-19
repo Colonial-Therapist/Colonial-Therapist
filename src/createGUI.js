@@ -114,7 +114,7 @@ class CrateGUI {
                     case thName === 'blacksmith' && !CT.research.includes('minecolonies:technology/hittingiron'):
                     case thName === 'florist' && !CT.research.includes('minecolonies:technology/flowerpower'):
                     case thName === 'plantation' && !CT.research.includes('minecolonies:technology/letitgrow'):
-                    case thName === 'nethermine' && !CT.research.includes('minecolonies:civilian/stamina'): //
+                    case thName === 'netherminer' && !CT.research.includes('minecolonies:technology/opennether'):
                     case thName === 'crusher' && !CT.research.includes('minecolonies:technology/rockingroll'):
                     case thName === 'fletcher' && !CT.research.includes('minecolonies:technology/stringwork'):
                     case thName === 'sifter' && !CT.research.includes('minecolonies:technology/Sieving'):

@@ -3,7 +3,7 @@
 const headJobs = [
     '--hap',
     '--mnr',
-    'miner', 'quarrier', 'nether miner',
+    'miner', 'quarrier', 'netherminer',
     '--mnr',
     '--crp',
     'lumberjack', 'fletcher', 'sawmill',
