@@ -29,6 +29,7 @@
   "needs.nowarehouse": "No warehouse",
   "needs.hometoofar": "Home too far",
   "needs.nocompost": "No compost",
+  "needs.idleatjob": "Idle at job",
   "needs.namedworkerchestfull": "Named worker chest full",
 
   "happiness.damage": "Damage",

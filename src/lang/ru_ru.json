@@ -29,6 +29,7 @@
   "needs.nowarehouse": "Не назначен склад",
   "needs.hometoofar": "Дом слишком далеко",
   "needs.nocompost": "Нет компоста",
+  "needs.idleatjob": "Бездельничает",
   "needs.namedworkerchestfull": "Инвентарь работника переполнен",
 
   "happiness.damage": "Травмы",
