@@ -122,7 +122,7 @@ class CrateGUI {
                     case thName === 'glassblower' && !CT.research.includes('minecolonies:technology/thoselungs'):
                     case thName === 'mechanic' && !CT.research.includes('minecolonies:technology/whatyaneed'):
                     case thName === 'dyer' && !CT.research.includes('minecolonies:technology/rainbowheaven'):
-                    case thName === 'Alchemist Tower' && !CT.research.includes('minecolonies:technology/rainbowheaven'): //
+                    case thName === 'alchemist' && !CT.research.includes('minecolonies:technology/alchemist'):
                     case thName === 'concretemixer' && !CT.research.includes('minecolonies:technology/pavetheroad'):
                         countVacancies = '?'
                         notBuilt += ' notResearch'
