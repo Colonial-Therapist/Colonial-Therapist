@@ -153,6 +153,7 @@ class CreateMap {
         const map   = document.getElementById('map')
         const field = document.createElement('div')
         const svg   = this.createSvgElement('svg')
+        const wrapper   = this.createSvgElement('g')
         const builds   = this.createSvgElement('g')
         const colonists   = this.createSvgElement('g')
         const lines   = this.createSvgElement('g')
@@ -163,9 +164,10 @@ class CreateMap {
         colonists.classList.add('colonists')
         lines.classList.add('lines')
 
-        svg.appendChild(builds)
-        svg.appendChild(colonists)
-        svg.appendChild(lines)
+        svg.appendChild(wrapper)
+        wrapper.appendChild(builds)
+        wrapper.appendChild(colonists)
+        wrapper.appendChild(lines)
 
         const h = CT.map.maxX - CT.map.minX
         const w = CT.map.maxZ - CT.map.minZ
