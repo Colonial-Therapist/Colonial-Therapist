@@ -100,7 +100,7 @@ class CrateGUI {
                     case thName === 'student' && !CT.research.includes('minecolonies:civilian/keen'):
                     case thName === 'teacher' && !CT.research.includes('minecolonies:civilian/higherlearning'):
                     case thName === 'pupil' && !CT.research.includes('minecolonies:civilian/higherlearning'):
-                    case thName === 'Mystical Site' && !CT.research.includes('minecolonies:civilian/stamina'): //
+                    case thName === 'mysticalsite' && !CT.research.includes('minecolonies:civilian/ambition'):
                     case thName === 'undertaker' && !CT.research.includes('minecolonies:civilian/remembrance'): //
                     case thName === 'knight' && !CT.research.includes('minecolonies:combat/tactictraining'):
                     case thName === 'ranger' && !CT.research.includes('minecolonies:combat/tactictraining'):
