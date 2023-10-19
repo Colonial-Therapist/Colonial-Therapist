@@ -18,7 +18,7 @@ const headJobs = [
     'healer',
     '--hlr',
     '--frm',
-    'farmer', 'planter', 'cowboy', 'shepherd', 'swineherd', 'rabbitherder', 'chickenherder', 'beekeeper', 'florist', 'composter',
+    'farmer', 'planter', 'cowboy', 'shepherd', 'swineherder', 'rabbitherder', 'chickenherder', 'beekeeper', 'florist', 'composter',
     '--frm',
     'baker', 'cook', 'cookassistant',
     '--frm',
