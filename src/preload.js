@@ -244,6 +244,142 @@ window.addEventListener('DOMContentLoaded', () => {
 
                 buildHover()
                 //guardHoverArea()
+
+                //TODO-scroll: implement map zooming using the mouse wheel
+                const map = document.querySelector('#map')
+                const svg = document.querySelector('#map svg')
+                const w = document.querySelector('#map svg>g')
+
+                const toSVGPoint = (svg, x, y) => new DOMPoint(x, y).matrixTransform(svg.getScreenCTM().inverse())
+
+                const moveSVG = (svg) => {
+                    // svg = document.querySelector('#map > div > svg > g > g.builds > g.townhall')
+                    svg = document.querySelector('#map > div > svg > g')
+                    //
+                    // let cx = Number(svg.getAttribute('cx')) + 10
+                    // let cy = Number(svg.getAttribute('cy')) + 10
+                    //
+                    // console.log(svg)
+                    //
+                    // svg.setAttribute('cx', cx)
+                    // svg.setAttribute('cy', cy)
+
+
+
+                    // svg.animate([
+                    //     // keyframes
+                    //     { transform: 'translate(12px, 5px)' }
+                    // ], {
+                    //     // timing options
+                    //     duration: 1000,
+                    //     iterations: Infinity
+                    // })
+
+                    // svg.style.transform = 'translate(12px, 5px)'
+
+                }
+
+                let cx = CT_obj.colony.center.x
+                let cy = CT_obj.colony.center.z
+
+                const dotc  = CreateMap.createCircle(cx, cy, 'rgb(30,243,4)', 0.5)
+                const dotTc = CreateMap.createText(`${Math.ceil(cx)}   ${Math.ceil(cy)}`, cx, cy, 1.5)
+                w.appendChild(dotc)
+                w.appendChild(dotTc)
+
+                map.addEventListener("wheel", e => {
+                // onwheel = (e) => {
+                    if (e.wheelDelta) {
+                        // console.log(e)
+                        // console.log(e.wheelDelta)
+                        // const oldScale   = svg.currentScale
+                        // // const oldScale   = 1
+                        // // const scale = oldScale
+                        // // const scale      = e.wheelDelta > 0 ? svg.currentScale += 0.1 : svg.currentScale -= 0.1
+                        // let p = toSVGPoint(svg, e.clientX, e.clientY);
+                        // const scale = svg.currentScale += e.wheelDelta / 1200
+                        // const scaleDelta = oldScale - scale
+                        // console.log(oldScale)
+                        // console.log(scale)
+                        // console.log(scaleDelta)
+                        //
+                        // moveSVG(svg)
+                        //
+                        //
+                        // // let p = toSVGPoint(svg, e.clientX, e.clientY);
+                        // // console.log(e.target);
+                        // console.log(`e x: ${e.clientX} - y: ${e.clientY}`);
+                        // console.log(`s x: ${p.x} - y: ${p.y}`);
+                        //
+                        //
+                        // const dot  = CreateMap.createCircle(p.x, p.y, '#cccccc50', 0.5)
+                        // const dotT = CreateMap.createText(`${Math.ceil(p.x)}   ${Math.ceil(p.y)}`, p.x, p.y, 1.5)
+                        // w.appendChild(dot)
+                        // w.appendChild(dotT)
+                        //
+                        // let pn = toSVGPoint(svg, e.clientX, e.clientY);
+                        //
+                        // const dot2  = CreateMap.createCircle(pn.x, pn.y, 'rgba(255,0,0,0.31)', 0.5)
+                        // const dotT2 = CreateMap.createText(`${Math.ceil(pn.x)}   ${Math.ceil(pn.y)}`, pn.x, pn.y, 1.5)
+                        // w.appendChild(dot2)
+                        // w.appendChild(dotT2)
+                        //
+                        // let pdx = (p.x - pn.x) * (scaleDelta - 1)
+                        // let pdy = (p.y - pn.y) * (scaleDelta - 1)
+                        // console.log(`d x: ${pdx} - y: ${pdy}`);
+                        //
+                        //
+                        // w.style.transform = `translate(${pdx*-1}px, ${pdy*-1}px)`
+
+
+                        // const SdiffX = CT_obj.map.minX + e.clientX
+                        // const SdiffY = CT_obj.map.minZ + e.clientY
+                        //
+                        // console.log('SdiffX', SdiffX)
+                        // console.log('SdiffY', SdiffY)
+                        //
+                        // const dot = CreateMap.createCircle(SdiffX, SdiffY, '#cccccc50', 1)
+                        // const dotT = CreateMap.createText(`${SdiffX} ${SdiffY}`, SdiffX, SdiffY, 2)
+                        // w.appendChild(dot)
+                        // w.appendChild(dotT)
+                        //
+                        //
+                        // console.log('X', e.clientX)
+                        // console.log('Y', e.clientY)
+                        // console.log(svg.getScreenCTM().inverse())
+                        // console.log(`translate(${e.clientX}px, ${e.clientY}px)`)
+                        //
+                        // console.log('new X', e.clientX * scale)
+                        // console.log('new Y', e.clientY * scale)
+                        //
+                        // console.log('diff X', e.clientX * scale - e.clientX)
+                        // console.log('diff Y', e.clientY * scale - e.clientY)
+                        //
+                        // const diffX = e.clientX * scale - e.clientX
+                        // const diffY = e.clientY * scale - e.clientY
+                        //
+                        // console.log(scale / oldScale * (e.clientX - e.clientX * scale) + e.clientX * scale)
+
+
+                        // w.style.transform = `translate(${0}px, ${0}px)`
+                        //transform: translate(36px, 55px)
+
+
+                        // console.log(svg)
+                        // console.log(svg.getAttribute('transform'))
+
+                        //     const scale = Number(svg.getAttribute('transform').match(/\((.*)\)/)[1])
+                        //     const step = e.deltaY / 10000
+                        //     console.log(scale)
+                        //     if (scale >= 0.1) {
+                        //         console.log(scale)
+                        //         console.log(step)
+                        //         console.log(scale + step)
+                        //         svg.setAttribute("transform", `scale(${scale + step})`)
+                        //     }
+                    }
+                })
+                //TODO-scroll: end draft
             }
         }
 
