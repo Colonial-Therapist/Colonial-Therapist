@@ -6,7 +6,10 @@
   "scripts": {
     "start": "electron . --enable-logging",
     "dev": "set APP_DEV=true && electron . --enable-logging",
-    "dist": "electron-builder"
+    "dist": "electron-builder",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage"
   },
   "repository": "",
   "keywords": [
@@ -21,7 +24,8 @@
   "devDependencies": {
     "electron": "^20.0.1",
     "electron-builder": "^23.3.3",
-    "electron-reloader": "^1.2.3"
+    "electron-reloader": "^1.2.3",
+    "jest": "^29.7.0"
   },
   "dependencies": {
     "prismarine-nbt": "^2.2.1"
