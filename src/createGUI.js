@@ -45,7 +45,8 @@ class CrateGUI {
         // console.log(jobBuilds)
 
         let sepSlot = ''
-        for (const [k, job] of Object.entries(headJobs)) {
+        for (const key of Object.entries(headJobs)) {
+            const job = key[1]
             let sep = regex_sep.exec(job)
             let sepClass = ''
 
@@ -78,7 +79,7 @@ class CrateGUI {
                     case thName === 'teacher' && !CT.research.includes('minecolonies:civilian/higherlearning'):
                     case thName === 'pupil' && !CT.research.includes('minecolonies:civilian/higherlearning'):
                     case thName === 'mysticalsite' && !CT.research.includes('minecolonies:civilian/ambition'):
-                    case thName === 'undertaker' && !CT.research.includes('minecolonies:civilian/remembrance'): //
+                    case thName === 'undertaker' && !CT.research.includes('minecolonies:civilian/remembrance'):
                     case thName === 'knight' && !CT.research.includes('minecolonies:combat/tactictraining'):
                     case thName === 'ranger' && !CT.research.includes('minecolonies:combat/tactictraining'):
                     case thName === 'druid' && !CT.research.includes('minecolonies:combat/tactictraining'):
@@ -146,8 +147,8 @@ class CrateGUI {
             } else {
                 let need_tip = ''
                 let troubles = ''
-                for (const [k, need] of Object.entries(col.needs)) {
-
+                for (const key of Object.entries(col.needs)) {
+                    const need = key[1]
                     if (col.needMaxPriority === need.priority) {
                         trouble = need.need
                     }
@@ -168,7 +169,8 @@ class CrateGUI {
             }
             let range = `<input type="range" disabled value="${col.happinessTotal}" min="1" max="10">`
             let emotionList = `${range} ${col.happinessTotal.toFixed(1)}<br>`
-            for (const [k, emotion] of Object.entries(col.happiness)) {
+            for (const key of Object.entries(col.happiness)) {
+                const emotion = key[1]
                 let emotionColor = ''
                 switch (true) {
                     case emotion.value > 1.0: emotionColor = 'green_icon'; break
@@ -185,7 +187,8 @@ class CrateGUI {
             table += `<td class="${emotionTotalColor} s_cell" data-sort="${col.happinessTotal}"><span class="tip">${emotionList}</span></td>`
 
 
-            for (const [k, job] of Object.entries(headJobs)) {
+            for (const key of Object.entries(headJobs)) {
+                const job = key[1]
                 let work = job === col.job ? 'active' : ''
 
                 let sep = regex_sep.exec(job)
@@ -219,7 +222,8 @@ class CrateGUI {
                     }
 
                     let skillList = '';
-                    for (const [k, skill] of Object.entries(col.skills)) {
+                    for (const key of Object.entries(col.skills)) {
+                        const skill = key[1]
                         let skillFirst = skill.skill === firstReqSkill ? 'first' : ''
                         let skillSecond = skill.skill === secondReqSkill ? 'second' : ''
                         let skillName = skillsLabels[skill.skill].toLowerCase()
@@ -260,7 +264,8 @@ class CrateGUI {
         let unWork = 0
         let vis = 0
 
-        for (let [k, col] of Object.entries(CT.colonists)) {
+        for (let key of Object.entries(CT.colonists)) {
+            let col = key[1]
             switch (true) {
                 case (col.isWarrior): ++wars; break;
                 case (col.isVisitor === 1): ++vis; break;
@@ -269,7 +274,8 @@ class CrateGUI {
             }
         }
 
-        for (let [k, home] of Object.entries(CT.homes)) {
+        for (let key of Object.entries(CT.homes)) {
+            let home = key[1]
             if (home.type === 'tavern' && home.level > 0) {
                 civMax += 4
             }

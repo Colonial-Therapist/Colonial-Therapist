@@ -3,7 +3,6 @@
 const fs                = require("fs")
 const nbt_data          = require("prismarine-nbt")
 const NBT               = require("./NBT.js")
-const SkillsProfessions = require("./skillsProfessions.js")
 const Emotions          = require("./emotions.js")
 const Config            = require("./config.js")
 const CT_c              = require("./CT")
@@ -103,8 +102,8 @@ class Parser {
             function getCitizens(citizens, Emotions) {
                 // console.log(citizens)
                 // console.log(citizens.get('5').value)
-                for (let [key, citizen] of Object.entries(citizens.value)) {
-                    citizen                = new NBT(citizen)
+                for (let key of Object.entries(citizens.value)) {
+                    let citizen            = new NBT(key[1])
                     const rcost            = citizen.root.rcost ? citizen.get('rcost') : ''
                     const chatoptions      = citizen.get('chatoptions')
                     let isVisitor          = 0
@@ -218,8 +217,8 @@ class Parser {
 
             // Researches
             const researches = new NBT(colonies).get('research').get('researchTree')
-            for (let [key, research] of Object.entries(researches.value)) {
-                research = new NBT(research)
+            for (let key of Object.entries(researches.value)) {
+                let research = new NBT(key[1])
                 if (research.get('Data').get('state') === 2) {
                     CT.research.push(research.get('Data').get('id'))
                 }
