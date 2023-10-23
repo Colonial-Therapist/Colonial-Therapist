@@ -7,6 +7,7 @@ const SkillsProfessions = require("./skillsProfessions.js")
 const Emotions          = require("./emotions.js")
 const Config            = require("./config.js")
 const CT_c              = require("./CT")
+const Jaf               = require("./jaf")
 
 class Parser {
     /**
@@ -35,11 +36,9 @@ class Parser {
             // console.log(buildings.value)
             // console.log(buildings.get('0').value)
 
-            function addJod(type, level, vacancies) {
-                if (SkillsProfessions.hasOwnProperty(type) && level > 0) {
+            function addVacancies(type, level, vacancies) {
                     CT.jobs[type] = CT.jobs[type] ? CT.jobs[type] : 0
                     CT.jobs[type] = CT.jobs[type] + vacancies
-                }
             }
 
             function saveMinMaxCoords(c) {
@@ -95,51 +94,11 @@ class Parser {
                         CT.factories[key] = {type, name, level, key, coordinates}
                     }
 
-                    let vacancies = 1
-
-                    type = type === 'quarrier' ? 'miner' : type
-                    type = type === 'hospital' ? 'healer' : type
-                    type = type === 'smeltery' ? 'smelter' : type
-                    type = type === 'guardtower' ? 'knight' : type
-                    type = type === 'graveyard' ? 'undertaker' : type
-                    type = type === 'rabbithutch' ? 'rabbitherder' : type
-                    type = type === 'plantation' ? 'planter' : type
-
-                    if (type === 'builder' && level === 0) {
-                        addJod(type, 1, 1)
-                    }
-
-                    if (type === 'barrackstower') {
-                        type      = 'knight'
-                        vacancies = 1 * level
-                    }
-
-                    if (type === 'university') {
-                        type      = 'researcher'
-                        vacancies = 1 * level
-                    }
-
-                    if (type === 'school') {
-                        type = 'teacher'
-                        addJod('pupil', level, 2 * level)
-                    }
-
-                    if (type === 'library') {
-                        type      = 'student'
-                        vacancies = 2 * level
-                    }
-
-                    if (type === 'cook') {
-                        level >= 3 && addJod('cookassistant', level, 1)
-                    }
-
-                    addJod(type, level, vacancies)
+                    Jaf.getVacanciesByFactory(type, level).forEach(v => {
+                        v && addVacancies(...v)
+                    })
                 }
             }
-            CT.jobs['quarrier'] = CT.jobs['miner']
-
-            CT.jobs['ranger'] = CT.jobs['knight']
-            CT.jobs['druid']  = CT.jobs['knight']
 
             function getCitizens(citizens, Emotions) {
                 // console.log(citizens)

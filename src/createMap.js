@@ -1,34 +1,22 @@
 "use strict"
 
 const headJobs = require('./headJobs.js')
+const Jaf = require('./Jaf.js')
 
 class CreateMap {
     //TODO reactor
     static factoryGroups(factory) {
         const regex_sep = /(--\w{3})/
         let prevSep     = ''
-        //TODO put in the general class of associations of buildings and professions
-        factory = factory === 'hospital' ? 'healer' : factory
-        factory = factory === 'university' ? 'researcher' : factory
-        factory = factory === 'smeltery' ? 'smelter' : factory
-        factory = factory === 'graveyard' ? 'undertaker' : factory
-        factory = factory === 'library' ? 'student' : factory
-        factory = factory === 'rabbithutch' ? 'rabbitherder' : factory
-        factory = factory === 'plantation' ? 'planter' : factory
-        factory = factory === 'guardtower' ? 'knight' : factory
-        factory = factory === 'barracks' ? 'knight' : factory
-        factory = factory === 'barrackstower' ? 'knight' : factory
-        factory = factory === 'school' ? 'pupil' : factory
 
         for (const job of headJobs) {
-
             let sep = regex_sep.exec(job)
 
             if (sep) {
                 prevSep = sep[1]
             }
 
-            if (job === factory) {
+            if (job === Jaf.getFirstJobByFactory(factory)) {
                 return prevSep
             }
         }

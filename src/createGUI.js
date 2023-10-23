@@ -5,6 +5,7 @@ const skillsLabels      = require('./skillsLabels.js')
 const headJobs          = require('./headJobs.js')
 const Translate         = require('./translate.js')
 const Config            = require("./config")
+const Jaf               = require("./jaf");
 
 class CrateGUI {
     static getGUI(CT) {
@@ -33,36 +34,12 @@ class CrateGUI {
         }
 
         Object.keys(CT.factories).forEach((key) => {
-            let job   = CT.factories[key].type
-            let level = CT.factories[key].level
+            let factory = CT.factories[key].type
+            let level   = CT.factories[key].level
 
-            job = job === 'hospital' ? 'healer' : job
-            job = job === 'university' ? 'researcher' : job
-            job = job === 'smeltery' ? 'smelter' : job
-            job = job === 'graveyard' ? 'undertaker' : job
-            job = job === 'library' ? 'student' : job
-            job = job === 'rabbithutch' ? 'rabbitherder' : job
-            job = job === 'plantation' ? 'planter' : job
-
-            if (level) {
-                switch (true) {
-                    case (['barracks', 'guardtower'].indexOf(job) > -1):
-                        addJod('knight')
-                        addJod('ranger')
-                        addJod('druid')
-                        break
-                    case (job === 'school'):
-                        addJod('pupil')
-                        addJod('teacher')
-                        break
-                    case (job === 'cook'):
-                        addJod('cook')
-                        level > 2 && addJod('cookassistant')
-                        break
-                    default:
-                        addJod(job)
-                }
-            }
+            Jaf.getVacanciesByFactory(factory, level).forEach(v => {
+                v && addJod(...v)
+            })
         })
 
         // console.log(jobBuilds)
