@@ -13,6 +13,8 @@ describe('getFirstJobByFactory method', () => {
         expect(Jaf.getFirstJobByFactory('barracks')).toEqual('knight')
         expect(Jaf.getFirstJobByFactory('barrackstower')).toEqual('knight')
         expect(Jaf.getFirstJobByFactory('school')).toEqual('pupil')
+        expect(Jaf.getFirstJobByFactory('combatacademy')).toEqual('combattraining')
+        expect(Jaf.getFirstJobByFactory('archery')).toEqual('archertraining')
     })
 
     test('returns an empty string for invalid values', () => {
@@ -50,6 +52,8 @@ describe('getVacanciesByFactory method', () => {
             ['cook', 4, 1],
             ['cookassistant', 4, 1]
         ].sort())
+        expect(Jaf.getVacanciesByFactory('combatacademy', 2)).toEqual([['combattraining', 2, 2]])
+        expect(Jaf.getVacanciesByFactory('archery', 4)).toEqual([['archertraining', 4, 4]])
     })
 
     test('returns an false for invalid values', () => {

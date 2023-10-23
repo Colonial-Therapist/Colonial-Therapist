@@ -16,6 +16,8 @@ class Jaf {
             barracks     : 'knight',
             barrackstower: 'knight',
             school       : 'pupil',
+            combatacademy: 'combattraining',
+            archery      : 'archertraining'
         }
 
         return hashMap[factory] ? hashMap[factory] : factory
@@ -39,6 +41,16 @@ class Jaf {
                 vacancies = 1 * level
                 res.push(['ranger', level, vacancies])
                 res.push(['druid', level, vacancies])
+            }
+
+            if (factory === 'combatacademy') {
+                factory   = 'combattraining'
+                vacancies = 1 * level
+            }
+
+            if (factory === 'archery') {
+                factory   = 'archertraining'
+                vacancies = 1 * level
             }
 
             if (factory === 'university') {

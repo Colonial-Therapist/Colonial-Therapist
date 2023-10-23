@@ -3,6 +3,7 @@
 const SkillsProfessions = {
     'alchemist'     : [1, 5],
     'ranger'        : [3, 6],
+    'archertraining': [3, 6],
     'cookassistant' : [8, 9],
     'baker'         : [9, 1],
     'beekeeper'     : [1, 6],
@@ -27,6 +28,7 @@ const SkillsProfessions = {
     'glassblower'   : [8, 7],
     'healer'        : [5, 9],
     'knight'        : [6, 4],
+    'combattraining': [6, 4],
     'student'       : [10, null],
     'mechanic'      : [9, 3],
     'miner'         : [2, 4],

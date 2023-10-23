@@ -12,7 +12,7 @@ const headJobs = [
     'crusher', 'sifter', 'stonemason',
     '--stn',
     '--thr',
-    'teacher', 'pupil', 'student',
+    'teacher', 'pupil', 'student', 'combattraining', 'archertraining',
     '--thr',
     '--hlr',
     'healer',

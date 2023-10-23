@@ -89,6 +89,8 @@
   "jobs.knight": "knight",
   "jobs.ranger": "ranger",
   "jobs.druid": "druid",
+  "jobs.combattraining": "combat training",
+  "jobs.archertraining": "archer training",
 
   "gui.gender": "Gender",
   "gui.needs": "Needs",

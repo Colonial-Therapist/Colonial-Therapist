@@ -89,6 +89,8 @@
   "jobs.knight": "Рыцарь",
   "jobs.ranger": "Лучник",
   "jobs.druid": "Друид",
+  "jobs.combattraining": "Оруженосец рыцаря",
+  "jobs.archertraining": "Оруженосец лучника",
 
   "gui.gender": "Пол",
   "gui.needs": "Нужды",
