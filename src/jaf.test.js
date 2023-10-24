@@ -15,6 +15,7 @@ describe('getFirstJobByFactory method', () => {
         expect(Jaf.getFirstJobByFactory('school')).toEqual('pupil')
         expect(Jaf.getFirstJobByFactory('combatacademy')).toEqual('combattraining')
         expect(Jaf.getFirstJobByFactory('archery')).toEqual('archertraining')
+        expect(Jaf.getFirstJobByFactory('miner')).toEqual('miner')
     })
 
     test('returns an empty string for invalid values', () => {
