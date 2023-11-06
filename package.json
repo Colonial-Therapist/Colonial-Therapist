@@ -10,7 +10,8 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
-    "test:coverageAll": "jest --coverage --collectCoverageFrom='src/**/*.js'"
+    "test:coverageAll": "jest --coverage --collectCoverageFrom='src/**/*.js'",
+    "extract": "npx asar extract build/win-unpacked/resources/app.asar build/app"
   },
   "repository": "",
   "keywords": [
