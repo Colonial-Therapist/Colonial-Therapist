@@ -1,5 +1,30 @@
 # Changelog
 
+## [0.12.0](https://github.com/Colonial-Therapist/Colonial-Therapist/compare/v0.11.1...v0.12.0) (2023-11-06)
+
+
+### Features
+
+* added a hint about how many more vacancies there are in the warehouse ([599eb18](https://github.com/Colonial-Therapist/Colonial-Therapist/commit/599eb18050bd0a41cce5cab0171b03ca09e03057))
+* added hints for vacancy indicators ([899210c](https://github.com/Colonial-Therapist/Colonial-Therapist/commit/899210cc8e1e21cfa202cde56c5e94082aecb0cc))
+* added jobs archer training and combat training ([67168bf](https://github.com/Colonial-Therapist/Colonial-Therapist/commit/67168bf9e867a22445eea41cbb14cc4a65b66978))
+* added need Idle at job ([86f7270](https://github.com/Colonial-Therapist/Colonial-Therapist/commit/86f7270b40424ef951b0b13f7f81947b818a4daf))
+* added need Named worker chest full ([ae5935e](https://github.com/Colonial-Therapist/Colonial-Therapist/commit/ae5935e033c998d77128de3cfaa1648ffe851da3))
+* added nether miner ([a82c8b7](https://github.com/Colonial-Therapist/Colonial-Therapist/commit/a82c8b7519d96b6d797237f5477fdb59dc3c5cf9))
+* added research dependency for building the Alchemist Tower ([c655c7f](https://github.com/Colonial-Therapist/Colonial-Therapist/commit/c655c7f2b0dbf251102194ab33fc514047f27719))
+* added research dependency for building the Mystical Site ([d99270a](https://github.com/Colonial-Therapist/Colonial-Therapist/commit/d99270a3da15ad402ff12a02def02a09f3472aaf))
+* now the map takes up the entire screen ([05d85ca](https://github.com/Colonial-Therapist/Colonial-Therapist/commit/05d85cab79a4a7678a07e1fe355c0e55ccce78bc))
+* now the maximally leveled profession is depicted as a diamond instead of a square ([d535b08](https://github.com/Colonial-Therapist/Colonial-Therapist/commit/d535b088eb9ea74e8516f31c8e35dafb902cc4d0))
+* rebalanced calculation of profession points ([21fbec9](https://github.com/Colonial-Therapist/Colonial-Therapist/commit/21fbec957bd0a18873eb166c3e733a613b862a0c))
+
+
+### Bug Fixes
+
+* fixed calculation of profession points ([1696a44](https://github.com/Colonial-Therapist/Colonial-Therapist/commit/1696a4472c135392df6b1033f985425950987676))
+* fixed recursion in tab translation ([a2fa597](https://github.com/Colonial-Therapist/Colonial-Therapist/commit/a2fa59750f810bc03a66395313465061f0f3db5f))
+* fixed the order in which map elements are drawn ([b259410](https://github.com/Colonial-Therapist/Colonial-Therapist/commit/b25941038dc454af729dbbd63761b7baee78a775))
+* swineherd now displays correctly in professions ([5e51c54](https://github.com/Colonial-Therapist/Colonial-Therapist/commit/5e51c54268e340fb0bcd6a16858e6e68b7662bcd))
+
 ## [0.11.1](https://github.com/Colonial-Therapist/Colonial-Therapist/compare/v0.11.0...v0.11.1) (2023-04-15)
 
 
