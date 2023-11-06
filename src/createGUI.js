@@ -204,7 +204,7 @@ class CrateGUI {
                     let secondReqSkill = SkillsProfessions[job][1]
 
                     let firstCurSkill = col.skills[firstReqSkill].level
-                    let secondCurSkill = secondReqSkill ? col.skills[secondReqSkill].level : 0
+                    let secondCurSkill = secondReqSkill !== null ? col.skills[secondReqSkill].level : 0
 
                     // range 10 - 990
                     let ball = firstCurSkill * rate[0] + secondCurSkill * rate[1]
