@@ -1,7 +1,7 @@
 "use strict"
 
 const headJobs = require('./headJobs.js')
-const Jaf = require('./Jaf.js')
+const Jaf      = require('./jaf.js')
 
 class CreateMap {
     //TODO reactor

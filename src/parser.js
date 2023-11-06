@@ -6,7 +6,7 @@ const NBT               = require("./NBT.js")
 const Emotions          = require("./emotions.js")
 const Config            = require("./config.js")
 const CT_c              = require("./CT")
-const Jaf               = require("./jaf")
+const Jaf               = require("./jaf.js")
 
 class Parser {
     /**

@@ -5,7 +5,7 @@ const skillsLabels      = require('./skillsLabels.js')
 const headJobs          = require('./headJobs.js')
 const Translate         = require('./translate.js')
 const Config            = require("./config")
-const Jaf               = require("./jaf");
+const Jaf               = require("./jaf.js")
 
 class CrateGUI {
     static getGUI(CT) {
