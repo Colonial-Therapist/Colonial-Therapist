@@ -10,7 +10,7 @@ const Jaf               = require("./jaf");
 class CrateGUI {
     static getGUI(CT) {
         const regex_sep = /--(\w{3})/
-        const rate = [8, 2]
+        const rate = [7, 3]
         const buildToggle = Config.toggle('notBuild') ? 'hideNotBuild' : ''
         const t_civ = !Config.toggle('civ') ? 'hideCiv' : ''
         const t_mil = !Config.toggle('mil') ? 'hideMil' : ''
