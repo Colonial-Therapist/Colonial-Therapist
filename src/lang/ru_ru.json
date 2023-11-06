@@ -100,9 +100,12 @@
   "gui.militia": "Охрана",
   "gui.unemployed": "Безработные",
   "gui.visitors": "Гости",
-  "gui.not build": "Скрыть не построенные",
 
+  "tips.hidenotbuilt": "Скрыть не построенные",
   "tips.warehousevacancies": "Ещё столько курьеров можно назначить на склад",
+  "tips.notbuilt": "Здание для этой профессии ещё не построено",
+  "tips.countvacancies": "Доступно вакансий",
+  "tips.notresearch": "Изучите в университете технологию для постройки здания этой профессии",
 
   "dialog.select world": "Выберите папку с сохранением",
   "dialog.save dir": "Выбрать эту",

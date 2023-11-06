@@ -65,6 +65,7 @@ class CrateGUI {
             let isVacancies = ''
             let notBuilt = ''
             let countVacancies = ''
+            let titleVoc = Translate.text('tips.countvacancies')
             if (CT.jobs[thName]) {
                 isVacancies = 'isVacancies'
                 countVacancies = CT.jobs[thName]
@@ -75,6 +76,7 @@ class CrateGUI {
 
                 if (thName !== 'builder') {
                     countVacancies = 'X'
+                    titleVoc = Translate.text('tips.notbuilt')
                 }
 
                 switch (true) {
@@ -109,6 +111,7 @@ class CrateGUI {
                     case thName === 'concretemixer' && !CT.research.includes('minecolonies:technology/pavetheroad'):
                         countVacancies = '?'
                         notBuilt += ' notResearch'
+                        titleVoc = Translate.text('tips.notresearch')
                 }
             }
 
@@ -116,7 +119,7 @@ class CrateGUI {
             let WH = countVacanciesWH && thName === 'deliveryman' ? `<span class="countVacWH" title="${titleWH}"> → ${countVacanciesWH}</span>` : ''
             thName = thName ? Translate.text(`jobs.${thName}`) : ''
 
-            table += `<th class="${sepClass} ${sepSlot} ${isVacancies} ${notBuilt}">${thName}<span class="countVac">${countVacancies}${WH}</span></th>`
+            table += `<th class="${sepClass} ${sepSlot} ${isVacancies} ${notBuilt}">${thName}<span class="countVac" title="${titleVoc}">${countVacancies}${WH}</span></th>`
         }
 
         table += `
@@ -261,7 +264,7 @@ class CrateGUI {
 </table>
 `
         let checked = Config.toggle('notBuild') ? 'checked' : ''
-        let toggle = `<label class="switch" for="notBuild" title="`+ Translate.text("gui.not build") +`">
+        let toggle = `<label class="switch" for="notBuild" title="`+ Translate.text("tips.hidenotbuilt") +`">
                           <input type="checkbox" id="notBuild" ${checked}/>
                           <div class="slider round"></div>
                       </label>`

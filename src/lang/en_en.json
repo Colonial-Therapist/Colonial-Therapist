@@ -100,9 +100,12 @@
   "gui.militia": "Militia",
   "gui.unemployed": "Unemployed",
   "gui.visitors": "Visitors",
-  "gui.not build": "Hide not built",
 
+  "tips.hidenotbuilt": "Hide not built",
   "tips.warehousevacancies": "So many more couriers can be assigned to the warehouse",
+  "tips.notbuilt": "The building for this profession has not yet been built",
+  "tips.countvacancies": "Available vacancies",
+  "tips.notresearch": "Research the technology for constructing a building for this profession at the university",
 
   "dialog.select world": "Select a world dir",
   "dialog.save dir": "This save dir",
