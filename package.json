@@ -42,7 +42,8 @@
       "target": [
         "portable"
       ],
-      "icon": "./src/img/icons/icon.png"
+      "icon": "./src/img/icons/icon.png",
+      "files":["!coverage/*", "!.github/*"]
     }
   }
 }
