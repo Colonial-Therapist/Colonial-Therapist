@@ -5,11 +5,12 @@ const skillsLabels      = require('./skillsLabels.js')
 const headJobs          = require('./headJobs.js')
 const Translate         = require('./translate.js')
 const Config            = require("./config")
+const Jaf               = require("./jaf.js")
 
 class CrateGUI {
     static getGUI(CT) {
         const regex_sep = /--(\w{3})/
-        const rate = [8, 2]
+        const rate = [7, 3]
         const buildToggle = Config.toggle('notBuild') ? 'hideNotBuild' : ''
         const t_civ = !Config.toggle('civ') ? 'hideCiv' : ''
         const t_mil = !Config.toggle('mil') ? 'hideMil' : ''
@@ -32,43 +33,25 @@ class CrateGUI {
             }
         }
 
+        let countVacanciesWH = ''
         Object.keys(CT.factories).forEach((key) => {
-            let job   = CT.factories[key].type
-            let level = CT.factories[key].level
+            let factory = CT.factories[key].type
+            let level   = CT.factories[key].level
 
-            job = job === 'hospital' ? 'healer' : job
-            job = job === 'university' ? 'researcher' : job
-            job = job === 'smeltery' ? 'smelter' : job
-            job = job === 'graveyard' ? 'undertaker' : job
-            job = job === 'library' ? 'student' : job
-            job = job === 'rabbithutch' ? 'rabbitherder' : job
-            job = job === 'plantation' ? 'planter' : job
-
-            if (level) {
-                switch (true) {
-                    case (['barracks', 'guardtower'].indexOf(job) > -1):
-                        addJod('knight')
-                        addJod('ranger')
-                        addJod('druid')
-                        break
-                    case (job === 'school'):
-                        addJod('pupil')
-                        addJod('teacher')
-                        break
-                    case (job === 'cook'):
-                        addJod('cook')
-                        level > 2 && addJod('cookassistant')
-                        break
-                    default:
-                        addJod(job)
-                }
+            if (factory === 'warehouse') {
+                countVacanciesWH = level * 2 - CT.factories[key].residents.length
             }
+
+            Jaf.getVacanciesByFactory(factory, level).forEach(v => {
+                v && addJod(...v)
+            })
         })
 
         // console.log(jobBuilds)
 
         let sepSlot = ''
-        for (const [k, job] of Object.entries(headJobs)) {
+        for (const key of Object.entries(headJobs)) {
+            const job = key[1]
             let sep = regex_sep.exec(job)
             let sepClass = ''
 
@@ -82,6 +65,7 @@ class CrateGUI {
             let isVacancies = ''
             let notBuilt = ''
             let countVacancies = ''
+            let titleVoc = Translate.text('tips.countvacancies')
             if (CT.jobs[thName]) {
                 isVacancies = 'isVacancies'
                 countVacancies = CT.jobs[thName]
@@ -92,6 +76,7 @@ class CrateGUI {
 
                 if (thName !== 'builder') {
                     countVacancies = 'X'
+                    titleVoc = Translate.text('tips.notbuilt')
                 }
 
                 switch (true) {
@@ -100,8 +85,8 @@ class CrateGUI {
                     case thName === 'student' && !CT.research.includes('minecolonies:civilian/keen'):
                     case thName === 'teacher' && !CT.research.includes('minecolonies:civilian/higherlearning'):
                     case thName === 'pupil' && !CT.research.includes('minecolonies:civilian/higherlearning'):
-                    case thName === 'Mystical Site' && !CT.research.includes('minecolonies:civilian/stamina'): //
-                    case thName === 'undertaker' && !CT.research.includes('minecolonies:civilian/remembrance'): //
+                    case thName === 'mysticalsite' && !CT.research.includes('minecolonies:civilian/ambition'):
+                    case thName === 'undertaker' && !CT.research.includes('minecolonies:civilian/remembrance'):
                     case thName === 'knight' && !CT.research.includes('minecolonies:combat/tactictraining'):
                     case thName === 'ranger' && !CT.research.includes('minecolonies:combat/tactictraining'):
                     case thName === 'druid' && !CT.research.includes('minecolonies:combat/tactictraining'):
@@ -114,7 +99,7 @@ class CrateGUI {
                     case thName === 'blacksmith' && !CT.research.includes('minecolonies:technology/hittingiron'):
                     case thName === 'florist' && !CT.research.includes('minecolonies:technology/flowerpower'):
                     case thName === 'plantation' && !CT.research.includes('minecolonies:technology/letitgrow'):
-                    case thName === 'nethermine' && !CT.research.includes('minecolonies:civilian/stamina'): //
+                    case thName === 'netherminer' && !CT.research.includes('minecolonies:technology/opennether'):
                     case thName === 'crusher' && !CT.research.includes('minecolonies:technology/rockingroll'):
                     case thName === 'fletcher' && !CT.research.includes('minecolonies:technology/stringwork'):
                     case thName === 'sifter' && !CT.research.includes('minecolonies:technology/Sieving'):
@@ -122,16 +107,19 @@ class CrateGUI {
                     case thName === 'glassblower' && !CT.research.includes('minecolonies:technology/thoselungs'):
                     case thName === 'mechanic' && !CT.research.includes('minecolonies:technology/whatyaneed'):
                     case thName === 'dyer' && !CT.research.includes('minecolonies:technology/rainbowheaven'):
-                    case thName === 'Alchemist Tower' && !CT.research.includes('minecolonies:technology/rainbowheaven'): //
+                    case thName === 'alchemist' && !CT.research.includes('minecolonies:technology/alchemist'):
                     case thName === 'concretemixer' && !CT.research.includes('minecolonies:technology/pavetheroad'):
                         countVacancies = '?'
                         notBuilt += ' notResearch'
+                        titleVoc = Translate.text('tips.notresearch')
                 }
             }
 
+            let titleWH = Translate.text('tips.warehousevacancies')
+            let WH = countVacanciesWH && thName === 'deliveryman' ? `<span class="countVacWH" title="${titleWH}"> → ${countVacanciesWH}</span>` : ''
             thName = thName ? Translate.text(`jobs.${thName}`) : ''
 
-            table += `<th class="${sepClass} ${sepSlot} ${isVacancies} ${notBuilt}">${thName}<span class="countVac">${countVacancies}</span></th>`
+            table += `<th class="${sepClass} ${sepSlot} ${isVacancies} ${notBuilt}">${thName}<span class="countVac" title="${titleVoc}">${countVacancies}${WH}</span></th>`
         }
 
         table += `
@@ -169,8 +157,8 @@ class CrateGUI {
             } else {
                 let need_tip = ''
                 let troubles = ''
-                for (const [k, need] of Object.entries(col.needs)) {
-
+                for (const key of Object.entries(col.needs)) {
+                    const need = key[1]
                     if (col.needMaxPriority === need.priority) {
                         trouble = need.need
                     }
@@ -191,7 +179,8 @@ class CrateGUI {
             }
             let range = `<input type="range" disabled value="${col.happinessTotal}" min="1" max="10">`
             let emotionList = `${range} ${col.happinessTotal.toFixed(1)}<br>`
-            for (const [k, emotion] of Object.entries(col.happiness)) {
+            for (const key of Object.entries(col.happiness)) {
+                const emotion = key[1]
                 let emotionColor = ''
                 switch (true) {
                     case emotion.value > 1.0: emotionColor = 'green_icon'; break
@@ -208,7 +197,8 @@ class CrateGUI {
             table += `<td class="${emotionTotalColor} s_cell" data-sort="${col.happinessTotal}"><span class="tip">${emotionList}</span></td>`
 
 
-            for (const [k, job] of Object.entries(headJobs)) {
+            for (const key of Object.entries(headJobs)) {
+                const job = key[1]
                 let work = job === col.job ? 'active' : ''
 
                 let sep = regex_sep.exec(job)
@@ -224,11 +214,12 @@ class CrateGUI {
                     let secondReqSkill = SkillsProfessions[job][1]
 
                     let firstCurSkill = col.skills[firstReqSkill].level
-                    let secondCurSkill = secondReqSkill ? col.skills[secondReqSkill].level : 0
+                    let secondCurSkill = secondReqSkill !== null ? col.skills[secondReqSkill].level : 0
 
                     // range 10 - 990
                     let ball = firstCurSkill * rate[0] + secondCurSkill * rate[1]
                     let square = 0
+                    let diamond = ''
                     switch (true) {
                         case ball<=60:  square = 0; break
                         case ball<=90:  square = 1; break
@@ -238,11 +229,13 @@ class CrateGUI {
                         case ball<=390: square = 8; break
                         case ball<=550: square = 10; break
                         case ball<=700: square = 12; break
-                        case ball<=990: square = 14; break
+                        case ball<990: square = 14; break
+                        case ball===990: square = 14; diamond = 'diamond'; break
                     }
 
                     let skillList = '';
-                    for (const [k, skill] of Object.entries(col.skills)) {
+                    for (const key of Object.entries(col.skills)) {
+                        const skill = key[1]
                         let skillFirst = skill.skill === firstReqSkill ? 'first' : ''
                         let skillSecond = skill.skill === secondReqSkill ? 'second' : ''
                         let skillName = skillsLabels[skill.skill].toLowerCase()
@@ -259,7 +252,7 @@ class CrateGUI {
                     }
 
                     table += `<td class="${work} s_cell ${sepSlot} ${vis} ${child} ${isVacancies} ${notBuilt}" data-sort="${ball}">
-                        <span class="square" style="--square: ${square}px;"></span>
+                        <span class="square ${diamond}" style="--square: ${square}px;"></span>
                         <span class="tip">${skillList}</span>
                      </td>`
                 }
@@ -271,7 +264,7 @@ class CrateGUI {
 </table>
 `
         let checked = Config.toggle('notBuild') ? 'checked' : ''
-        let toggle = `<label class="switch" for="notBuild" title="`+ Translate.text("gui.not build") +`">
+        let toggle = `<label class="switch" for="notBuild" title="`+ Translate.text("tips.hidenotbuilt") +`">
                           <input type="checkbox" id="notBuild" ${checked}/>
                           <div class="slider round"></div>
                       </label>`
@@ -283,7 +276,8 @@ class CrateGUI {
         let unWork = 0
         let vis = 0
 
-        for (let [k, col] of Object.entries(CT.colonists)) {
+        for (let key of Object.entries(CT.colonists)) {
+            let col = key[1]
             switch (true) {
                 case (col.isWarrior): ++wars; break;
                 case (col.isVisitor === 1): ++vis; break;
@@ -292,7 +286,8 @@ class CrateGUI {
             }
         }
 
-        for (let [k, home] of Object.entries(CT.homes)) {
+        for (let key of Object.entries(CT.homes)) {
+            let home = key[1]
             if (home.type === 'tavern' && home.level > 0) {
                 civMax += 4
             }

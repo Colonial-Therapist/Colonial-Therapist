@@ -1,34 +1,22 @@
 "use strict"
 
 const headJobs = require('./headJobs.js')
+const Jaf      = require('./jaf.js')
 
 class CreateMap {
     //TODO reactor
     static factoryGroups(factory) {
         const regex_sep = /(--\w{3})/
         let prevSep     = ''
-        //TODO put in the general class of associations of buildings and professions
-        factory = factory === 'hospital' ? 'healer' : factory
-        factory = factory === 'university' ? 'researcher' : factory
-        factory = factory === 'smeltery' ? 'smelter' : factory
-        factory = factory === 'graveyard' ? 'undertaker' : factory
-        factory = factory === 'library' ? 'student' : factory
-        factory = factory === 'rabbithutch' ? 'rabbitherder' : factory
-        factory = factory === 'plantation' ? 'planter' : factory
-        factory = factory === 'guardtower' ? 'knight' : factory
-        factory = factory === 'barracks' ? 'knight' : factory
-        factory = factory === 'barrackstower' ? 'knight' : factory
-        factory = factory === 'school' ? 'pupil' : factory
 
         for (const job of headJobs) {
-
             let sep = regex_sep.exec(job)
 
             if (sep) {
                 prevSep = sep[1]
             }
 
-            if (job === factory) {
+            if (job === Jaf.getFirstJobByFactory(factory)) {
                 return prevSep
             }
         }
@@ -153,6 +141,7 @@ class CreateMap {
         const map   = document.getElementById('map')
         const field = document.createElement('div')
         const svg   = this.createSvgElement('svg')
+        const wrapper   = this.createSvgElement('g')
         const builds   = this.createSvgElement('g')
         const colonists   = this.createSvgElement('g')
         const lines   = this.createSvgElement('g')
@@ -163,17 +152,19 @@ class CreateMap {
         colonists.classList.add('colonists')
         lines.classList.add('lines')
 
-        svg.appendChild(builds)
-        svg.appendChild(colonists)
-        svg.appendChild(lines)
+        svg.appendChild(wrapper)
+        wrapper.appendChild(builds)
+        wrapper.appendChild(colonists)
+        wrapper.appendChild(lines)
 
         const h = CT.map.maxX - CT.map.minX
         const w = CT.map.maxZ - CT.map.minZ
+        const o = 5
 
         this.setAttributes(svg, {
-            width  : '270%',
-            height : '270%',
-            viewBox: `${CT.map.minX - 20} ${CT.map.minZ - 20} ${h + 40} ${w + 40}`
+            width  : '100%',
+            height : '100%',
+            viewBox: `${CT.map.minX - o} ${CT.map.minZ - o} ${h + o * 2} ${w + o * 2}`
         })
 
         Object.keys(CT.factories).forEach(key => {

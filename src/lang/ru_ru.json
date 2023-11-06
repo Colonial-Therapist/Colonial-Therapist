@@ -29,6 +29,8 @@
   "needs.nowarehouse": "Не назначен склад",
   "needs.hometoofar": "Дом слишком далеко",
   "needs.nocompost": "Нет компоста",
+  "needs.idleatjob": "Бездельничает",
+  "needs.namedworkerchestfull": "Инвентарь работника переполнен",
 
   "happiness.damage": "Травмы",
   "happiness.death": "Летальные исходы",
@@ -46,7 +48,7 @@
 
   "jobs.miner": "Шахтёр",
   "jobs.quarrier": "Карьерный шахтёр",
-  "jobs.nether miner": "Шахтёр нижнего мира",
+  "jobs.netherminer": "Шахтёр нижнего мира",
   "jobs.lumberjack": "Лесоруб",
   "jobs.fletcher": "Флетчер",
   "jobs.sawmill": "Плотник",
@@ -61,7 +63,7 @@
   "jobs.planter": "Плантатор",
   "jobs.cowboy": "Пастух",
   "jobs.shepherd": "Овцевод",
-  "jobs.swineherd": "Свинопас",
+  "jobs.swineherder": "Свинопас",
   "jobs.rabbitherder": "Кроликовод",
   "jobs.chickenherder": "Птицевод",
   "jobs.beekeeper": "Пчеловод",
@@ -87,6 +89,8 @@
   "jobs.knight": "Рыцарь",
   "jobs.ranger": "Лучник",
   "jobs.druid": "Друид",
+  "jobs.combattraining": "Оруженосец рыцаря",
+  "jobs.archertraining": "Оруженосец лучника",
 
   "gui.gender": "Пол",
   "gui.needs": "Нужды",
@@ -96,7 +100,12 @@
   "gui.militia": "Охрана",
   "gui.unemployed": "Безработные",
   "gui.visitors": "Гости",
-  "gui.not build": "Скрыть не построенные",
+
+  "tips.hidenotbuilt": "Скрыть не построенные",
+  "tips.warehousevacancies": "Ещё столько курьеров можно назначить на склад",
+  "tips.notbuilt": "Здание для этой профессии ещё не построено",
+  "tips.countvacancies": "Доступно вакансий",
+  "tips.notresearch": "Изучите в университете технологию для постройки здания этой профессии",
 
   "dialog.select world": "Выберите папку с сохранением",
   "dialog.save dir": "Выбрать эту",

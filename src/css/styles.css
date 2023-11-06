@@ -270,6 +270,10 @@ span.countVac {
     text-shadow: 1px 1px 1px black;
     opacity: 0.8;
 }
+span.countVacWH {
+    color: rgba(255, 255, 255, 0.7);
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);
+}
 
 td.vis:not(.name),
 td.child:not(.name) {
@@ -505,10 +509,23 @@ input[type="checkbox"] {
 .wsn {
     white-space: nowrap;
 }
-
-#map, #tabs, #content {
+#tabs {
     display: inline-block;
     vertical-align:top;
+}
+
+#map, #content {
+    display: inline-block;
+    vertical-align: top;
+}
+
+#map {
+    height: calc(100vh - 35px);
+    width: calc(100vw - 55px);
+}
+
+#map svg {
+    max-height: calc(100vh - 35px);
 }
 
 #map.hidden, #content.hidden {
@@ -550,4 +567,38 @@ input[type="checkbox"] {
 .tab.disabled {
     background: #a2a2a2;
     cursor: no-drop;
+}
+
+span.square.diamond {
+    margin-bottom: 2px;
+    width: 0;
+    height: 0;
+    border: 7px solid transparent;
+    border-bottom: 9px solid black;
+    position: relative;
+    top: -7px;
+}
+
+span.square.diamond:after {
+    content: "";
+    width: 0;
+    height: 0;
+    position: absolute;
+    left: -7px;
+    top: 9px;
+    border: 7px solid transparent;
+    border-top: 9px solid black;
+}
+
+span.square.diamond {
+    background-color: #00000000;
+}
+
+td.active span.square.diamond {
+    background-color: #ffffff00;
+    border-bottom: 9px solid white;
+}
+
+td.active span.square.diamond:after {
+    border-top: 9px solid white;
 }

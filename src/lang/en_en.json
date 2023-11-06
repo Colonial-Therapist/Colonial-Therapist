@@ -29,6 +29,8 @@
   "needs.nowarehouse": "No warehouse",
   "needs.hometoofar": "Home too far",
   "needs.nocompost": "No compost",
+  "needs.idleatjob": "Idle at job",
+  "needs.namedworkerchestfull": "Named worker chest full",
 
   "happiness.damage": "Damage",
   "happiness.death": "Death",
@@ -46,7 +48,7 @@
 
   "jobs.miner": "miner",
   "jobs.quarrier": "quarrier",
-  "jobs.nether miner": "nether mine",
+  "jobs.netherminer": "nether mine",
   "jobs.lumberjack": "lumberjack",
   "jobs.fletcher": "fletcher",
   "jobs.sawmill": "carpenter",
@@ -61,7 +63,7 @@
   "jobs.planter": "planter",
   "jobs.cowboy": "cowboy",
   "jobs.shepherd": "shepherd",
-  "jobs.swineherd": "swineherd",
+  "jobs.swineherder": "swineherder",
   "jobs.rabbitherder": "rabbit herder",
   "jobs.chickenherder": "chicken farmer",
   "jobs.beekeeper": "beekeeper",
@@ -87,6 +89,8 @@
   "jobs.knight": "knight",
   "jobs.ranger": "ranger",
   "jobs.druid": "druid",
+  "jobs.combattraining": "combat training",
+  "jobs.archertraining": "archer training",
 
   "gui.gender": "Gender",
   "gui.needs": "Needs",
@@ -96,7 +100,12 @@
   "gui.militia": "Militia",
   "gui.unemployed": "Unemployed",
   "gui.visitors": "Visitors",
-  "gui.not build": "Hide not built",
+
+  "tips.hidenotbuilt": "Hide not built",
+  "tips.warehousevacancies": "So many more couriers can be assigned to the warehouse",
+  "tips.notbuilt": "The building for this profession has not yet been built",
+  "tips.countvacancies": "Available vacancies",
+  "tips.notresearch": "Research the technology for constructing a building for this profession at the university",
 
   "dialog.select world": "Select a world dir",
   "dialog.save dir": "This save dir",
