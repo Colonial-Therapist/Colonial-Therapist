@@ -102,6 +102,8 @@
   "gui.visitors": "Visitors",
   "gui.not build": "Hide not built",
 
+  "tips.warehousevacancies": "So many more couriers can be assigned to the warehouse",
+
   "dialog.select world": "Select a world dir",
   "dialog.save dir": "This save dir",
 

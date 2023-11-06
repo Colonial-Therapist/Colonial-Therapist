@@ -62,14 +62,15 @@ class Parser {
             }
 
             for (const [key, build] of Object.entries(buildings.value)) {
-                let type       = build.type.value.replace("minecolonies:", "")
-                let name       = build.customName.value ? build.customName.value : type
-                const level    = build.level.value
-                const location = build.location.value
-                const corner1  = build.corner1.value
-                const corner2  = build.corner2.value
-                const homes    = ['home', 'tavern']
-                const towers   = ['barrackstower', 'guardtower']
+                let type        = build.type.value.replace("minecolonies:", "")
+                let name        = build.customName.value ? build.customName.value : type
+                const level     = build.level.value
+                const location  = build.location.value
+                const corner1   = build.corner1.value
+                const corner2   = build.corner2.value
+                const homes     = ['home', 'tavern']
+                const towers    = ['barrackstower', 'guardtower']
+                const warehouse = ['warehouse']
 
                 const coordinates = {
                     location: getCoordinates(location),
@@ -90,7 +91,12 @@ class Parser {
 
                         CT.factories[key] = {type, name, level, key, coordinates, residents}
                     } else {
-                        CT.factories[key] = {type, name, level, key, coordinates}
+                        if (warehouse.indexOf(type) > -1) {
+                            const residents = build?.warehouse?.value?.couriers?.value
+                            CT.factories[key] = {type, name, level, key, coordinates, residents}
+                        } else {
+                            CT.factories[key] = {type, name, level, key, coordinates}
+                        }
                     }
 
                     Jaf.getVacanciesByFactory(type, level).forEach(v => {

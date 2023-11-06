@@ -102,6 +102,8 @@
   "gui.visitors": "Гости",
   "gui.not build": "Скрыть не построенные",
 
+  "tips.warehousevacancies": "Ещё столько курьеров можно назначить на склад",
+
   "dialog.select world": "Выберите папку с сохранением",
   "dialog.save dir": "Выбрать эту",
 

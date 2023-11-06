@@ -33,9 +33,14 @@ class CrateGUI {
             }
         }
 
+        let countVacanciesWH = ''
         Object.keys(CT.factories).forEach((key) => {
             let factory = CT.factories[key].type
             let level   = CT.factories[key].level
+
+            if (factory === 'warehouse') {
+                countVacanciesWH = level * 2 - CT.factories[key].residents.length
+            }
 
             Jaf.getVacanciesByFactory(factory, level).forEach(v => {
                 v && addJod(...v)
@@ -107,9 +112,11 @@ class CrateGUI {
                 }
             }
 
+            let titleWH = Translate.text('tips.warehousevacancies')
+            let WH = countVacanciesWH && thName === 'deliveryman' ? `<span class="countVacWH" title="${titleWH}"> → ${countVacanciesWH}</span>` : ''
             thName = thName ? Translate.text(`jobs.${thName}`) : ''
 
-            table += `<th class="${sepClass} ${sepSlot} ${isVacancies} ${notBuilt}">${thName}<span class="countVac">${countVacancies}</span></th>`
+            table += `<th class="${sepClass} ${sepSlot} ${isVacancies} ${notBuilt}">${thName}<span class="countVac">${countVacancies}${WH}</span></th>`
         }
 
         table += `
