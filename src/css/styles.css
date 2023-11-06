@@ -564,3 +564,37 @@ input[type="checkbox"] {
     background: #a2a2a2;
     cursor: no-drop;
 }
+
+span.square.diamond {
+    margin-bottom: 2px;
+    width: 0;
+    height: 0;
+    border: 7px solid transparent;
+    border-bottom: 9px solid black;
+    position: relative;
+    top: -7px;
+}
+
+span.square.diamond:after {
+    content: "";
+    width: 0;
+    height: 0;
+    position: absolute;
+    left: -7px;
+    top: 9px;
+    border: 7px solid transparent;
+    border-top: 9px solid black;
+}
+
+span.square.diamond {
+    background-color: #00000000;
+}
+
+td.active span.square.diamond {
+    background-color: #ffffff00;
+    border-bottom: 9px solid white;
+}
+
+td.active span.square.diamond:after {
+    border-top: 9px solid white;
+}

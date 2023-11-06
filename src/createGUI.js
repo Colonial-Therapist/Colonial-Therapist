@@ -209,6 +209,7 @@ class CrateGUI {
                     // range 10 - 990
                     let ball = firstCurSkill * rate[0] + secondCurSkill * rate[1]
                     let square = 0
+                    let diamond = ''
                     switch (true) {
                         case ball<=60:  square = 0; break
                         case ball<=90:  square = 1; break
@@ -218,7 +219,8 @@ class CrateGUI {
                         case ball<=390: square = 8; break
                         case ball<=550: square = 10; break
                         case ball<=700: square = 12; break
-                        case ball<=990: square = 14; break
+                        case ball<990: square = 14; break
+                        case ball===990: square = 14; diamond = 'diamond'; break
                     }
 
                     let skillList = '';
@@ -240,7 +242,7 @@ class CrateGUI {
                     }
 
                     table += `<td class="${work} s_cell ${sepSlot} ${vis} ${child} ${isVacancies} ${notBuilt}" data-sort="${ball}">
-                        <span class="square" style="--square: ${square}px;"></span>
+                        <span class="square ${diamond}" style="--square: ${square}px;"></span>
                         <span class="tip">${skillList}</span>
                      </td>`
                 }
