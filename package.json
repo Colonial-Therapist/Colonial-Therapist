@@ -11,7 +11,9 @@
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
     "test:coverageAll": "jest --coverage --collectCoverageFrom='src/**/*.js'",
-    "extract": "npx asar extract build/win-unpacked/resources/app.asar build/app"
+    "extract": "npx asar extract build/win-unpacked/resources/app.asar build/app",
+    "gh:windowInit": "copy /Y hooks\\pre-commit .git\\hooks\\pre-commit",
+    "gh:Init": "ln -sfn ../../hooks/pre-commit pre-commit"
   },
   "repository": "",
   "keywords": [
@@ -46,7 +48,8 @@
       "icon": "./src/img/icons/icon.png",
       "files": [
         "!coverage/*",
-        "!.github/*"
+        "!.github/*",
+        "!hooks/*"
       ]
     }
   }

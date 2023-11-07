@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+LC_ALL=C
+
+err_base='.git/hooks/pre-push: Коммит отменён!'
+
+npm run test:coverage
+
+if [ $? -ne 0 ]; then
+    echo "$err_base Прошли не все Unit тесты!"
+    exit 1
+fi
+
+exit 0
