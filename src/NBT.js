@@ -12,7 +12,7 @@ class NBT {
     /**
      * Select a tag
      * @param {string} tagName the tag name in root
-     * @return {NBT|null}
+     * @return {string|NBT|null|Error}
      */
     get(tagName) {
         if (tagName) {
@@ -29,6 +29,8 @@ class NBT {
                     } else {
                         return this.root[tagName].value
                     }
+                } else {
+                    return new Error("notValue")
                 }
             }
         } else {
@@ -44,6 +46,8 @@ class NBT {
                 } else {
                     return this[tagName].value
                 }
+            } else {
+                return new Error("notValue")
             }
         }
 
