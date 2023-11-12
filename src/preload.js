@@ -116,7 +116,7 @@ function toggleResidents(idHome, display) {
     const lines = document.querySelectorAll(`path[data-id-build='${idHome}']`)
     lines.forEach(line => {
         const idCol   = line.dataset.idCol
-        const targets = document.querySelectorAll(`[data-id-col='${idCol}']`)
+        const targets = document.querySelectorAll(`.lines [data-id-build='${idHome}'][data-id-col='${idCol}'], .colonists [data-id-col='${idCol}']`)
         targets.forEach(el => el.style.display = display)
     })
 }
