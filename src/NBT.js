@@ -53,10 +53,6 @@ class NBT {
 
         return null
     }
-
-    select(tagName) {
-        return this.get(tagName)
-    }
 }
 
 module.exports = NBT
