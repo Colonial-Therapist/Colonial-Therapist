@@ -95,7 +95,17 @@ class Parser {
                             const residents = build?.warehouse?.value?.couriers?.value
                             CT.factories[key] = {type, name, level, key, coordinates, residents}
                         } else {
-                            CT.factories[key] = {type, name, level, key, coordinates}
+                            let residents = []
+                            Jaf.getVacanciesByFactory(type, level).forEach(v => {
+                                const res = build['minecolonies:'+v[0]]?.value?.residents?.value
+                                residents = res ? [...residents, ...res] : residents
+                            })
+
+                            if (residents.length) {
+                                CT.factories[key] = {type, name, level, key, coordinates, residents}
+                            } else {
+                                CT.factories[key] = {type, name, level, key, coordinates}
+                            }
                         }
                     }
 
