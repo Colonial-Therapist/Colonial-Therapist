@@ -15,6 +15,10 @@ class NBT {
      * @return {string|NBT|null|Error}
      */
     get(tagName) {
+        if (typeof tagName !== 'string') {
+            return null
+        }
+
         if (tagName) {
             if (tagName in this.root) {
                 if ('value' in this.root[tagName]) {
@@ -40,7 +44,7 @@ class NBT {
         }
 
         if (tagName) {
-            if ('value' in this[tagName]) {
+            if (this[tagName] && 'value' in this[tagName]) {
                 if (typeof this[tagName].value === 'object') {
                     return Object.assign(new NBT(), this[tagName].value)
                 } else {
